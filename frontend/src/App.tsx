@@ -1,14 +1,10 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navbar from "./components/layout/navbar";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link to="/">Get Some Help</Link>
-        <Link to="/feature">Feature</Link>
-        <Link to="/career">Career</Link>
-        <Link to="/help">Help</Link>
-      </nav>
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<></>} />
