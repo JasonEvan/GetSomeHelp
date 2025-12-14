@@ -10,7 +10,6 @@ export default function Navbar() {
             Get Some Help
           </Link>
         </span>
-        <Link to="/feature">Featured</Link>
         <Link to="/career">Career</Link>
         <Link to="/help">Help</Link>
       </div>
