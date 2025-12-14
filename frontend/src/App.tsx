@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./layout/navbar";
 import Home from "./pages/Home";
 import Help from "./pages/Help";
-import HowToOrder from "./pages/help/HowToOrder";
-import FAQ from "./pages/help/FAQ";
+import HowToOrder from "./components/help/HowToOrder";
+import FAQ from "./components/help/FAQ";
 
 export default function App() {
   return (

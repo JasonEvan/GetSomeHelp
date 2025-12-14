@@ -3,8 +3,8 @@ import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import HelpModal from "../layout/HelpModal";
 
-import PaymentsContent from "../help-content/PaymentsContent";
-import AccountContent from "../help-content/AccountContent";
+import PaymentsContent from "../components/help-content/PaymentsContent";
+import AccountContent from "../components/help-content/AccountContent";
 
 const helpOptions = [
   {
