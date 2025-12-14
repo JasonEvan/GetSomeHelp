@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Help from "./pages/Help";
 import HowToOrder from "./components/help/HowToOrder";
 import FAQ from "./components/help/FAQ";
+import Career from "./pages/Career";
 
 export default function App() {
   return (
@@ -12,7 +13,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/career" element={<></>} />
+        <Route path="/career" element={<Career />} />
         <Route path="/help" element={<Help />} />
         <Route path="/help/how-to-order" element={<HowToOrder />} />
         <Route path="/help/faq" element={<FAQ />} />

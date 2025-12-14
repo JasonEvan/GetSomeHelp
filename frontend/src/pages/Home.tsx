@@ -1,55 +1,5 @@
 import { ArrowDown } from "lucide-react";
-
-const services = [
-  {
-    title: "Electrician",
-    description:
-      "Eliable electrical installation and repair services for your home or office",
-    image: "/img/icons/electrician.png",
-  },
-  {
-    title: "AC Service",
-    description:
-      "Professional air conditioner cleaning, repair, and installation at affordable rates",
-    image: "/img/icons/ac.png",
-  },
-  {
-    title: "House Cleaner",
-    description:
-      "Trusted home cleaning services to keep your space spotless and comfortable",
-    image: "/img/icons/cleaner.png",
-  },
-  {
-    title: "Laundry",
-    description:
-      "Fast and fresh laundry services with pickup and delivery options available",
-    image: "/img/icons/laundry.png",
-  },
-  {
-    title: "Pest Control",
-    description:
-      "Effective pest control solutions to protect your home or business from unwanted guests",
-    image: "/img/icons/bug.png",
-  },
-  {
-    title: "Plumbing",
-    description:
-      "Expert plumbing services for installations, repairs, and maintenance of your water systems",
-    image: "/img/icons/pipe.png",
-  },
-  {
-    title: "Lawn Care",
-    description:
-      "Professional lawn care and landscaping services to keep your outdoor spaces beautiful and healthy",
-    image: "/img/icons/garden.png",
-  },
-  {
-    title: "Appliance Repair",
-    description:
-      "Skilled appliance repair services for all brands and types of household appliances",
-    image: "/img/icons/hammer.png",
-  },
-];
+import services from "../utils/services";
 
 export default function Home() {
   return (
