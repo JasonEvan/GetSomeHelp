@@ -1,4 +1,5 @@
 import services from "../utils/services";
+import { Link } from "react-router-dom";
 
 const whyChooseUsLists = [
   {
@@ -38,7 +39,7 @@ export default function Career() {
                 className="rounded-lg px-7 py-2 flex flex-col items-center gap-y-2 bg-white shadow-xl"
                 key={idx}
               >
-                <img src={el.icon} />
+                <img src={el.icon} alt="" />
                 <h5 className="font-bold text-lg">{el.title}</h5>
                 <p className="text-center text-sm">{el.description}</p>
               </div>
@@ -65,13 +66,19 @@ export default function Career() {
                       {job}
                     </p>
                   ))}
-                  <a
+                  {/* <a
                     href=""
                     type="button"
                     className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4 self-end text-sm"
                   >
                     APPLY
-                  </a>
+                  </a> */}
+                  <Link
+                    to={`/apply/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4 self-end text-sm"
+                  >
+                    APPLY
+                  </Link>
                 </div>
               </div>
             ))}
