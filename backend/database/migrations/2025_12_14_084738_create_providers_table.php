@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('experience_years');
             $table->decimal('starting_price',10,2);
             $table->decimal('rating');
-            $table->boolean('is_active')->default('True');
+            $table->boolean('is_active')->default(true);
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
