@@ -66,13 +66,6 @@ export default function Career() {
                       {job}
                     </p>
                   ))}
-                  {/* <a
-                    href=""
-                    type="button"
-                    className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4 self-end text-sm"
-                  >
-                    APPLY
-                  </a> */}
                   <Link
                     to={`/apply/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
                     className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4 self-end text-sm"
