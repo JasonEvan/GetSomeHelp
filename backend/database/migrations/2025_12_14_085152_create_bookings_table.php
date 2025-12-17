@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('start_time');
             $table->time('end_time');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->enum('status',['pending','confirmed','completed','canceled'])->default('pending');
             $table->foreignId('customer_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('provider_id')->constrained('providers')->onDelete('cascade');

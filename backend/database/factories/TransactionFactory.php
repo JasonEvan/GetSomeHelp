@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Booking;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class TransactionFactory extends Factory
      */
     public function definition(): array
     {
+        $bookings = Booking::all();
         return [
-            //
+            'booking_id' => $bookings->random()->id,
+            'amount' => fake()->randomFloat(2, 10, 1000),
+            'discount' => fake()->randomFloat(2, 0, 100),
+            'final_amount' => function (array $attributes) {
+                return $attributes['amount'] - $attributes['discount'];
+            },
         ];
     }
 }

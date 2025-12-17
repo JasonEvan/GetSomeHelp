@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class ProviderFactory extends Factory
      */
     public function definition(): array
     {
+        $providers = User::where('role', 'provider')->get();
+
         return [
-            //
+            'user_id' => $providers->random()->id,
+            'bio' => fake()->paragraph(),
+            'experience_years' => fake()->numberBetween(1, 20),
+            'starting_price' => fake()->randomFloat(2, 50, 500),
+            'rating' => fake()->randomFloat(1, 1, 5),
         ];
     }
 }

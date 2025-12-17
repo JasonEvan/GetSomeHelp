@@ -17,7 +17,9 @@ class ServiceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->sentence(1),
+            'icon' => '/img/icons/electrician.png',
+            'description' => fake()->paragraph(),
         ];
     }
 }
