@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
+            $table->string('display_name');
             $table->text('bio');
+            $table->string('city');
             $table->integer('experience_years');
             $table->decimal('starting_price',10,2);
             $table->decimal('rating');
