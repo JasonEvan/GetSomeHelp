@@ -23,10 +23,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            ServiceSeeder::class,
             ServiceTypeSeeder::class,
             ProviderSeeder::class,
-            ProviderServiceTypeSeeder::class,
             BookingSeeder::class,
             TransactionSeeder::class,
             ReviewSeeder::class,

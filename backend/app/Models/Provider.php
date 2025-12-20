@@ -24,6 +24,6 @@ class Provider extends Model
 
     public function serviceTypes()
     {
-        return $this->belongsToMany(ServiceType::class, 'provider_service_types');
+        return $this->belongsTo(ServiceType::class);
     }
 }

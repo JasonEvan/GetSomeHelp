@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ServiceType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,9 +19,11 @@ class ProviderFactory extends Factory
     public function definition(): array
     {
         $providers = User::where('role', 'provider')->get();
+        $serviceTypes = ServiceType::all();
 
         return [
             'user_id' => $providers->random()->id,
+            'service_type_id' => $serviceTypes->random()->id,
             'display_name' => fake()->word(),
             'bio' => fake()->paragraph(),
             'city' => fake()->city(),

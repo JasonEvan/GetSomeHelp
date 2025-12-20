@@ -17,9 +17,7 @@ class ServiceTypeFactory extends Factory
      */
     public function definition(): array
     {
-        $services = Service::all();
         return [
-            'service_id' => $services->random()->id,
             'name' => fake()->word(),
             'description' => fake()->paragraph(),
             'base_price' => fake()->randomFloat(2, 50, 500),
