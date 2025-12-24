@@ -28,7 +28,7 @@ class ProviderFactory extends Factory
             'bio' => fake()->paragraph(),
             'city' => fake()->city(),
             'experience_years' => fake()->numberBetween(1, 20),
-            'starting_price' => fake()->randomFloat(2, 50, 500),
+            'starting_price' => fake()->randomFloat(2, 20000, 1500000),
             'rating' => fake()->randomFloat(1, 1, 5),
         ];
     }

@@ -20,7 +20,7 @@ class ServiceTypeFactory extends Factory
         return [
             'name' => fake()->word(),
             'description' => fake()->paragraph(),
-            'base_price' => fake()->randomFloat(2, 50, 500),
+            'base_price' => fake()->randomFloat(2, 20000, 1500000),
             'image' => '/img/icons/electrician.png',
         ];
     }
