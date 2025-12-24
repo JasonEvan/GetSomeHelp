@@ -1,5 +1,6 @@
 import { ArrowDown } from "lucide-react";
 import services from "../utils/services";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -43,13 +44,13 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <a
+        <Link
           type="button"
           className="px-3 py-2 bg-[#7C3AED] rounded-xl text-white font-bold flex items-center gap-x-2"
-          href="#"
+          to="/catalog"
         >
           More Services <ArrowDown />
-        </a>
+        </Link>
       </section>
 
       {/* {{-- <section className="bg-[linear-gradient(to_bottom,#EFEFEF_0%,#A0E7E7_57%,#56E3E3_100%)] h-full">

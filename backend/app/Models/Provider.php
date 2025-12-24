@@ -22,7 +22,7 @@ class Provider extends Model
         return $this->hasMany(Booking::class);
     }
 
-    public function serviceTypes()
+    public function serviceType()
     {
         return $this->belongsTo(ServiceType::class);
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,8 @@ Route::get('/', function () {
         'message' => 'Unauthenticated access to API',
     ], 401);
 })->name('login');
+
+Route::get('/catalog', [ServiceController::class, 'get_catalog']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
