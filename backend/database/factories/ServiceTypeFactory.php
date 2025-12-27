@@ -1,0 +1,27 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Service;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ServiceType>
+ */
+class ServiceTypeFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->word(),
+            'description' => fake()->paragraph(),
+            'base_price' => fake()->randomFloat(2, 20000, 1500000),
+            'image' => '/img/icons/electrician.png',
+        ];
+    }
+}
