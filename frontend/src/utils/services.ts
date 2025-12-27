@@ -1,5 +1,6 @@
 const services = [
   {
+    id: 1,
     title: "Electrician",
     description:
       "Eliable electrical installation and repair services for your home or office",
@@ -10,6 +11,7 @@ const services = [
     ],
   },
   {
+    id: 2,
     title: "AC Service",
     description:
       "Professional air conditioner cleaning, repair, and installation at affordable rates",
@@ -21,6 +23,7 @@ const services = [
     ],
   },
   {
+    id: 3,
     title: "House Cleaner",
     description:
       "Trusted home cleaning services to keep your space spotless and comfortable",
@@ -28,6 +31,7 @@ const services = [
     jobDesks: ["Cleaning house furnitures", "Cleaning bathrooms"],
   },
   {
+    id: 4,
     title: "Laundry",
     description:
       "Fast and fresh laundry services with pickup and delivery options available",
@@ -38,6 +42,7 @@ const services = [
     ],
   },
   {
+    id: 5,
     title: "Pest Control",
     description:
       "Effective pest control solutions to protect your home or business from unwanted guests",
@@ -48,6 +53,7 @@ const services = [
     ],
   },
   {
+    id: 6,
     title: "Plumbing",
     description:
       "Expert plumbing services for installations, repairs, and maintenance of your water systems",
@@ -58,6 +64,7 @@ const services = [
     ],
   },
   {
+    id: 7,
     title: "Lawn Care",
     description:
       "Professional lawn care and landscaping services to keep your outdoor spaces beautiful and healthy",
@@ -68,6 +75,7 @@ const services = [
     ],
   },
   {
+    id: 8,
     title: "Appliance Repair",
     description:
       "Skilled appliance repair services for all brands and types of household appliances",

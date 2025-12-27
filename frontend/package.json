@@ -15,15 +15,17 @@
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@tailwindcss/vite": "^4.1.17",
+    "axios": "^1.13.2",
     "lucide-react": "^0.559.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.10.1",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "zustand": "^5.0.9"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.4",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
