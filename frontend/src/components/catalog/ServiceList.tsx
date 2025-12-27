@@ -1,16 +1,24 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useServiceCatalogStore } from "../../hooks/useServiceCatalogStore";
 import StarIcon from "@mui/icons-material/Star";
+import { sortServices } from "../../utils/sortServices";
 
 export default function ServiceList() {
-  const { services, getData } = useServiceCatalogStore();
+  const { services, sortBy, types, priceRange, getData } =
+    useServiceCatalogStore();
+
   useEffect(() => {
     getData();
-  }, [getData]);
+  }, [getData, types, priceRange]);
+
+  const sortedServices = useMemo(
+    () => sortServices(services, sortBy),
+    [services, sortBy]
+  );
 
   return (
-    <div className="space-y-2 ps-2 pe-5">
-      {services.map((service, index) => (
+    <div className="space-y-2 px-5 w-3/4">
+      {sortedServices.map((service, index) => (
         <ServiceCard
           key={index}
           name={service.display_name}

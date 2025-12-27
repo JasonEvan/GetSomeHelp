@@ -1,5 +1,6 @@
 import { Search } from "lucide-react";
 import ServiceList from "../components/catalog/ServiceList";
+import ServiceFilter from "../components/catalog/ServiceFilter";
 
 export default function Catalog() {
   return (
@@ -26,7 +27,8 @@ export default function Catalog() {
           Service Catalog
         </div>
 
-        <div className="w-full bg-white">
+        <div className="w-full bg-white flex pt-5">
+          <ServiceFilter />
           <ServiceList />
         </div>
       </section>
