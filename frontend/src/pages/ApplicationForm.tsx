@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import services from "../utils/services";
 import { CloudUploadIcon } from "lucide-react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 type ApplicationFormProps = {
   firstName: string;
@@ -26,91 +28,58 @@ type ApplicationFormProps = {
   availabilityEnd: string;
 };
 
-type ApplicationFormErrors = Omit<
-  ApplicationFormProps,
-  "resume" | "availabilityDays" | "expectedSalary"
-> & {
-  resume: string;
-  availabilityDays: string;
-};
-
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function ApplicationForm() {
   const { role } = useParams();
 
-  const jobTitle =
-    services.find((s) => s.title.toLowerCase().replace(/\s+/g, "-") === role)
-      ?.title ?? "Job Application";
-
-  const [form, setForm] = useState<ApplicationFormProps>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    resume: null,
-    expectedSalary: 100,
-    availabilityDays: [],
-    availabilityStart: "",
-    availabilityEnd: "",
+  const validationSchema = Yup.object({
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    phone: Yup.string().required("Phone number is required"),
+    address: Yup.string().required("Address is required"),
+    resume: Yup.mixed().required("Resume / CV is required"),
+    availabilityDays: Yup.array()
+      .min(1, "Select at least one day")
+      .required("Select at least one day"),
+    availabilityStart: Yup.string().required("Start time required"),
+    availabilityEnd: Yup.string()
+      .required("End time required")
+      .test(
+        "is-greater",
+        "End time must be after start time",
+        function (value) {
+          const { availabilityStart } = this.parent;
+          return !availabilityStart || !value || availabilityStart < value;
+        }
+      ),
   });
 
-  const [errors, setErrors] = useState<ApplicationFormErrors>({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-    resume: "",
-    availabilityDays: "",
-    availabilityStart: "",
-    availabilityEnd: "",
-  });
-
-  const [openTerms, setOpenTerms] = useState(false);
-
-  const validate = () => {
-    const newErrors: ApplicationFormErrors = {
+  const formik = useFormik<ApplicationFormProps>({
+    initialValues: {
       firstName: "",
       lastName: "",
       email: "",
       phone: "",
       address: "",
-      resume: "",
-      availabilityDays: "",
+      resume: null,
+      expectedSalary: 100,
+      availabilityDays: [],
       availabilityStart: "",
       availabilityEnd: "",
-    };
+    },
+    validationSchema,
+    onSubmit: () => {
+      alert("Form submitted successfully");
+    },
+  });
 
-    if (!form.firstName) newErrors.firstName = "First name is required";
-    if (!form.lastName) newErrors.lastName = "Last name is required";
-    if (!form.email) newErrors.email = "Email is required";
-    if (!form.phone) newErrors.phone = "Phone number is required";
-    if (!form.address) newErrors.address = "Address is required";
-    if (!form.resume) newErrors.resume = "Resume / CV is required";
-    if (form.availabilityDays.length === 0)
-      newErrors.availabilityDays = "Select at least one day";
-    if (!form.availabilityStart)
-      newErrors.availabilityStart = "Start time required";
-    if (!form.availabilityEnd) newErrors.availabilityEnd = "End time required";
-    if (
-      form.availabilityStart &&
-      form.availabilityEnd &&
-      form.availabilityStart >= form.availabilityEnd
-    )
-      newErrors.availabilityEnd = "End time must be after start time";
+  const [openTerms, setOpenTerms] = useState(false);
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    alert("Form submitted successfully");
-  };
+  const jobTitle =
+    services.find((s) => s.title.toLowerCase().replace(/\s+/g, "-") === role)
+      ?.title ?? "Job Application";
 
   return (
     <main
@@ -126,19 +95,21 @@ export default function ApplicationForm() {
           {jobTitle} Job Application
         </h1>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={formik.handleSubmit} className="space-y-6">
           {/* Name */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <TextField
                 label="First Name"
                 fullWidth
-                value={form.firstName}
-                onChange={(e) =>
-                  setForm({ ...form, firstName: e.target.value })
+                name="firstName"
+                value={formik.values.firstName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.firstName && Boolean(formik.errors.firstName)
                 }
-                error={Boolean(errors.firstName)}
-                helperText={errors.firstName}
+                helperText={formik.touched.firstName && formik.errors.firstName}
               />
             </div>
 
@@ -146,10 +117,14 @@ export default function ApplicationForm() {
               <TextField
                 label="Last Name"
                 fullWidth
-                value={form.lastName}
-                onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                error={Boolean(errors.lastName)}
-                helperText={errors.lastName}
+                name="lastName"
+                value={formik.values.lastName}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={
+                  formik.touched.lastName && Boolean(formik.errors.lastName)
+                }
+                helperText={formik.touched.lastName && formik.errors.lastName}
               />
             </div>
           </div>
@@ -158,19 +133,23 @@ export default function ApplicationForm() {
             <TextField
               label="Email"
               fullWidth
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              error={Boolean(errors.email)}
-              helperText={errors.email}
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
             />
 
             <TextField
               label="Phone"
               fullWidth
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              error={Boolean(errors.phone)}
-              helperText={errors.phone}
+              name="phone"
+              value={formik.values.phone}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.phone && Boolean(formik.errors.phone)}
+              helperText={formik.touched.phone && formik.errors.phone}
             />
           </div>
           {/* Address */}
@@ -178,10 +157,12 @@ export default function ApplicationForm() {
             <TextField
               label="Address"
               fullWidth
-              value={form.address}
-              onChange={(e) => setForm({ ...form, address: e.target.value })}
-              error={Boolean(errors.address)}
-              helperText={errors.address}
+              name="address"
+              value={formik.values.address}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.address && Boolean(formik.errors.address)}
+              helperText={formik.touched.address && formik.errors.address}
             />
           </div>
           {/* Resume, Salary, Availability */}
@@ -208,16 +189,18 @@ export default function ApplicationForm() {
                     type="file"
                     hidden
                     onChange={(e) =>
-                      setForm({ ...form, resume: e.target.files?.[0] || null })
+                      formik.setFieldValue("resume", e.currentTarget.files?.[0])
                     }
                   />
                 </Button>
-                {errors.resume && (
-                  <p className="text-red-500 text-sm mt-1">{errors.resume}</p>
+                {formik.errors.resume && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {formik.errors.resume}
+                  </p>
                 )}
-                {form.resume && (
+                {formik.values.resume && (
                   <p className="text-sm mt-1 text-gray-600">
-                    Selected: {form.resume.name}
+                    Selected: {formik.values.resume.name}
                   </p>
                 )}
               </div>
@@ -228,9 +211,10 @@ export default function ApplicationForm() {
                   Expected Salary (IDR/hour)
                 </p>
                 <Slider
-                  value={form.expectedSalary}
+                  name="expectedSalary"
+                  value={formik.values.expectedSalary}
                   onChange={(_, val) =>
-                    setForm({ ...form, expectedSalary: val as number })
+                    formik.setFieldValue("expectedSalary", val)
                   }
                   step={10}
                   min={100}
@@ -239,7 +223,7 @@ export default function ApplicationForm() {
                   sx={{ width: "90%", ml: 2, mr: 2, color: "#7E3ACD" }}
                 />
                 <p className="text-gray-600 text-sm mx-auto text-center ">
-                  {form.expectedSalary}k IDR/hour
+                  {formik.values.expectedSalary}k IDR/hour
                 </p>
               </div>
             </div>
@@ -253,12 +237,15 @@ export default function ApplicationForm() {
                       key={day}
                       control={
                         <Checkbox
-                          checked={form.availabilityDays.includes(day)}
+                          checked={formik.values.availabilityDays.includes(day)}
                           onChange={() => {
-                            const updated = form.availabilityDays.includes(day)
-                              ? form.availabilityDays.filter((d) => d !== day)
-                              : [...form.availabilityDays, day];
-                            setForm({ ...form, availabilityDays: updated });
+                            const updated =
+                              formik.values.availabilityDays.includes(day)
+                                ? formik.values.availabilityDays.filter(
+                                    (d) => d !== day
+                                  )
+                                : [...formik.values.availabilityDays, day];
+                            formik.setFieldValue("availabilityDays", updated);
                           }}
                           sx={{ "&.Mui-checked": { color: "#7E3ACD" } }}
                         />
@@ -269,9 +256,9 @@ export default function ApplicationForm() {
                     />
                   ))}
                 </div>
-                {errors.availabilityDays && (
+                {formik.errors.availabilityDays && (
                   <p className="text-red-500 text-sm mt-1">
-                    {errors.availabilityDays}
+                    {formik.errors.availabilityDays}
                   </p>
                 )}
               </div>
@@ -281,12 +268,18 @@ export default function ApplicationForm() {
                   <TextField
                     label="From"
                     type="time"
-                    value={form.availabilityStart || "00:00"}
-                    onChange={(e) =>
-                      setForm({ ...form, availabilityStart: e.target.value })
+                    name="availabilityStart"
+                    value={formik.values.availabilityStart || "00:00"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={
+                      formik.touched.availabilityStart &&
+                      Boolean(formik.errors.availabilityStart)
                     }
-                    error={Boolean(errors.availabilityStart)}
-                    helperText={errors.availabilityStart}
+                    helperText={
+                      formik.touched.availabilityStart &&
+                      formik.errors.availabilityStart
+                    }
                     sx={{ width: "110%" }}
                   />
 
@@ -296,12 +289,18 @@ export default function ApplicationForm() {
                   <TextField
                     label="Until"
                     type="time"
-                    value={form.availabilityEnd || "00:00"}
-                    onChange={(e) =>
-                      setForm({ ...form, availabilityEnd: e.target.value })
+                    name="availabilityEnd"
+                    value={formik.values.availabilityEnd || "00:00"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={
+                      formik.touched.availabilityEnd &&
+                      Boolean(formik.errors.availabilityEnd)
                     }
-                    error={Boolean(errors.availabilityEnd)}
-                    helperText={errors.availabilityEnd}
+                    helperText={
+                      formik.touched.availabilityEnd &&
+                      formik.errors.availabilityEnd
+                    }
                     sx={{ width: "110%" }}
                   />
                 </div>
