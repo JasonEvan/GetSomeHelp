@@ -9,12 +9,30 @@ import {
   Modal,
   Box,
   Typography,
-  IconButton,
 } from "@mui/material";
 import services from "../utils/services";
 import { CloudUploadIcon } from "lucide-react";
-import CloseIcon from "@mui/icons-material/Close";
 
+type ApplicationFormProps = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  resume: File | null;
+  expectedSalary: number;
+  availabilityDays: string[];
+  availabilityStart: string;
+  availabilityEnd: string;
+};
+
+type ApplicationFormErrors = Omit<
+  ApplicationFormProps,
+  "resume" | "availabilityDays" | "expectedSalary"
+> & {
+  resume: string;
+  availabilityDays: string;
+};
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -22,11 +40,10 @@ export default function ApplicationForm() {
   const { role } = useParams();
 
   const jobTitle =
-    services.find(
-      (s) => s.title.toLowerCase().replace(/\s+/g, "-") === role
-    )?.title ?? "Job Application";
+    services.find((s) => s.title.toLowerCase().replace(/\s+/g, "-") === role)
+      ?.title ?? "Job Application";
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ApplicationFormProps>({
     firstName: "",
     lastName: "",
     email: "",
@@ -39,12 +56,32 @@ export default function ApplicationForm() {
     availabilityEnd: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<ApplicationFormErrors>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    address: "",
+    resume: "",
+    availabilityDays: "",
+    availabilityStart: "",
+    availabilityEnd: "",
+  });
 
   const [openTerms, setOpenTerms] = useState(false);
 
   const validate = () => {
-    const newErrors: any = {};
+    const newErrors: ApplicationFormErrors = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      resume: "",
+      availabilityDays: "",
+      availabilityStart: "",
+      availabilityEnd: "",
+    };
 
     if (!form.firstName) newErrors.firstName = "First name is required";
     if (!form.lastName) newErrors.lastName = "Last name is required";
@@ -56,16 +93,19 @@ export default function ApplicationForm() {
       newErrors.availabilityDays = "Select at least one day";
     if (!form.availabilityStart)
       newErrors.availabilityStart = "Start time required";
-    if (!form.availabilityEnd)
-      newErrors.availabilityEnd = "End time required";
-    if (form.availabilityStart && form.availabilityEnd && form.availabilityStart >= form.availabilityEnd)
+    if (!form.availabilityEnd) newErrors.availabilityEnd = "End time required";
+    if (
+      form.availabilityStart &&
+      form.availabilityEnd &&
+      form.availabilityStart >= form.availabilityEnd
+    )
       newErrors.availabilityEnd = "End time must be after start time";
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validate()) return;
 
@@ -73,7 +113,14 @@ export default function ApplicationForm() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 py-10 px-4" style={{ backgroundImage: "url('/img/background/forth-bg.png')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <main
+      className="min-h-screen bg-gray-100 py-10 px-4"
+      style={{
+        backgroundImage: "url('/img/background/forth-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg mt-10">
         <h1 className="text-3xl font-bold text-gray-700 mb-8 text-center">
           {jobTitle} Job Application
@@ -90,7 +137,7 @@ export default function ApplicationForm() {
                 onChange={(e) =>
                   setForm({ ...form, firstName: e.target.value })
                 }
-                error={!!errors.firstName}
+                error={Boolean(errors.firstName)}
                 helperText={errors.firstName}
               />
             </div>
@@ -100,10 +147,8 @@ export default function ApplicationForm() {
                 label="Last Name"
                 fullWidth
                 value={form.lastName}
-                onChange={(e) =>
-                  setForm({ ...form, lastName: e.target.value })
-                }
-                error={!!errors.lastName}
+                onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                error={Boolean(errors.lastName)}
                 helperText={errors.lastName}
               />
             </div>
@@ -115,7 +160,7 @@ export default function ApplicationForm() {
               fullWidth
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              error={!!errors.email}
+              error={Boolean(errors.email)}
               helperText={errors.email}
             />
 
@@ -124,7 +169,7 @@ export default function ApplicationForm() {
               fullWidth
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              error={!!errors.phone}
+              error={Boolean(errors.phone)}
               helperText={errors.phone}
             />
           </div>
@@ -135,7 +180,7 @@ export default function ApplicationForm() {
               fullWidth
               value={form.address}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
-              error={!!errors.address}
+              error={Boolean(errors.address)}
               helperText={errors.address}
             />
           </div>
@@ -143,11 +188,21 @@ export default function ApplicationForm() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               {/* Resume Upload */}
-              <p className="font-medium text-gray-700 mb-2">
-                Resume / CV
-              </p>
+              <p className="font-medium text-gray-700 mb-2">Resume / CV</p>
               <div>
-                <Button variant="contained" component="label" startIcon={<CloudUploadIcon />} sx={{ mt: 1, color: 'black', backgroundColor: "transparent", border: '2px solid #7E3ACD','&:hover': { backgroundColor: '#eeeeeeff' }, boxShadow: 'none' }}>
+                <Button
+                  variant="contained"
+                  component="label"
+                  startIcon={<CloudUploadIcon />}
+                  sx={{
+                    mt: 1,
+                    color: "black",
+                    backgroundColor: "transparent",
+                    border: "2px solid #7E3ACD",
+                    "&:hover": { backgroundColor: "#eeeeeeff" },
+                    boxShadow: "none",
+                  }}
+                >
                   Upload File
                   <input
                     type="file"
@@ -174,14 +229,14 @@ export default function ApplicationForm() {
                 </p>
                 <Slider
                   value={form.expectedSalary}
-                  onChange={(e, val) =>
+                  onChange={(_, val) =>
                     setForm({ ...form, expectedSalary: val as number })
                   }
                   step={10}
                   min={100}
                   max={200}
                   valueLabelDisplay="auto"
-                  sx={{width: '90%', ml: 2, mr: 2, color: '#7E3ACD'}}
+                  sx={{ width: "90%", ml: 2, mr: 2, color: "#7E3ACD" }}
                 />
                 <p className="text-gray-600 text-sm mx-auto text-center ">
                   {form.expectedSalary}k IDR/hour
@@ -205,12 +260,12 @@ export default function ApplicationForm() {
                               : [...form.availabilityDays, day];
                             setForm({ ...form, availabilityDays: updated });
                           }}
-                          sx={{'&.Mui-checked': {color: '#7E3ACD'}}}
+                          sx={{ "&.Mui-checked": { color: "#7E3ACD" } }}
                         />
                       }
                       label={day}
                       labelPlacement="bottom"
-                      sx={{m: 0}}
+                      sx={{ m: 0 }}
                     />
                   ))}
                 </div>
@@ -226,28 +281,28 @@ export default function ApplicationForm() {
                   <TextField
                     label="From"
                     type="time"
-                    value={form.availabilityStart || '00:00'}
+                    value={form.availabilityStart || "00:00"}
                     onChange={(e) =>
                       setForm({ ...form, availabilityStart: e.target.value })
                     }
-                    error={!!errors.availabilityStart}
+                    error={Boolean(errors.availabilityStart)}
                     helperText={errors.availabilityStart}
-                    sx={{width: '110%'}}
+                    sx={{ width: "110%" }}
                   />
 
                   {/* Strip */}
-                  <div className="h-[2px] bg-gray-300 w-full"></div>
+                  <div className="h-0.5 bg-gray-300 w-full"></div>
 
                   <TextField
                     label="Until"
                     type="time"
-                    value={form.availabilityEnd || '00:00'}
+                    value={form.availabilityEnd || "00:00"}
                     onChange={(e) =>
                       setForm({ ...form, availabilityEnd: e.target.value })
                     }
-                    error={!!errors.availabilityEnd}
+                    error={Boolean(errors.availabilityEnd)}
                     helperText={errors.availabilityEnd}
-                    sx={{width: '110%'}}
+                    sx={{ width: "110%" }}
                   />
                 </div>
               </div>
@@ -258,13 +313,20 @@ export default function ApplicationForm() {
             type="submit"
             variant="contained"
             fullWidth
-            className="!bg-[#7C3AED] !py-3 !text-lg"
+            sx={{
+              bgcolor: "#7C3AED",
+              py: "0.75rem",
+              fontSize: "18px",
+              lineHeight: 1.555556,
+            }}
           >
             Send Application
           </Button>
         </form>
-        <p className="font-medium text-gray-700 mt-2 text-center text-ms" onClick={() => setOpenTerms(true)}
->
+        <p
+          className="font-medium text-gray-700 mt-2 text-center text-ms cursor-pointer"
+          onClick={() => setOpenTerms(true)}
+        >
           Terms and Conditions
         </p>
       </div>
@@ -288,11 +350,15 @@ export default function ApplicationForm() {
             </Typography>
           </div>
 
-          <Typography sx={{ mt: 2 }} className="text-gray-700 text-sm leading-relaxed">
-            By submitting this application, you confirm that all information provided
-            is accurate and truthful. Your data will be used solely for recruitment
-            purposes and will not be shared with third parties without your consent.
-            Submitting false information may result in disqualification.
+          <Typography
+            sx={{ mt: 2 }}
+            className="text-gray-700 text-sm leading-relaxed"
+          >
+            By submitting this application, you confirm that all information
+            provided is accurate and truthful. Your data will be used solely for
+            recruitment purposes and will not be shared with third parties
+            without your consent. Submitting false information may result in
+            disqualification.
           </Typography>
 
           <Button
