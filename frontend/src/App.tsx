@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./layout/navbar";
+import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import Help from "./pages/Help";
 import HowToOrder from "./components/help/HowToOrder";
@@ -7,10 +7,11 @@ import FAQ from "./components/help/FAQ";
 import Career from "./pages/Career";
 import SignUp from "./pages/auth/SignUp";
 import Login from "./pages/auth/Login";
+import UserDashboard from "./pages/dashboard/UserDashboard";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter> 
       <Navbar />
 
       <Routes>
@@ -22,6 +23,9 @@ export default function App() {
 
         <Route path='/signup' element={<SignUp/>} />
         <Route path="/login" element={<Login />} />
+
+        <Route path="/user-dashboard" element={<UserDashboard />} />
+
       </Routes>
     </BrowserRouter>
   );
