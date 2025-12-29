@@ -9,3 +9,14 @@ export interface ServiceCatalog {
     image: string;
   };
 }
+
+export interface ServiceType {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  service_job_desks: {
+    id: number;
+    job_desk: string;
+  }[];
+}

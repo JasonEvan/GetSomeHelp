@@ -11,6 +11,7 @@ Route::get('/', function () {
 })->name('login');
 
 Route::get('/catalog', [ServiceController::class, 'get_catalog']);
+Route::get('/service-type', [ServiceController::class, 'get_service_types']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {

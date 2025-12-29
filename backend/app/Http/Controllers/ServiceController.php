@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    public function get_service_types()
+    {
+        $serviceTypes = ServiceType::with('serviceJobDesks')->get();
+        return response()->json([
+            'data' => $serviceTypes,
+        ]);
+    }
+
     public function get_catalog(Request $request)
     {
         // Query Parameters

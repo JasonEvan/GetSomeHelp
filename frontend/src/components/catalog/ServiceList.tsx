@@ -55,7 +55,11 @@ function ServiceCard({
     <div className="w-full h-24 flex justify-between items-center border border-gray-300">
       <div className="flex h-full items-center">
         <div className="w-[120px] h-full flex justify-center items-center overflow-hidden">
-          <img src={image} alt="" className="object-cover" />
+          <img
+            src={`${import.meta.env.VITE_BACKEND_URL}${image}`}
+            alt=""
+            className="object-cover"
+          />
         </div>
         <div className="ms-2">
           <h5 className="text-xl">{name}</h5>
