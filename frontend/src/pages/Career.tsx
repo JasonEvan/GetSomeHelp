@@ -1,4 +1,5 @@
 import services from "../utils/services";
+import { Link } from "react-router-dom";
 
 const whyChooseUsLists = [
   {
@@ -10,14 +11,14 @@ const whyChooseUsLists = [
   },
   {
     icon: "img/icons/job.png",
-    title: "Many available positions",
+    title: "Many Available Positions",
     description:
       "We currently have many job openings waiting for you. Whatever your expertise, we have a place for you.",
     shadow: "rgba(74,222,128,0.6)", // green
   },
   {
     icon: "img/icons/clock.png",
-    title: "Flexible working hours",
+    title: "Flexible Working Hours",
     description:
       "Work hours are flexible and adapted to meet client needs and ensure optimal service availability.",
     shadow: "rgba(248,113,113,0.6)", // red
@@ -44,12 +45,11 @@ export default function Career() {
               {whyChooseUsLists.map((el, idx) => (
                 <div
                   key={idx}
-                  className="rounded-xl px-6 py-8 flex flex-col items-center text-center bg-white transition"
+                  className="rounded-xl px-6 py-8 flex flex-col items-center text-center bg-white transition hover:scale-105"
                   style={{
                     boxShadow: `5px 10px 5px ${el.shadow}`,
                   }}
                 >
-                  {/* Icon */}
                   <div className="mb-4">
                     <img
                       src={el.icon}
@@ -57,11 +57,7 @@ export default function Career() {
                       className="w-14 h-14 mx-auto"
                     />
                   </div>
-
-                  {/* Title */}
                   <h5 className="font-bold text-lg mb-2">{el.title}</h5>
-
-                  {/* Description */}
                   <p className="text-sm text-gray-600">{el.description}</p>
                 </div>
               ))}
@@ -69,10 +65,10 @@ export default function Career() {
           </div>
         </div>
 
-        {/* SERVICES */}
+        {/* SERVICES  */}
         <div className="w-full flex justify-center mt-16 pb-16">
           <div className="max-w-6xl w-full flex flex-col items-center gap-6">
-            <h3 className="font-bold text-[#7A3F93] text-3xl">
+            <h3 className="font-bold text-[#7A3F93] text-3xl text-center">
               Become one of us!
             </h3>
 
@@ -83,7 +79,7 @@ export default function Career() {
                   className="rounded-xl p-6 flex gap-6 bg-white shadow-lg hover:shadow-xl transition"
                 >
                   {/* Icon */}
-                  <img src={service.image} className="w-14 h-14 self-start" />
+                  <img src={service.image} alt={service.title} className="w-14 h-14 self-start" />
 
                   {/* Content */}
                   <div className="flex flex-col flex-1">
@@ -98,10 +94,12 @@ export default function Career() {
                         <li key={idx}>{job}</li>
                       ))}
                     </ul>
-
-                    <button className="mt-6 self-end bg-[#7C3AED] text-white rounded-md py-2 px-5 text-sm font-semibold hover:bg-violet-700 transition">
+                    <Link
+                      to={`/apply/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="mt-6 self-end bg-[#7C3AED] text-white rounded-md py-2 px-5 text-sm font-semibold hover:bg-violet-700 transition"
+                    >
                       Apply
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('base_price',10,2);
             $table->string('image');
-            $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
             $table->timestamps();
         });
     }

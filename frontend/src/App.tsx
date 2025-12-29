@@ -8,6 +8,8 @@ import Career from "./pages/Career";
 import SignUp from "./pages/auth/SignUp";
 import Login from "./pages/auth/Login";
 import UserDashboard from "./pages/dashboard/UserDashboard";
+import ApplicationForm from "./pages/ApplicationForm";
+import Catalog from "./pages/Catalog";
 
 export default function App() {
   return (
@@ -17,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/career" element={<Career />} />
+
         <Route path="/help" element={<Help />} />
         <Route path="/help/how-to-order" element={<HowToOrder />} />
         <Route path="/help/faq" element={<FAQ />} />
@@ -26,6 +29,10 @@ export default function App() {
 
         <Route path="/user-dashboard" element={<UserDashboard />} />
 
+        
+        <Route path="/apply/:role" element={<ApplicationForm />} />
+        
+        <Route path="/catalog" element={<Catalog />} />
       </Routes>
     </BrowserRouter>
   );
