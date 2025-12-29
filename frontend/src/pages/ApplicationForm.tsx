@@ -76,7 +76,11 @@ export default function ApplicationForm() {
 
   const [openTerms, setOpenTerms] = useState(false);
 
-  const jobTitle = role ?? "General";
+  const jobTitle =
+    role
+      ?.split("-")
+      .map((w) => w[0].toUpperCase() + w.slice(1))
+      .join(" ") ?? "General";
 
   return (
     <main
