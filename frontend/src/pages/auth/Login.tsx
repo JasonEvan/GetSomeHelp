@@ -8,7 +8,6 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   return (
     <>
-
       <main
         className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-6"
         style={{ backgroundImage: "url('/img/background/main-bg.png')" }}
@@ -47,9 +46,8 @@ export default function Login() {
               </button>
             </div>
 
-           
             <div className="flex items-center justify-between text-sm">
-              {/* remember me button */}  
+              {/* remember me button */}
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -60,7 +58,7 @@ export default function Login() {
                 <span className="text-gray-600">Remember me</span>
               </label>
 
-              {/* forgot password kalau mau dibuat */}
+              {/* forgot password ---- kalau mau dibuat, ngak penting-penting amat sih */}
               <span className="text-gray-500 hover:underline cursor-pointer">
                 Forgot password?
               </span>
