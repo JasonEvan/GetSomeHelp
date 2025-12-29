@@ -4,6 +4,7 @@ export interface ServiceCatalog {
   starting_price: number;
   rating: number;
   experience_years: number;
+  img_path: string | null;
   service_type: {
     name: string;
     image: string;

@@ -3,19 +3,19 @@ import { Link } from "react-router-dom";
 
 const whyChooseUsLists = [
   {
-    icon: "img/icons/plant.png",
+    icon: "/img/plant.png",
     title: "Advance Opportunities",
     description:
       "A clear career path provides a detailed roadmap of the positions, skills, and experience needed to achieve long-term professional goals.",
   },
   {
-    icon: "img/icons/job.png",
+    icon: "/img/job.png",
     title: "Many Available Positions",
     description:
       "We currently have many job openings waiting for you. Whatever your expertise, we have a place for you.",
   },
   {
-    icon: "img/icons/clock.png",
+    icon: "/img/clock.png",
     title: "Flexible Working Hours",
     description:
       "Work hours are flexible and adapted to meet client needs and ensure optimal service availability.",

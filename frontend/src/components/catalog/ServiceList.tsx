@@ -27,7 +27,7 @@ export default function ServiceList() {
           experience={service.experience_years}
           rating={service.rating}
           price={service.starting_price}
-          image={service.service_type.image}
+          image={service.img_path}
         />
       ))}
     </div>
@@ -49,17 +49,22 @@ function ServiceCard({
   experience: number;
   rating: number;
   price: number;
-  image: string;
+  image: string | null;
 }) {
+  let img_source;
+  if (!image) {
+    img_source = "https://picsum.photos/720/360";
+  } else if (image.startsWith("http://") || image.startsWith("https://")) {
+    img_source = image;
+  } else {
+    img_source = `${import.meta.env.VITE_BACKEND_URL}${image}`;
+  }
+
   return (
     <div className="w-full h-24 flex justify-between items-center border border-gray-300">
       <div className="flex h-full items-center">
         <div className="w-[120px] h-full flex justify-center items-center overflow-hidden">
-          <img
-            src={`${import.meta.env.VITE_BACKEND_URL}${image}`}
-            alt=""
-            className="object-cover"
-          />
+          <img src={img_source} alt="" className="object-cover" />
         </div>
         <div className="ms-2">
           <h5 className="text-xl">{name}</h5>

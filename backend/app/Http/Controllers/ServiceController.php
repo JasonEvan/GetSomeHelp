@@ -40,6 +40,7 @@ class ServiceController extends Controller
                 'starting_price',
                 'rating',
                 'experience_years',
+                'img_path',
             ])
             ->where('is_active', true)
             // id selalu diselect untuk keperluan relasi
