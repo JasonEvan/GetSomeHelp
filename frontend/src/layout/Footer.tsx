@@ -1,4 +1,8 @@
-import { Facebook, Instagram, Youtube, Linkedin, Mail } from "lucide-react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -114,19 +118,19 @@ export default function Footer() {
 
         <div className="mt-10 flex justify-start gap-6 text-black">
           <a href="#" className="hover:text-purple-600">
-            <Facebook size={20} />
+            <FacebookIcon fontSize="small" />
           </a>
           <a href="#" className="hover:text-purple-600">
-            <Instagram size={20} />
+            <InstagramIcon fontSize="small" />
           </a>
           <a href="#" className="hover:text-purple-600">
-            <Youtube size={20} />
+            <YouTubeIcon fontSize="small" />
           </a>
           <a href="#" className="hover:text-purple-600">
-            <Linkedin size={20} />
+            <LinkedInIcon fontSize="small" />
           </a>
           <a href="#" className="hover:text-purple-600">
-            <Mail size={20} />
+            <MailOutlineIcon fontSize="small" />
           </a>
         </div>
       </div>
