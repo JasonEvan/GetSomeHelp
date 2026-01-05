@@ -1,8 +1,10 @@
 import { ArrowDown } from "lucide-react";
-import services from "../utils/services";
 import { Link } from "react-router-dom";
+import { useServiceType } from "../hooks/useServiceType";
 
 export default function Home() {
+  const services = useServiceType();
+
   return (
     <main className="bg-gray-100 h-screen">
       <section
@@ -36,10 +38,14 @@ export default function Home() {
           Popular Service Types
         </h3>
         <div className="w-full grid grid-flow-row grid-cols-4 gap-5 p-5">
-          {services.map((service, index) => (
-            <div className="flex flex-col items-center gap-1" key={index}>
-              <img src={service.image} alt="" width="50px" />
-              <h5 className="font-bold text-xl">{service.title}</h5>
+          {services.map((service) => (
+            <div className="flex flex-col items-center gap-1" key={service.id}>
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}${service.image}`}
+                alt=""
+                width="50px"
+              />
+              <h5 className="font-bold text-xl">{service.name}</h5>
               <p className="text-center text-sm">{service.description}</p>
             </div>
           ))}

@@ -1,21 +1,21 @@
-import services from "../utils/services";
+import { useServiceType } from "../hooks/useServiceType";
 import { Link } from "react-router-dom";
 
 const whyChooseUsLists = [
   {
-    icon: "img/icons/plant.png",
+    icon: "/img/plant.png",
     title: "Advance Opportunities",
     description:
       "A clear career path provides a detailed roadmap of the positions, skills, and experience needed to achieve long-term professional goals.",
   },
   {
-    icon: "img/icons/job.png",
+    icon: "/img/job.png",
     title: "Many Available Positions",
     description:
       "We currently have many job openings waiting for you. Whatever your expertise, we have a place for you.",
   },
   {
-    icon: "img/icons/clock.png",
+    icon: "/img/clock.png",
     title: "Flexible Working Hours",
     description:
       "Work hours are flexible and adapted to meet client needs and ensure optimal service availability.",
@@ -23,6 +23,8 @@ const whyChooseUsLists = [
 ];
 
 export default function Career() {
+  const services = useServiceType();
+
   return (
     <main className="bg-gray-100 min-h-screen">
       <section
@@ -52,22 +54,27 @@ export default function Career() {
             Become one of us
           </h3>
           <div className="grid grid-flow-row grid-cols-2 gap-x-16 gap-y-5 px-10 mt-3">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <div
                 className="rounded-lg px-7 py-2 flex items-center gap-x-5 bg-white shadow-xl"
-                key={index}
+                key={service.id}
               >
-                <img src={service.image} alt="" />
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}${service.image}`}
+                  alt=""
+                />
                 <div className="flex flex-col w-full">
-                  <h5 className="font-bold text-xl">{service.title}</h5>
+                  <h5 className="font-bold text-xl">{service.name}</h5>
                   <p className="text-sm">Job Desk:</p>
-                  {service.jobDesks.map((job, index) => (
-                    <p className="text-sm" key={index}>
-                      {job}
+                  {service.service_job_desks.map((job) => (
+                    <p className="text-sm" key={job.id}>
+                      {job.job_desk}
                     </p>
                   ))}
                   <Link
-                    to={`/apply/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    to={`/apply/${service.name
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
                     className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4 self-end text-sm"
                   >
                     APPLY

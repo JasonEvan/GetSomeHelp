@@ -10,7 +10,6 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import services from "../utils/services";
 import { CloudUploadIcon } from "lucide-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -78,8 +77,10 @@ export default function ApplicationForm() {
   const [openTerms, setOpenTerms] = useState(false);
 
   const jobTitle =
-    services.find((s) => s.title.toLowerCase().replace(/\s+/g, "-") === role)
-      ?.title ?? "Job Application";
+    role
+      ?.split("-")
+      .map((w) => w[0].toUpperCase() + w.slice(1))
+      .join(" ") ?? "General";
 
   return (
     <main

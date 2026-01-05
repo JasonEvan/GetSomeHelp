@@ -21,4 +21,9 @@ class ServiceType extends Model
     {
         return $this->hasMany(ProviderApplication::class);
     }
+
+    public function serviceJobDesks()
+    {
+        return $this->hasMany(ServiceJobDesk::class);
+    }
 }
