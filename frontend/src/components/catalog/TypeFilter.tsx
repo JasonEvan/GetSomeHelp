@@ -1,8 +1,9 @@
 import { Checkbox, FormControlLabel, FormGroup, Grid } from "@mui/material";
-import services from "../../utils/services";
 import { useServiceCatalogStore } from "../../hooks/useServiceCatalogStore";
+import { useServiceType } from "../../hooks/useServiceType";
 
 export default function TypeFilter() {
+  const services = useServiceType();
   const { types, setTypes } = useServiceCatalogStore();
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -32,7 +33,7 @@ export default function TypeFilter() {
                       onChange={(e) => handleChange(e, service.id)}
                     />
                   }
-                  label={service.title}
+                  label={service.name}
                   sx={{
                     "& .MuiFormControlLabel-label": {
                       fontSize: "0.875rem",

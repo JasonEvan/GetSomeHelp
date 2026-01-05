@@ -30,7 +30,7 @@ class BookingFactory extends Factory
             'date' => fake()->date(),
             'start_time' => fake()->time(),
             'end_time' => fake()->time(),
-            'status' => 'pending',
+            'status' => fake()->randomElement(['pending', 'confirmed']),
             'notes' => fake()->paragraph(),
         ];
     }
