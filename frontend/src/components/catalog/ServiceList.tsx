@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useServiceCatalogStore } from "../../hooks/useServiceCatalogStore";
 import StarIcon from "@mui/icons-material/Star";
 import { sortServices } from "../../utils/sortServices";
+import { Link } from "react-router-dom";
 
 export default function ServiceList() {
   const { services, sortBy, types, priceRange, getData } =
@@ -21,6 +22,7 @@ export default function ServiceList() {
       {sortedServices.map((service, index) => (
         <ServiceCard
           key={index}
+          id={service.id}
           name={service.display_name}
           category={service.service_type.name}
           city={service.city}
@@ -35,6 +37,7 @@ export default function ServiceList() {
 }
 
 function ServiceCard({
+  id,
   name,
   category,
   city,
@@ -43,6 +46,7 @@ function ServiceCard({
   price,
   image,
 }: {
+  id: number;
   name: string;
   category: string;
   city: string;
@@ -61,7 +65,10 @@ function ServiceCard({
   }
 
   return (
-    <div className="w-full h-24 flex justify-between items-center border border-gray-300">
+    <Link
+      className="w-full h-24 flex justify-between items-center border border-gray-300"
+      to={`/catalog/${id}`}
+    >
       <div className="flex h-full items-center">
         <div className="w-[120px] h-full flex justify-center items-center overflow-hidden">
           <img src={img_source} alt="" className="object-cover" />
@@ -83,6 +90,6 @@ function ServiceCard({
           Starting from Rp<b>{price}</b> per visit
         </p>
       </div>
-    </div>
+    </Link>
   );
 }

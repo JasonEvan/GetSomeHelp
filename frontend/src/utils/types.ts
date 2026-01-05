@@ -1,5 +1,7 @@
 export interface ServiceCatalog {
+  id: number;
   display_name: string;
+  bio: string;
   city: string;
   starting_price: number;
   rating: number;
@@ -7,8 +9,21 @@ export interface ServiceCatalog {
   img_path: string | null;
   service_type: {
     name: string;
-    image: string;
+    description: string;
   };
+}
+
+export interface ServiceCatalogDetail extends ServiceCatalog {
+  reviews: {
+    id: number;
+    rating: number;
+    comment: string;
+    user: {
+      id: number;
+      name: string;
+    };
+  }[];
+  grouped_bookings: Record<string, Booking[]>;
 }
 
 export interface ServiceType {
@@ -20,4 +35,16 @@ export interface ServiceType {
     id: number;
     job_desk: string;
   }[];
+}
+
+interface Booking {
+  id: number;
+  date: string;
+  start_time: string;
+  end_time: string;
+  status: string;
+  user: {
+    id: number;
+    name: string;
+  };
 }

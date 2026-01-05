@@ -26,4 +26,9 @@ class Provider extends Model
     {
         return $this->belongsTo(ServiceType::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

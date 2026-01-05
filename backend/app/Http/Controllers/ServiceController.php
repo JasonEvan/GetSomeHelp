@@ -61,4 +61,37 @@ class ServiceController extends Controller
             'data' => $data,
         ]);
     }
+
+    public function get_catalog_detail(Provider $provider)
+    {
+        $provider->load([
+            'serviceType:id,name,description',
+            'reviews',
+            'reviews.user:id,name',
+            'bookings' => function ($q) {
+                $q->where('status', 'confirmed')
+                  ->select([
+                    'id',
+                    'provider_id',
+                    'customer_id',
+                    'date',
+                    'start_time',
+                    'end_time',
+                    'status',
+                  ])
+                  ->orderBy('date')
+                  ->orderBy('start_time');
+            },
+            'bookings.user:id,name'
+        ]);
+
+        $groupedBookings = $provider->bookings->groupBy('date');
+
+        $provider->makeHidden('bookings');
+        $provider->setAttribute('grouped_bookings', $groupedBookings);
+
+        return response()->json([
+            'data' => $provider,
+        ]);
+    }
 }
