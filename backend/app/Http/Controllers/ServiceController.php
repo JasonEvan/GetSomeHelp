@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Provider;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    public function get_service_types()
+    {
+        $serviceTypes = ServiceType::with('serviceJobDesks')->get();
+        return response()->json([
+            'data' => $serviceTypes,
+        ]);
+    }
+
     public function get_catalog(Request $request)
     {
         // Query Parameters
@@ -31,6 +40,7 @@ class ServiceController extends Controller
                 'starting_price',
                 'rating',
                 'experience_years',
+                'img_path',
             ])
             ->where('is_active', true)
             // id selalu diselect untuk keperluan relasi
@@ -49,6 +59,39 @@ class ServiceController extends Controller
 
         return response()->json([
             'data' => $data,
+        ]);
+    }
+
+    public function get_catalog_detail(Provider $provider)
+    {
+        $provider->load([
+            'serviceType:id,name,description',
+            'reviews',
+            'reviews.user:id,name',
+            'bookings' => function ($q) {
+                $q->where('status', 'confirmed')
+                  ->select([
+                    'id',
+                    'provider_id',
+                    'customer_id',
+                    'date',
+                    'start_time',
+                    'end_time',
+                    'status',
+                  ])
+                  ->orderBy('date')
+                  ->orderBy('start_time');
+            },
+            'bookings.user:id,name'
+        ]);
+
+        $groupedBookings = $provider->bookings->groupBy('date');
+
+        $provider->makeHidden('bookings');
+        $provider->setAttribute('grouped_bookings', $groupedBookings);
+
+        return response()->json([
+            'data' => $provider,
         ]);
     }
 }

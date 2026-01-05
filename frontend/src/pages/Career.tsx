@@ -1,23 +1,23 @@
-import services from "../utils/services";
+import { useServiceType } from "../hooks/useServiceType";
 import { Link } from "react-router-dom";
 
 const whyChooseUsLists = [
   {
-    icon: "img/icons/plant.png",
+    icon: "/img/plant.png",
     title: "Advance Opportunities",
     description:
       "A clear career path provides a detailed roadmap of the positions, skills, and experience needed to achieve long-term professional goals.",
     shadow: "rgba(96,165,250,0.6)", // blue
   },
   {
-    icon: "img/icons/job.png",
+    icon: "/img/job.png",
     title: "Many Available Positions",
     description:
       "We currently have many job openings waiting for you. Whatever your expertise, we have a place for you.",
     shadow: "rgba(74,222,128,0.6)", // green
   },
   {
-    icon: "img/icons/clock.png",
+    icon: "/img/clock.png",
     title: "Flexible Working Hours",
     description:
       "Work hours are flexible and adapted to meet client needs and ensure optimal service availability.",
@@ -26,6 +26,8 @@ const whyChooseUsLists = [
 ];
 
 export default function Career() {
+  const services = useServiceType();
+
   return (
     <main className="bg-gray-100 min-h-screen">
       <section
@@ -73,25 +75,25 @@ export default function Career() {
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
-              {services.map((service, index) => (
+              {services.map((service) => (
                 <div
-                  key={index}
+                  key={service.id}
                   className="rounded-xl p-6 flex gap-6 bg-white shadow-lg hover:shadow-xl transition"
                 >
                   {/* Icon */}
-                  <img src={service.image} alt={service.title} className="w-14 h-14 self-start" />
+                  <img src={`${import.meta.env.VITE_BACKEND_URL}${service.image}`} alt={service.title} className="w-14 h-14 self-start" />
 
                   {/* Content */}
                   <div className="flex flex-col flex-1">
-                    <h5 className="font-bold text-xl">{service.title}</h5>
+                    <h5 className="font-bold text-xl">{service.name}</h5>
 
                     <span className="text-sm font-semibold text-gray-500 mt-1">
                       Job Desk
                     </span>
 
                     <ul className="text-sm text-gray-600 list-disc list-inside mt-1 space-y-1">
-                      {service.jobDesks.map((job, idx) => (
-                        <li key={idx}>{job}</li>
+                      {service.service_job_desks.map((job) => (
+                        <li key={job.id}>{job.job_desk}</li>
                       ))}
                     </ul>
                     <Link

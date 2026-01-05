@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Booking;
+use App\Models\ServiceJobDesk;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BookingSeeder extends Seeder
+class ServiceJobDeskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Booking::factory(100)->create();
+        ServiceJobDesk::factory(20)->create();
     }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->decimal('starting_price',10,2);
             $table->decimal('rating');
             $table->boolean('is_active')->default(true);
+            $table->string('img_path')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('service_type_id')->constrained('service_types')->onDelete('cascade');
             $table->timestamps();

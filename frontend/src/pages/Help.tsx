@@ -10,28 +10,28 @@ const helpOptions = [
   {
     title: "How to order a service",
     description: "Order service guide",
-    icon: "/img/icons/support.png",
+    icon: "/img/support.png",
     type: "route",
     path: "/help/how-to-order",
   },
   {
     title: "Account",
     description: "Manage your account and security settings",
-    icon: "/img/icons/account-setting.png",
+    icon: "/img/account-setting.png",
     type: "modal",
     modalKey: "account",
   },
   {
     title: "Payments & Billing",
     description: "Find information on accepted payment methods",
-    icon: "/img/icons/wallet.png",
+    icon: "/img/wallet.png",
     type: "modal",
     modalKey: "payments",
   },
   {
     title: "Common Questions (FAQ)",
     description: "Frequently asked questions and answers",
-    icon: "/img/icons/faq.png",
+    icon: "/img/faq.png",
     type: "route",
     path: "/help/faq",
   },
@@ -84,9 +84,7 @@ export default function Help() {
 
               <div>
                 <h3 className="font-bold text-lg">{item.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  {item.description}
-                </p>
+                <p className="text-sm text-gray-600 mt-1">{item.description}</p>
               </div>
             </div>
           ))}
