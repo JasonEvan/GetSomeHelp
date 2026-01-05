@@ -27,27 +27,25 @@ export default function Footer() {
             <h4 className="font-semibold mb-4 text-purple-600">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
+                <Link to="/" className="text-black hover:text-purple-600">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
+                <Link
+                  to="/catalog"
+                  className="text-black hover:text-purple-600"
+                >
                   Popular Services
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Order
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-black hover:text-purple-600">
+                <Link to="/career" className="text-black hover:text-purple-600">
                   Career
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
+                <Link to="/help" className="text-black hover:text-purple-600">
                   Help
                 </Link>
               </li>
@@ -58,23 +56,16 @@ export default function Footer() {
             <h4 className="font-semibold mb-4 text-purple-600">Features</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Web-designers
+                <Link to="/career" className="text-black hover:text-purple-600">
+                  Job Application
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Marketers
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Small Business
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Website Builder
+                <Link
+                  to="/catalog"
+                  className="text-black hover:text-purple-600"
+                >
+                  Hiring Worker
                 </Link>
               </li>
             </ul>
@@ -84,23 +75,21 @@ export default function Footer() {
             <h4 className="font-semibold mb-4 text-purple-600">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  About Us
+                <Link to="/help" className="text-black hover:text-purple-600">
+                  Help
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="text-black hover:text-purple-600">
+                <Link to="/help" className="text-black hover:text-purple-600">
                   FAQs
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-black hover:text-purple-600">
-                  Teams
+                <Link
+                  to="/user-dashboard"
+                  className="text-black hover:text-purple-600"
+                >
+                  Account
                 </Link>
               </li>
               <li>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./layout/Navbar";
+import Navbar from "./layout/navbar";
 import Home from "./pages/Home";
 import Help from "./pages/Help";
 import HowToOrder from "./components/help/HowToOrder";
@@ -14,7 +14,7 @@ import CatalogDetail from "./pages/CatalogDetail";
 
 export default function App() {
   return (
-    <BrowserRouter> 
+    <BrowserRouter>
       <Navbar />
 
       <Routes>
@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/user-dashboard" element={<UserDashboard />} />
-        
+
         <Route path="/apply/:role" element={<ApplicationForm />} />
 
         <Route path="/catalog" element={<Catalog />} />
