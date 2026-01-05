@@ -1,5 +1,6 @@
 import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import Footer from "../layout/Footer";
 import { useServiceType } from "../hooks/useServiceType";
 
 export default function Home() {
@@ -58,6 +59,7 @@ export default function Home() {
           More Services <ArrowDown />
         </Link>
       </section>
+      <Footer />
 
       {/* {{-- <section className="bg-[linear-gradient(to_bottom,#EFEFEF_0%,#A0E7E7_57%,#56E3E3_100%)] h-full">
             The easiest way to hire local service
