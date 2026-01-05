@@ -81,7 +81,11 @@ export default function Career() {
                   className="rounded-xl p-6 flex gap-6 bg-white shadow-lg hover:shadow-xl transition"
                 >
                   {/* Icon */}
-                  <img src={`${import.meta.env.VITE_BACKEND_URL}${service.image}`} alt={service.title} className="w-14 h-14 self-start" />
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}${service.image}`}
+                    alt={service.name}
+                    className="w-14 h-14 self-start"
+                  />
 
                   {/* Content */}
                   <div className="flex flex-col flex-1">
@@ -97,7 +101,9 @@ export default function Career() {
                       ))}
                     </ul>
                     <Link
-                      to={`/apply/${service.title.toLowerCase().replace(/\s+/g, "-")}`}
+                      to={`/apply/${service.name
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`}
                       className="mt-6 self-end bg-[#7C3AED] text-white rounded-md py-2 px-5 text-sm font-semibold hover:bg-violet-700 transition"
                     >
                       Apply
