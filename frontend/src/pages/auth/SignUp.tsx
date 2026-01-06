@@ -7,6 +7,7 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import api from "../../lib/axios";
 import type { AuthResponse } from "../../utils/types";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -32,7 +33,7 @@ export default function SignUp() {
     onSubmit: async (values) => {
       try {
         const res = await api.post<{ data: AuthResponse }>("/register", values);
-        localStorage.setItem("token", res.data.data.token);
+        useAuthStore.getState().login(res.data.data.token, res.data.data.user);
         navigate("/", { replace: true });
       } catch (err) {
         alert("Registration failed. Please try again.");

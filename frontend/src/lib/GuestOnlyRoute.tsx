@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuthStore } from "../hooks/useAuthStore";
 
 export default function GuestOnlyRoute() {
-  const isAuthenticated = Boolean(localStorage.getItem("token"));
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   if (isAuthenticated) {
     return <Navigate to="/user-dashboard" replace />;

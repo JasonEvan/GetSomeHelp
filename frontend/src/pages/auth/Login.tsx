@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import api from "../../lib/axios";
 import type { AuthResponse } from "../../utils/types";
+import { useAuthStore } from "../../hooks/useAuthStore";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function Login() {
     onSubmit: async (values) => {
       try {
         const res = await api.post<{ data: AuthResponse }>("/login", values);
-        localStorage.setItem("token", res.data.data.token);
+        useAuthStore.getState().login(res.data.data.token, res.data.data.user);
         navigate("/", { replace: true });
       } catch (err) {
         alert("Login failed. Please check your credentials and try again.");
