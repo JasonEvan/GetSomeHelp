@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import api from "../../lib/axios";
+import type { AuthResponse } from "../../utils/types";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -27,8 +29,15 @@ export default function SignUp() {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log("Form data", values);
+    onSubmit: async (values) => {
+      try {
+        const res = await api.post<{ data: AuthResponse }>("/register", values);
+        localStorage.setItem("token", res.data.data.token);
+        navigate("/", { replace: true });
+      } catch (err) {
+        alert("Registration failed. Please try again.");
+        console.error(err);
+      }
     },
   });
 

@@ -48,3 +48,15 @@ interface Booking {
     name: string;
   };
 }
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
+}

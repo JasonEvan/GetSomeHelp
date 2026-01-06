@@ -5,6 +5,8 @@ import { useState } from "react";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import api from "../../lib/axios";
+import type { AuthResponse } from "../../utils/types";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -25,8 +27,15 @@ export default function Login() {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log("Form data", values);
+    onSubmit: async (values) => {
+      try {
+        const res = await api.post<{ data: AuthResponse }>("/login", values);
+        localStorage.setItem("token", res.data.data.token);
+        navigate("/", { replace: true });
+      } catch (err) {
+        alert("Login failed. Please check your credentials and try again.");
+        console.error(err);
+      }
     },
   });
 
