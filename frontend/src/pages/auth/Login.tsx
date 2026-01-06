@@ -1,11 +1,35 @@
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("Form data", values);
+    },
+  });
+
   return (
     <>
       <main
@@ -15,54 +39,81 @@ export default function Login() {
         <div className="bg-white w-full max-w-md rounded-xl shadow-xl p-10 text-center">
           <h1 className="text-2xl font-bold mb-8">Log in</h1>
 
-          <form className="space-y-6">
+          <form
+            className="flex flex-col gap-y-6"
+            onSubmit={formik.handleSubmit}
+          >
             {/* Email */}
-            <div className="flex items-center gap-3 border-b pb-2">
-              <Mail className="text-gray-500" size={20} />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full outline-none text-sm bg-transparent"
-              />
-            </div>
+            <TextField
+              fullWidth
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              variant="standard"
+              placeholder="Email"
+              className="text-sm"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Mail className="text-gray-500" size={20} />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
 
             {/* Password */}
-            <div className="flex items-center gap-3 border-b pb-2">
-              <Lock className="text-gray-500" size={20} />
-
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="w-full outline-none text-sm bg-transparent"
-              />
-
-              {/* show password button */}
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-
-            <div className="flex items-center justify-between text-sm">
-              {/* remember me button */}
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="accent-violet-600"
-                />
-                <span className="text-gray-600">Remember me</span>
-              </label>
-
-              {/* forgot password ---- kalau mau dibuat, ngak penting-penting amat sih */}
-              <span className="text-gray-500 hover:underline cursor-pointer">
-                Forgot password?
-              </span>
-            </div>
+            <TextField
+              fullWidth
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              variant="standard"
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              className="text-sm"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock className="text-gray-500" size={20} />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label={
+                          showPassword
+                            ? "hide the password"
+                            : "display the password"
+                        }
+                        onClick={() =>
+                          setShowPassword(
+                            (prevShowPassword) => !prevShowPassword
+                          )
+                        }
+                        onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
+                          e.preventDefault()
+                        }
+                        onMouseUp={(e: React.MouseEvent<HTMLButtonElement>) =>
+                          e.preventDefault()
+                        }
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
 
             {/* login button */}
             <button
@@ -76,7 +127,7 @@ export default function Login() {
           <p className="text-sm text-gray-500 mt-6">
             Don&apos;t have an account?{" "}
             <span
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/signup", { replace: true })}
               className="font-semibold text-black cursor-pointer hover:underline"
             >
               Sign up

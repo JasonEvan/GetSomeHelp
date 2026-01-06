@@ -1,10 +1,37 @@
-import { User, Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { User, Mail, Lock } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Username is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: (values) => {
+      console.log("Form data", values);
+    },
+  });
+
   return (
     <>
       <main
@@ -14,45 +41,104 @@ export default function SignUp() {
         <div className="bg-white w-full max-w-md rounded-xl shadow-xl p-10 text-center">
           <h1 className="text-2xl font-bold mb-8">Sign Up</h1>
 
-          <form className="space-y-6">
+          <form
+            className="flex flex-col gap-y-6"
+            onSubmit={formik.handleSubmit}
+          >
             {/* username */}
-            <div className="flex items-center gap-3 border-b pb-2">
-              <User className="text-gray-500" size={20} />
-              <input
-                type="text"
-                placeholder="Username"
-                className="w-full outline-none text-sm"
-              />
-            </div>
+            <TextField
+              fullWidth
+              name="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={formik.touched.name && formik.errors.name}
+              variant="standard"
+              placeholder="Username"
+              className="text-sm"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <User className="text-gray-500" size={20} />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
 
             {/* email */}
-            <div className="flex items-center gap-3 border-b pb-2">
-              <Mail className="text-gray-500" size={20} />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full outline-none text-sm"
-              />
-            </div>
+            <TextField
+              fullWidth
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+              variant="standard"
+              placeholder="Email"
+              className="text-sm"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Mail className="text-gray-500" size={20} />
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
 
             {/* password */}
-            <div className="flex items-center gap-3 border-b pb-2">
-              <Lock className="text-gray-500" size={20} />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="w-full outline-none text-sm"
-              />
-
-              {/* show password button */}
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
+            <TextField
+              fullWidth
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+              variant="standard"
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              className="text-sm"
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock className="text-gray-500" size={20} />
+                    </InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label={
+                          showPassword
+                            ? "hide the password"
+                            : "display the password"
+                        }
+                        onClick={() =>
+                          setShowPassword(
+                            (prevShowPassword) => !prevShowPassword
+                          )
+                        }
+                        onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) =>
+                          e.preventDefault()
+                        }
+                        onMouseUp={(e: React.MouseEvent<HTMLButtonElement>) =>
+                          e.preventDefault()
+                        }
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                },
+              }}
+            />
 
             {/* register button */}
             <button
@@ -66,7 +152,7 @@ export default function SignUp() {
           <p className="text-sm text-gray-500 mt-6">
             Already have an account?{" "}
             <span
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/login", { replace: true })}
               className="font-semibold text-black cursor-pointer hover:underline"
             >
               Log in
