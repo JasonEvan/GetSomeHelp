@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -23,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/catalog/{provider}', [ServiceController::class, 'get_catalog_detail']);
 
     Route::put('/user/{user}', [UserController::class, 'update_profile']);
+    Route::get('/user/{id}/history', [BookingController::class, 'get_history']);
 });

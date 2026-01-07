@@ -17,6 +17,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->text('notes')->nullable();
+            $table->decimal('total_price', 10, 2);
             $table->enum('status',['pending','confirmed','completed','canceled'])->default('pending');
             $table->foreignId('customer_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('provider_id')->constrained('providers')->onDelete('cascade');

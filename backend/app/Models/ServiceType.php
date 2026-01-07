@@ -26,4 +26,9 @@ class ServiceType extends Model
     {
         return $this->hasMany(ServiceJobDesk::class);
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 }

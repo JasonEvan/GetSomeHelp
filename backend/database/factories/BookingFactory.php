@@ -32,6 +32,7 @@ class BookingFactory extends Factory
             'end_time' => fake()->time(),
             'status' => fake()->randomElement(['pending', 'confirmed']),
             'notes' => fake()->paragraph(),
+            'total_price' => fake()->randomFloat(2, 20000, 1500000)
         ];
     }
 }
