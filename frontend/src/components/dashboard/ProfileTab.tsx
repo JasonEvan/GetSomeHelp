@@ -1,21 +1,12 @@
 import { useState } from "react";
+import { useAuthStore } from "../../hooks/useAuthStore";
+import type { User } from "../../utils/types";
+import api from "../../lib/axios";
 
 export default function ProfileTab() {
-  // dummy data
-  const initialData = {
-    firstName: "Jane",
-    lastName: "Doe",
-    email: "janedoe123@gmail.com",
-    phone: "+62 123-4566-7899",
-    address: "Binus University - Anggrek",
-    details: "Gedung besar depan indomaret",
-  };
+  const { user, setUser } = useAuthStore();
 
-  // represents data already saved (like from DB)
-  const [savedData, setSavedData] = useState(initialData);
-
-  // represents editable form data
-  const [formData, setFormData] = useState(initialData);
+  const [formData, setFormData] = useState<User>(user!);
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -27,14 +18,25 @@ export default function ProfileTab() {
   };
 
   const handleCancel = () => {
-    setFormData(savedData);
+    setFormData(user!);
     setIsEditing(false);
   };
 
-  const handleSave = () => {
-    // later: API call here
-    setSavedData(formData); // commit changes
-    setIsEditing(false);
+  const handleSave = async () => {
+    try {
+      await api.put(`/user/${formData.id}`, {
+        name: formData.name,
+        phone: formData.phone,
+        address: formData.address,
+        detail_address: formData.detail_address,
+      });
+
+      setUser(formData); // commit changes
+      setIsEditing(false);
+    } catch (err) {
+      alert("Failed to update profile. Please try again." + String(err));
+      console.error(err);
+    }
   };
 
   return (
@@ -45,34 +47,23 @@ export default function ProfileTab() {
           {/* avatar */}
           <div className="w-20 h-20 rounded-full border overflow-hidden flex items-center justify-center bg-gray-50">
             <img
-              // profile picture   
-              src="img/icons/user.png"
+              src={`https://ui-avatars.com/api/?name=${formData.name}`}
               alt="Profile"
               className="w-full h-full object-cover"
-
-              // kalau tidak ada profile, pake inisial nama
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null;
-                const name = `${formData.firstName}+${formData.lastName}`;
-                target.src = `https://ui-avatars.com/api/?name=${name}`;
-              }}
             />
           </div>
 
           <div>
-            <h2 className="text-xl font-bold">
-              {formData.firstName} {formData.lastName}
-            </h2>
+            <h2 className="text-xl font-bold">{formData.name}</h2>
             <p className="text-gray-500 text-sm">{formData.email}</p>
           </div>
         </div>
 
         {/* Edit / Save / Cancel */}
-        {!isEditing ? ( 
+        {!isEditing ? (
           <button
             onClick={() => setIsEditing(true)}
-            className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700"
+            className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
           >
             Edit
           </button>
@@ -80,13 +71,13 @@ export default function ProfileTab() {
           <div className="flex gap-2">
             <button
               onClick={handleCancel}
-              className="px-4 py-2 rounded-md text-sm border hover:bg-gray-200"
+              className="px-4 py-2 rounded-md text-sm border hover:bg-gray-200 cursor-pointer"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
-              className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700"
+              className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
             >
               Save
             </button>
@@ -96,30 +87,20 @@ export default function ProfileTab() {
 
       {/* Form */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input
-          label="First Name"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          disabled={!isEditing}
-        />
-        <Input
-          label="Last Name"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          disabled={!isEditing}
-        />
-        <Input
-          label="Email"
-          name="email"
-          value={formData.email}
-          disabled
-        />
+        <div className="md:col-span-2">
+          <Input
+            label="Name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            disabled={!isEditing}
+          />
+        </div>
+        <Input label="Email" name="email" value={formData.email} disabled />
         <Input
           label="Phone"
           name="phone"
-          value={formData.phone}
+          value={formData.phone || ""}
           onChange={handleChange}
           disabled={!isEditing}
         />
@@ -128,7 +109,7 @@ export default function ProfileTab() {
           <Input
             label="Address"
             name="address"
-            value={formData.address}
+            value={formData.address || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -137,8 +118,8 @@ export default function ProfileTab() {
         <div className="md:col-span-2">
           <label className="text-sm font-semibold">Details</label>
           <textarea
-            name="details"
-            value={formData.details}
+            name="detail_address"
+            value={formData.detail_address || ""}
             onChange={handleChange}
             disabled={!isEditing}
             className={`w-full mt-1 p-2 border rounded-md text-sm ${
@@ -154,7 +135,7 @@ export default function ProfileTab() {
             className="w-full h-full"
             loading="lazy"
             src={`https://maps.google.com/maps?q=${encodeURIComponent(
-              formData.address
+              formData.address || "Semarang"
             )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
             allowFullScreen
           />

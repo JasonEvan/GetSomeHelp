@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,14 +20,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-    
-    Route::get('/status', function () {
-        return response()->json(['status' => 'API is running']);
-    });
-    
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/catalog/{provider}', [ServiceController::class, 'get_catalog_detail']);
+
+    Route::put('/user/{user}', [UserController::class, 'update_profile']);
+    Route::get('/user/{id}/history', [BookingController::class, 'get_history']);
 });

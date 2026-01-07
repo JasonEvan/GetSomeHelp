@@ -54,9 +54,26 @@ export interface User {
   name: string;
   email: string;
   role: string;
+  phone: string | null;
+  address: string | null;
+  detail_address: string | null;
 }
 
 export interface AuthResponse {
   token: string;
   user: User;
+}
+
+export interface BookingHistory {
+  id: number;
+  date: string;
+  total_price: number;
+  provider: {
+    id: number;
+    display_name: string;
+  };
+  service_type: {
+    id: number;
+    name: string;
+  };
 }

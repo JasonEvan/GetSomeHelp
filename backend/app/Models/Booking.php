@@ -26,4 +26,9 @@ class Booking extends Model
     {
         return $this->hasOne(Transaction::class);
     }
+
+    public function service_type()
+    {
+        return $this->belongsTo(ServiceType::class);
+    }
 }
