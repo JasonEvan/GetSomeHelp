@@ -54,6 +54,9 @@ export interface User {
   name: string;
   email: string;
   role: string;
+  phone: string | null;
+  address: string | null;
+  detail_address: string | null;
 }
 
 export interface AuthResponse {
