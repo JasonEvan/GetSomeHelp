@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('cv_file');
             $table->unsignedInteger('expected_salary');
-            $table->enum('availability', ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']);
+            $table->json('availability');
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('service_type_id')->constrained('service_types')->onDelete('cascade');

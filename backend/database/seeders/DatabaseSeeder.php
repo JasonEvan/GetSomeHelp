@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             // ServiceTypeSeeder::class,
             // ServiceJobDeskSeeder::class,
             ServiceSeeder::class,
+            ProviderApplicationSeeder::class,
             ProviderSeeder::class,
             BookingSeeder::class,
             TransactionSeeder::class,

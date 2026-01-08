@@ -12,6 +12,10 @@ class ProviderApplication extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'availability' => 'array'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
