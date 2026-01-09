@@ -14,6 +14,7 @@ import CatalogDetail from "./pages/CatalogDetail";
 import ProtectedRoute from "./lib/ProtectedRoute";
 import GuestOnlyRoute from "./lib/GuestOnlyRoute";
 import ProviderDashboard from "./pages/dashboard/ProviderDashboard";
+import Forbidden403 from "./pages/Forbidden403";
 
 export default function App() {
   return (
@@ -44,6 +45,8 @@ export default function App() {
         <Route path="/help/faq" element={<FAQ />} />
 
         <Route path="/catalog" element={<Catalog />} />
+
+        <Route path="/403" element={<Forbidden403 />} />
       </Routes>
     </BrowserRouter>
   );
