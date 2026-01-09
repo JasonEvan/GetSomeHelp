@@ -13,6 +13,7 @@ import Catalog from "./pages/Catalog";
 import CatalogDetail from "./pages/CatalogDetail";
 import ProtectedRoute from "./lib/ProtectedRoute";
 import GuestOnlyRoute from "./lib/GuestOnlyRoute";
+import ProviderDashboard from "./pages/dashboard/ProviderDashboard";
 
 export default function App() {
   return (
@@ -26,6 +27,8 @@ export default function App() {
           <Route path="/apply/:role" element={<ApplicationForm />} />
           <Route path="/catalog/:detail" element={<CatalogDetail />} />
         </Route>
+
+        <Route path="/provider-dashboard" element={<ProviderDashboard />} />
 
         {/* GUEST ONLY ROUTES */}
         <Route element={<GuestOnlyRoute />}>

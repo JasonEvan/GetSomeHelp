@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProviderApplicationController;
+use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,4 +29,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/{id}/history', [BookingController::class, 'get_history']);
 
     Route::post('/provider-application', [ProviderApplicationController::class, 'submit_application']);
+
+    Route::get('/provider', [ProviderController::class, 'get_provider_profile']);
+    Route::put('/provider', [ProviderController::class, 'update_provider_profile']);
 });
