@@ -24,12 +24,17 @@ export default function App() {
       <Routes>
         {/* PROTECTED ROUTES */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/apply/:role" element={<ApplicationForm />} />
           <Route path="/catalog/:detail" element={<CatalogDetail />} />
         </Route>
 
-        <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+        <Route element={<ProtectedRoute role="customer" />}>
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+        </Route>
+
+        <Route element={<ProtectedRoute role="provider" />}>
+          <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+        </Route>
 
         {/* GUEST ONLY ROUTES */}
         <Route element={<GuestOnlyRoute />}>
