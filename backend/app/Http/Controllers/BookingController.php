@@ -67,4 +67,58 @@ class BookingController extends Controller
             'data' => $bookings
         ]);
     }
+
+    public function get_service_pending(int $userId)
+    {
+        $providerId = Provider::where('user_id', $userId)->first()->id;
+        $bookings = Booking::query()
+            ->where('provider_id', $providerId)
+            ->where('status', 'pending')
+            ->select([
+                'id',
+                'date',
+                'total_price',
+                'customer_id',
+                'service_type_id',
+            ])
+            ->with([
+                'user:id,name',
+                'service_type:id,name'
+            ])
+            ->orderBy('date')
+            ->get();
+
+        return response()->json([
+            'data' => $bookings
+        ]);
+    }
+
+    public function update_status_booking(Request $request, Booking $booking)
+    {
+        $validated = $request->validate([
+            'status' => 'required|in:confirmed,canceled,completed'
+        ]);
+
+        // Authorization
+        // Hanya provider pemilik booking yang boleh mengubah status
+        if ($booking->provider_id !== $request->user()->provider->id) {
+            return response()->json([
+                'message' => 'Forbidden'
+            ], 403);
+        }
+
+        if ($booking->status !== 'pending') {
+            return response()->json([
+                'message' => 'Booking status cannot be changed'
+            ], 400);
+        }
+
+        $booking->status = $validated['status'];
+        $booking->save();
+
+        return response()->json([
+            'message' => 'Booking status updated successfully',
+            'data' => $booking
+        ]);
+    }
 }

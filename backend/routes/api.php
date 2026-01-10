@@ -32,5 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/provider', [ProviderController::class, 'get_provider_profile']);
     Route::get('/provider/{id}/history', [BookingController::class, 'get_serviced_history']);
+    Route::get('/provider/{id}/schedule', [BookingController::class, 'get_service_pending']);
     Route::put('/provider', [ProviderController::class, 'update_provider_profile']);
+
+    Route::patch('/booking/{booking}/status', [BookingController::class, 'update_status_booking']);
 });

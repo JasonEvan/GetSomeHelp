@@ -2,8 +2,9 @@ import { useState } from "react";
 import SettingsTab from "../../components/dashboard/SettingsTab";
 import ProfileTab from "../../components/provider-dashboard/ProfileTab";
 import HistoryTab from "../../components/provider-dashboard/HistoryTab";
+import ScheduleTab from "../../components/provider-dashboard/ScheduleTab";
 
-type TabType = "profile" | "settings" | "history";
+type TabType = "profile" | "schedule" | "settings" | "history";
 
 export default function ProviderDashboard() {
   const [activeTab, setActiveTab] = useState<TabType>("profile");
@@ -17,6 +18,11 @@ export default function ProviderDashboard() {
             label="Provider Profile"
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
+          />
+          <TabButton
+            label="Schedule"
+            active={activeTab === "schedule"}
+            onClick={() => setActiveTab("schedule")}
           />
           <TabButton
             label="Settings"
@@ -33,6 +39,7 @@ export default function ProviderDashboard() {
         {/* Content box */}
         <div className="bg-white rounded-tr-xl rounded-b-xl shadow-lg border border-gray-200 p-8">
           {activeTab === "profile" && <ProfileTab />}
+          {activeTab === "schedule" && <ScheduleTab />}
           {activeTab === "settings" && <SettingsTab />}
           {activeTab === "history" && <HistoryTab />}
         </div>
