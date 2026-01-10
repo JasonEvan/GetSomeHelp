@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import {
   TextField,
@@ -13,13 +13,10 @@ import {
 import { CloudUploadIcon } from "lucide-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { useAuthStore } from "../hooks/useAuthStore";
+import api from "../lib/axios";
 
 type ApplicationFormProps = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  address: string;
   resume: File | null;
   expectedSalary: number;
   availabilityDays: string[];
@@ -31,13 +28,10 @@ const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 export default function ApplicationForm() {
   const { role } = useParams();
+  const user = useAuthStore((state) => state.user);
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object({
-    firstName: Yup.string().required("First name is required"),
-    lastName: Yup.string().required("Last name is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    phone: Yup.string().required("Phone number is required"),
-    address: Yup.string().required("Address is required"),
     resume: Yup.mixed().required("Resume / CV is required"),
     availabilityDays: Yup.array()
       .min(1, "Select at least one day")
@@ -57,11 +51,6 @@ export default function ApplicationForm() {
 
   const formik = useFormik<ApplicationFormProps>({
     initialValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      address: "",
       resume: null,
       expectedSalary: 100,
       availabilityDays: [],
@@ -69,8 +58,64 @@ export default function ApplicationForm() {
       availabilityEnd: "",
     },
     validationSchema,
-    onSubmit: () => {
-      alert("Form submitted successfully");
+    onSubmit: async (values) => {
+      const title =
+        role
+          ?.split("-")
+          .map((w) => w[0].toUpperCase() + w.slice(1))
+          .join(" ") ?? "";
+
+      const formData = new FormData();
+      formData.set("resume", values.resume as File);
+      formData.set("service_type", title);
+      formData.set(
+        "expected_salary",
+        (values.expectedSalary * 1000).toString()
+      );
+      formData.set("start_time", values.availabilityStart);
+      formData.set("end_time", values.availabilityEnd);
+
+      formData.append(
+        "availability[monday]",
+        values.availabilityDays.includes("Mon") ? "1" : "0"
+      );
+      formData.append(
+        "availability[tuesday]",
+        values.availabilityDays.includes("Tue") ? "1" : "0"
+      );
+      formData.append(
+        "availability[wednesday]",
+        values.availabilityDays.includes("Wed") ? "1" : "0"
+      );
+      formData.append(
+        "availability[thursday]",
+        values.availabilityDays.includes("Thu") ? "1" : "0"
+      );
+      formData.append(
+        "availability[friday]",
+        values.availabilityDays.includes("Fri") ? "1" : "0"
+      );
+      formData.append(
+        "availability[saturday]",
+        values.availabilityDays.includes("Sat") ? "1" : "0"
+      );
+      formData.append(
+        "availability[sunday]",
+        values.availabilityDays.includes("Sun") ? "1" : "0"
+      );
+
+      try {
+        await api.post("/provider-application", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        alert("Form submitted successfully");
+        navigate("/");
+      } catch (err) {
+        alert("An error occured. Please try again" + err);
+        console.error(err);
+      }
     },
   });
 
@@ -98,34 +143,14 @@ export default function ApplicationForm() {
 
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           {/* Name */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             <div>
               <TextField
-                label="First Name"
+                label="Name"
                 fullWidth
-                name="firstName"
-                value={formik.values.firstName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.firstName && Boolean(formik.errors.firstName)
-                }
-                helperText={formik.touched.firstName && formik.errors.firstName}
-              />
-            </div>
-
-            <div>
-              <TextField
-                label="Last Name"
-                fullWidth
-                name="lastName"
-                value={formik.values.lastName}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.lastName && Boolean(formik.errors.lastName)
-                }
-                helperText={formik.touched.lastName && formik.errors.lastName}
+                name="name"
+                value={user?.name || ""}
+                disabled
               />
             </div>
           </div>
@@ -135,22 +160,16 @@ export default function ApplicationForm() {
               label="Email"
               fullWidth
               name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
+              value={user?.email || ""}
+              disabled
             />
 
             <TextField
               label="Phone"
               fullWidth
               name="phone"
-              value={formik.values.phone}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.phone && Boolean(formik.errors.phone)}
-              helperText={formik.touched.phone && formik.errors.phone}
+              value={user?.phone || ""}
+              disabled
             />
           </div>
           {/* Address */}
@@ -159,11 +178,8 @@ export default function ApplicationForm() {
               label="Address"
               fullWidth
               name="address"
-              value={formik.values.address}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.address && Boolean(formik.errors.address)}
-              helperText={formik.touched.address && formik.errors.address}
+              value={user?.address || ""}
+              disabled
             />
           </div>
           {/* Resume, Salary, Availability */}

@@ -25,7 +25,15 @@ class ProviderApplicationFactory extends Factory
         return [
             'cv_file' => '',
             'expected_salary' => fake()->numberBetween(30000, 100000),
-            'availability' => fake()->randomElement(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
+            'availability' => [
+                'monday' => fake()->boolean(),
+                'tuesday' => fake()->boolean(),
+                'wednesday' => fake()->boolean(),
+                'thursday' => fake()->boolean(),
+                'friday' => fake()->boolean(),
+                'saturday' => fake()->boolean(),
+                'sunday' => fake()->boolean(),
+            ],
             'status' => 'pending',
             'user_id' => $user->random()->id,
             'service_type_id' => $serviceType->random()->id,

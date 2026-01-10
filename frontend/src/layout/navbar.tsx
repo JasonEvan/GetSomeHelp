@@ -25,7 +25,7 @@ export default function Navbar() {
       <div className="ml-auto gap-x-3 flex">
         {isAuthenticated && user ? (
           // <Avatar sx={{ bgcolor: "#7C3AED" }}>{user.name[0]}</Avatar>
-          <UserAvatar name={user.name} />
+          <UserAvatar name={user.name} role={user.role} />
         ) : (
           <Link
             to="/login"
@@ -47,7 +47,7 @@ export default function Navbar() {
   );
 }
 
-function UserAvatar({ name }: { name: string }) {
+function UserAvatar({ name, role }: { name: string; role?: string }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -62,7 +62,11 @@ function UserAvatar({ name }: { name: string }) {
 
   const handleClickProfile = () => {
     handleClose();
-    navigate("/user-dashboard");
+    if (role === "customer") {
+      navigate("/user-dashboard");
+    } else if (role === "provider") {
+      navigate("/provider-dashboard");
+    }
   };
 
   const handleLogout = async () => {

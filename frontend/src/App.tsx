@@ -13,6 +13,8 @@ import Catalog from "./pages/Catalog";
 import CatalogDetail from "./pages/CatalogDetail";
 import ProtectedRoute from "./lib/ProtectedRoute";
 import GuestOnlyRoute from "./lib/GuestOnlyRoute";
+import ProviderDashboard from "./pages/dashboard/ProviderDashboard";
+import Forbidden403 from "./pages/Forbidden403";
 
 export default function App() {
   return (
@@ -22,9 +24,16 @@ export default function App() {
       <Routes>
         {/* PROTECTED ROUTES */}
         <Route element={<ProtectedRoute />}>
-          <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/apply/:role" element={<ApplicationForm />} />
           <Route path="/catalog/:detail" element={<CatalogDetail />} />
+        </Route>
+
+        <Route element={<ProtectedRoute role="customer" />}>
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+        </Route>
+
+        <Route element={<ProtectedRoute role="provider" />}>
+          <Route path="/provider-dashboard" element={<ProviderDashboard />} />
         </Route>
 
         {/* GUEST ONLY ROUTES */}
@@ -41,6 +50,8 @@ export default function App() {
         <Route path="/help/faq" element={<FAQ />} />
 
         <Route path="/catalog" element={<Catalog />} />
+
+        <Route path="/403" element={<Forbidden403 />} />
       </Routes>
     </BrowserRouter>
   );
