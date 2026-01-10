@@ -31,5 +31,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/provider-application', [ProviderApplicationController::class, 'submit_application']);
 
     Route::get('/provider', [ProviderController::class, 'get_provider_profile']);
+    Route::get('/provider/{id}/history', [BookingController::class, 'get_serviced_history']);
     Route::put('/provider', [ProviderController::class, 'update_provider_profile']);
 });

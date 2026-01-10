@@ -77,3 +77,17 @@ export interface BookingHistory {
     name: string;
   };
 }
+
+export interface ProviderHistory {
+  id: number;
+  date: string;
+  total_price: number;
+  user: {
+    id: number;
+    name: string;
+  };
+  service_type: {
+    id: number;
+    name: string;
+  };
+}

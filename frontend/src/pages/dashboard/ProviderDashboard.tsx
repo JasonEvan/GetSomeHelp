@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SettingsTab from "../../components/dashboard/SettingsTab";
-import HistoryTab from "../../components/dashboard/HistoryTab";
 import ProfileTab from "../../components/provider-dashboard/ProfileTab";
+import HistoryTab from "../../components/provider-dashboard/HistoryTab";
 
 type TabType = "profile" | "settings" | "history";
 
