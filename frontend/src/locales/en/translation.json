@@ -47,6 +47,104 @@
       "apply_btn": "Apply"
     }
   },
+  "help": {
+    "title": "How can we help you?",
+    "search_placeholder": "Search your question here...",
+    "cards": {
+      "order": {
+        "title": "How to order a service",
+        "desc": "Order service guide"
+      },
+      "account": {
+        "title": "Account",
+        "desc": "Manage your account and security settings",
+        "modal_title": "Account Settings"
+      },
+      "payments": {
+        "title": "Payments & Billing",
+        "desc": "Find information on accepted payment methods",
+        "modal_title": "Payments & Billing"
+      },
+      "faq": {
+        "title": "Common Questions (FAQ)",
+        "desc": "Frequently asked questions and answers"
+      }
+    },
+    "modal": {
+      "payments": {
+        "intro": "Payments on GetSomeHelp are processed securely using <0>Midtrans</0>.",
+        "methods_title": "Supported Payment Methods",
+        "methods_list": [
+          "Credit & Debit Cards",
+          "Bank Transfer (Virtual Account)",
+          "QRIS",
+          "E-wallets (GoPay, OVO, DANA, ShopeePay)"
+        ],
+        "warning": "GetSomeHelp does <0>NOT STORE</0> your card or payment information. All transactions are handled directly by Midtrans."
+      },
+      "account": {
+        "intro": "Your account settings allow you to manage your personal information and keep your account secure.",
+        "actions_list": [
+          "Update your profile details.",
+          "Change your password regularly.",
+          "Manage notifications.",
+          "Keep your login information private."
+        ]
+      }
+    },
+    "faq_page": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find quick answers to the most common questions about GetSomeHelp.",
+      "items": {
+        "q1": {
+          "question": "How do I order a service?",
+          "answer": "You can order a service by selecting the service type, choosing a service provider, and confirming your booking through the app."
+        },
+        "q2": {
+          "question": "How do payments work?",
+          "answer": "All payments are processed securely through Midtrans. GetSomeHelp does not store your card or payment details."
+        },
+        "q3": {
+          "question": "What payment methods are supported?",
+          "answer": "We support credit and debit cards, bank transfers (Virtual Account), QRIS, and popular e-wallets such as GoPay, OVO, DANA, and ShopeePay."
+        },
+        "q4": {
+          "question": "Can I cancel a service?",
+          "answer": "Yes, service cancellations are subject to the service provider’s cancellation policy. Please review the policy before confirming your booking."
+        },
+        "q5": {
+          "question": "How do I contact customer support?",
+          "answer": "If you need further assistance, you can contact our customer support team through the app or via the support contact provided on the Help page."
+        }
+      }
+    },
+    "how_to_order": {
+      "title": "How to Order a Service",
+      "subtitle": "Follow these simple steps to book a service quickly and easily.",
+      "steps": {
+        "1": {
+          "label": "Step 1",
+          "title": "Choose a Service",
+          "desc": "Browse available services and select the one that fits your needs."
+        },
+        "2": {
+          "label": "Step 2",
+          "title": "Compare Providers",
+          "desc": "Compare prices, ratings, and availability from different service providers."
+        },
+        "3": {
+          "label": "Step 3",
+          "title": "Book the Service",
+          "desc": "Select your preferred date and time, then confirm your booking."
+        },
+        "4": {
+          "label": "Step 4",
+          "title": "Get It Done",
+          "desc": "The service provider arrives and completes the job as scheduled."
+        }
+      }
+    }
+  },
   "settings": {
     "title": "Settings",
     "subtitle": "Manage your account preferences and notifications",
