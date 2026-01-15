@@ -4,8 +4,11 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-gray-50 border-t">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -19,7 +22,7 @@ export default function Footer() {
             </div>
 
             <p className="font-roboto font-normal text-[14px] text-black">
-              The easiest way to hire local service.
+              {t("home.title")}
             </p>
           </div>
 
@@ -28,7 +31,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/" className="text-black hover:text-purple-600">
-                  Home
+                  {t("footer.home")}
                 </Link>
               </li>
               <li>
@@ -36,17 +39,17 @@ export default function Footer() {
                   to="/catalog"
                   className="text-black hover:text-purple-600"
                 >
-                  Popular Services
+                  {t("footer.popular_services")}
                 </Link>
               </li>
               <li>
                 <Link to="/career" className="text-black hover:text-purple-600">
-                  Career
+                  {t("navbar.career")}
                 </Link>
               </li>
               <li>
                 <Link to="/help" className="text-black hover:text-purple-600">
-                  Help
+                  {t("navbar.help")}
                 </Link>
               </li>
             </ul>
@@ -57,7 +60,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/career" className="text-black hover:text-purple-600">
-                  Job Application
+                  {t("footer.job_application")}
                 </Link>
               </li>
               <li>
@@ -65,7 +68,7 @@ export default function Footer() {
                   to="/catalog"
                   className="text-black hover:text-purple-600"
                 >
-                  Hiring Worker
+                  {t("footer.hiring_worker")}
                 </Link>
               </li>
             </ul>
@@ -76,7 +79,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/help" className="text-black hover:text-purple-600">
-                  Help
+                  {t("navbar.help")}
                 </Link>
               </li>
               <li>
@@ -89,12 +92,12 @@ export default function Footer() {
                   to="/user-dashboard"
                   className="text-black hover:text-purple-600"
                 >
-                  Account
+                  {t("footer.account")}
                 </Link>
               </li>
               <li>
                 <Link to="#" className="text-black hover:text-purple-600">
-                  Contact Us
+                  {t("footer.contact")}
                 </Link>
               </li>
             </ul>

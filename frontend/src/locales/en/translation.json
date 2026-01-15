@@ -13,5 +13,13 @@
     "cta_button": "Get Started",
     "service_title": "Popular Service Types",
     "service_cta_button": "More Services"
+  },
+  "footer": {
+    "home": "Home",
+    "popular_services": "Popular Services",
+    "job_application": "Job Application",
+    "hiring_worker": "Hiring Worker",
+    "account": "Account",
+    "contact": "Contact Us"
   }
 }

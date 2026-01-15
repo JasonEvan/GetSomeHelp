@@ -13,5 +13,13 @@
     "cta_button": "Mulai",
     "service_title": "Jenis Layanan Populer",
     "service_cta_button": "Layanan Lainnya"
+  },
+  "footer": {
+    "home": "Beranda",
+    "popular_services": "Layanan Populer",
+    "job_application": "Lamaran Pekerjaan",
+    "hiring_worker": "Merekrut Pekerja",
+    "account": "Akun",
+    "contact": "Hubungi Kami"
   }
 }
