@@ -195,5 +195,11 @@
     "subtitle": "Manage your account preferences and notifications",
     "language": "Language",
     "notifications": "Notifications"
+  },
+  "forbidden": {
+    "title": "Access Forbidden",
+    "subtitle": "You don’t have permission to access this page.",
+    "cta_home_button": "Go Home",
+    "cta_back_button": "Go Back"
   }
 }

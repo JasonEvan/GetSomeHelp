@@ -195,5 +195,11 @@
     "subtitle": "Kelola preferensi dan notifikasi akun Anda",
     "language": "Bahasa",
     "notifications": "Notifikasi"
+  },
+  "forbidden": {
+    "title": "Akses Terlarang",
+    "subtitle": "Anda tidak memiliki izin untuk mengakses halaman ini.",
+    "cta_home_button": "Kembali ke Beranda",
+    "cta_back_button": "Kembali"
   }
 }
