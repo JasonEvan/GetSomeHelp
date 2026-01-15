@@ -6,11 +6,13 @@ import type { ProviderHistory } from "../../utils/types";
 import { useAuthStore } from "../../hooks/useAuthStore";
 import dayjs from "dayjs";
 import { Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function ScheduleTab() {
   const [currentPage, setCurrentPage] = useState(1);
   const [scheduleData, setScheduleData] = useState<ProviderHistory[]>([]);
   const user = useAuthStore((state) => state.user);
+  const { t } = useTranslation();
 
   const itemsPerPage = 5;
 
@@ -66,9 +68,11 @@ export default function ScheduleTab() {
       {/* Header */}
       <div className="flex items-start mb-6">
         <div>
-          <h2 className="text-2xl font-bold mb-1">Schedule</h2>
+          <h2 className="text-2xl font-bold mb-1">
+            {t("dashboard.provider.schedule.title")}
+          </h2>
           <p className="text-gray-500">
-            Manage incoming service requests and your availability
+            {t("dashboard.provider.schedule.subtitle")}
           </p>
         </div>
       </div>
@@ -78,9 +82,15 @@ export default function ScheduleTab() {
         <table className="w-full text-sm">
           <thead className="bg-gray-200">
             <tr>
-              <th className="px-4 py-3 text-left font-semibold">Customer</th>
-              <th className="px-4 py-3 text-left font-semibold">Service</th>
-              <th className="px-4 py-3 text-left font-semibold">Date</th>
+              <th className="px-4 py-3 text-left font-semibold">
+                {t("dashboard.provider.schedule.table.customer")}
+              </th>
+              <th className="px-4 py-3 text-left font-semibold">
+                {t("dashboard.provider.schedule.table.service")}
+              </th>
+              <th className="px-4 py-3 text-left font-semibold">
+                {t("dashboard.provider.schedule.table.date")}
+              </th>
               <th className="px-4 py-3 text-left font-semibold">Total</th>
               <th className="px-4 py-3 text-left font-semibold">Status</th>
             </tr>
@@ -104,7 +114,7 @@ export default function ScheduleTab() {
                     variant="contained"
                     onClick={() => handleAccept(item.id)}
                   >
-                    Accept
+                    {t("dashboard.provider.schedule.table.accept")}
                   </Button>
                   <Button
                     size="small"
@@ -112,7 +122,7 @@ export default function ScheduleTab() {
                     variant="contained"
                     onClick={() => handleDecline(item.id)}
                   >
-                    Decline
+                    {t("dashboard.provider.schedule.table.decline")}
                   </Button>
                 </td>
               </tr>
@@ -128,7 +138,7 @@ export default function ScheduleTab() {
           disabled={currentPage === 1}
           className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 disabled:bg-gray-200 disabled:text-gray-400 cursor-pointer disabled:cursor-not-allowed"
         >
-          Previous
+          {t("dashboard.user.history.table.previous")}
         </button>
 
         <span className="font-semibold">{currentPage}</span>
@@ -138,7 +148,7 @@ export default function ScheduleTab() {
           disabled={currentPage === totalPages}
           className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 disabled:bg-gray-200 disabled:text-gray-400 cursor-pointer disabled:cursor-not-allowed"
         >
-          Next
+          {t("dashboard.user.history.table.next")}
         </button>
       </div>
     </div>

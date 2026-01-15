@@ -251,6 +251,77 @@
       "content": "By submitting this application, you confirm that all information provided is accurate and truthful. Your data will be used solely for recruitment purposes and will not be shared with third parties without your consent. Submitting false information may result in disqualification."
     }
   },
+  "dashboard": {
+    "user": {
+      "tabs": {
+        "profile": "User Profile",
+        "settings": "Settings",
+        "history": "History"
+      },
+      "profile": {
+        "name": "Name",
+        "phone": "Phone",
+        "address": "Address",
+        "details": "Details",
+        "edit_btn": "Edit",
+        "cancel_btn": "Cancel",
+        "save_btn": "Save"
+      },
+      "history": {
+        "title": "Service History",
+        "subtitle": "View your transaction for hiring services.",
+        "total_orders": "Total orders: ",
+        "total_spent": "Total spent: ",
+        "table": {
+          "service": "Service",
+          "provider": "Provider",
+          "date": "Date",
+          "previous": "Previous",
+          "next": "Next"
+        }
+      }
+    },
+    "provider": {
+      "tabs": {
+        "profile": "Provider Profile",
+        "schedule": "Schedule",
+        "settings": "Settings",
+        "history": "History"
+      },
+      "profile": {
+        "name": "Name",
+        "phone": "Phone",
+        "address": "Address",
+        "overview": "Service Overview / Description",
+        "starting_price": "Starting Price",
+        "availability": "Availability",
+        "from": "From",
+        "until": "Until",
+        "edit_btn": "Edit",
+        "cancel_btn": "Cancel",
+        "save_btn": "Save"
+      },
+      "schedule": {
+        "title": "Schedule",
+        "subtitle": "Manage incoming service requests and your availability",
+        "table": {
+          "customer": "Customer",
+          "service": "Service",
+          "date": "Date",
+          "accept": "Accept",
+          "decline": "Decline"
+        }
+      },
+      "history": {
+        "subtitle": "View your transaction.",
+        "total_jobs": "Total jobs: ",
+        "earnings": "Earnings: ",
+        "table": {
+          "customer": "Customer"
+        }
+      }
+    }
+  },
   "settings": {
     "title": "Settings",
     "subtitle": "Manage your account preferences and notifications",

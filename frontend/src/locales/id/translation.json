@@ -251,6 +251,74 @@
       "content": "Dengan mengirimkan lamaran ini, Anda menyatakan bahwa semua informasi yang diberikan adalah akurat dan benar. Data Anda akan digunakan semata-mata untuk tujuan rekrutmen dan tidak akan dibagikan kepada pihak ketiga tanpa persetujuan Anda. Mengirimkan informasi palsu dapat mengakibatkan diskualifikasi."
     }
   },
+  "dashboard": {
+    "user": {
+      "tabs": {
+        "profile": "Profil Pengguna",
+        "settings": "Pengaturan",
+        "history": "Riwayat"
+      },
+      "profile": {
+        "name": "Nama",
+        "phone": "Nomor Telepon",
+        "address": "Alamat",
+        "details": "Detail",
+        "edit_btn": "Ubah",
+        "cancel_btn": "Batal",
+        "save_btn": "Simpan"
+      },
+      "history": {
+        "title": "Riwayat Transaksi",
+        "subtitle": "Lihat transaksi Anda untuk layanan perekrutan.",
+        "total_orders": "Total pesanan: ",
+        "total_spent": "Total pengeluaran: ",
+        "table": {
+          "service": "Layanan",
+          "provider": "Penyedia",
+          "date": "Tanggal",
+          "previous": "Sebelumnya",
+          "next": "Berikutnya"
+        }
+      }
+    },
+    "provider": {
+      "tabs": {
+        "profile": "Profil Penyedia",
+        "schedule": "Jadwal",
+        "settings": "Pengaturan",
+        "history": "Riwayat"
+      },
+      "profile": {
+        "name": "Nama",
+        "phone": "Nomor Telepon",
+        "address": "Alamat",
+        "overview": "Ikhtisar Layanan",
+        "starting_price": "Harga Mulai",
+        "availability": "Ketersediaan",
+        "from": "Dari",
+        "until": "Sampai"
+      },
+      "schedule": {
+        "title": "Jadwal",
+        "subtitle": "Kelola permintaan layanan masuk Anda.",
+        "table": {
+          "customer": "Pelanggan",
+          "service": "Layanan",
+          "date": "Tanggal",
+          "accept": "Terima",
+          "decline": "Tolak"
+        }
+      },
+      "history": {
+        "subtitle": "Lihat riwayat layanan Anda.",
+        "total_jobs": "Total pekerjaan: ",
+        "earnings": "Total penghasilan: ",
+        "table": {
+          "customer": "Pelanggan"
+        }
+      }
+    }
+  },
   "settings": {
     "title": "Pengaturan",
     "subtitle": "Kelola preferensi dan notifikasi akun Anda",

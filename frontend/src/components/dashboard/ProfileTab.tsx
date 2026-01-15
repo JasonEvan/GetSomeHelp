@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useAuthStore } from "../../hooks/useAuthStore";
 import type { User } from "../../utils/types";
 import api from "../../lib/axios";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileTab() {
   const { user, setUser } = useAuthStore();
-
   const [formData, setFormData] = useState<User>(user!);
-
   const [isEditing, setIsEditing] = useState(false);
+  const { t } = useTranslation();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -65,7 +65,7 @@ export default function ProfileTab() {
             onClick={() => setIsEditing(true)}
             className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
           >
-            Edit
+            {t("dashboard.user.profile.edit_btn")}
           </button>
         ) : (
           <div className="flex gap-2">
@@ -73,13 +73,13 @@ export default function ProfileTab() {
               onClick={handleCancel}
               className="px-4 py-2 rounded-md text-sm border hover:bg-gray-200 cursor-pointer"
             >
-              Cancel
+              {t("dashboard.user.profile.cancel_btn")}
             </button>
             <button
               onClick={handleSave}
               className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
             >
-              Save
+              {t("dashboard.user.profile.save_btn")}
             </button>
           </div>
         )}
@@ -89,7 +89,7 @@ export default function ProfileTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="md:col-span-2">
           <Input
-            label="Name"
+            label={t("dashboard.user.profile.name")}
             name="name"
             value={formData.name}
             onChange={handleChange}
@@ -98,7 +98,7 @@ export default function ProfileTab() {
         </div>
         <Input label="Email" name="email" value={formData.email} disabled />
         <Input
-          label="Phone"
+          label={t("dashboard.user.profile.phone")}
           name="phone"
           value={formData.phone || ""}
           onChange={handleChange}
@@ -107,7 +107,7 @@ export default function ProfileTab() {
 
         <div className="md:col-span-2">
           <Input
-            label="Address"
+            label={t("dashboard.user.profile.address")}
             name="address"
             value={formData.address || ""}
             onChange={handleChange}
@@ -116,7 +116,9 @@ export default function ProfileTab() {
         </div>
 
         <div className="md:col-span-2">
-          <label className="text-sm font-semibold">Details</label>
+          <label className="text-sm font-semibold">
+            {t("dashboard.user.profile.details")}
+          </label>
           <textarea
             name="detail_address"
             value={formData.detail_address || ""}

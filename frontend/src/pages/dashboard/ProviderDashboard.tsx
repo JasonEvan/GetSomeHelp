@@ -3,11 +3,13 @@ import SettingsTab from "../../components/dashboard/SettingsTab";
 import ProfileTab from "../../components/provider-dashboard/ProfileTab";
 import HistoryTab from "../../components/provider-dashboard/HistoryTab";
 import ScheduleTab from "../../components/provider-dashboard/ScheduleTab";
+import { useTranslation } from "react-i18next";
 
 type TabType = "profile" | "schedule" | "settings" | "history";
 
 export default function ProviderDashboard() {
   const [activeTab, setActiveTab] = useState<TabType>("profile");
+  const { t } = useTranslation();
 
   return (
     <main className="min-h-screen bg-[#F9FAFB] flex items-center justify-center px-6 py-12">
@@ -15,22 +17,22 @@ export default function ProviderDashboard() {
         {/* Tab Header Container */}
         <div className="flex">
           <TabButton
-            label="Provider Profile"
+            label={t("dashboard.provider.tabs.profile")}
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
           />
           <TabButton
-            label="Schedule"
+            label={t("dashboard.provider.tabs.schedule")}
             active={activeTab === "schedule"}
             onClick={() => setActiveTab("schedule")}
           />
           <TabButton
-            label="Settings"
+            label={t("dashboard.provider.tabs.settings")}
             active={activeTab === "settings"}
             onClick={() => setActiveTab("settings")}
           />
           <TabButton
-            label="History"
+            label={t("dashboard.provider.tabs.history")}
             active={activeTab === "history"}
             onClick={() => setActiveTab("history")}
           />

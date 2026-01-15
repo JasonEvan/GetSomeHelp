@@ -3,6 +3,7 @@ import { useAuthStore } from "../../hooks/useAuthStore";
 import type { User } from "../../utils/types";
 import api from "../../lib/axios";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -28,7 +29,6 @@ interface ProviderAPIResponse {
 
 export default function ProfileTab() {
   const { user, setUser } = useAuthStore();
-
   const [formData, setFormData] = useState<Provider>({
     ...user!,
     bio: "",
@@ -37,10 +37,9 @@ export default function ProfileTab() {
     availability_start: "",
     availability_end: "",
   });
-
   const [initialData, setInitialData] = useState<Provider | null>(null);
-
   const [isEditing, setIsEditing] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchProviderData() {
@@ -187,7 +186,7 @@ export default function ProfileTab() {
             onClick={() => setIsEditing(true)}
             className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
           >
-            Edit
+            {t("dashboard.user.profile.edit_btn")}
           </button>
         ) : (
           <div className="flex gap-2">
@@ -195,13 +194,13 @@ export default function ProfileTab() {
               onClick={handleCancel}
               className="px-4 py-2 rounded-md text-sm border hover:bg-gray-200 cursor-pointer"
             >
-              Cancel
+              {t("dashboard.user.profile.cancel_btn")}
             </button>
             <button
               onClick={handleSave}
               className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
             >
-              Save
+              {t("dashboard.user.profile.save_btn")}
             </button>
           </div>
         )}
@@ -211,7 +210,7 @@ export default function ProfileTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="md:col-span-2">
           <Input
-            label="Name"
+            label={t("dashboard.provider.profile.name")}
             name="name"
             value={formData.name}
             onChange={handleChange}
@@ -220,7 +219,7 @@ export default function ProfileTab() {
         </div>
         <Input label="Email" name="email" value={formData.email} disabled />
         <Input
-          label="Phone"
+          label={t("dashboard.provider.profile.phone")}
           name="phone"
           value={formData.phone || ""}
           onChange={handleChange}
@@ -229,7 +228,7 @@ export default function ProfileTab() {
 
         <div className="md:col-span-2">
           <Input
-            label="Address"
+            label={t("dashboard.provider.profile.address")}
             name="address"
             value={formData.address || ""}
             onChange={handleChange}
@@ -239,7 +238,7 @@ export default function ProfileTab() {
 
         <div>
           <label className="text-sm font-semibold">
-            Service Overview / Description
+            {t("dashboard.provider.profile.overview")}
           </label>
           <textarea
             name="bio"
@@ -254,7 +253,7 @@ export default function ProfileTab() {
 
         <div>
           <Input
-            label="Starting Price"
+            label={t("dashboard.provider.profile.starting_price")}
             name="starting_price"
             value={formData.starting_price || ""}
             onChange={handleChange}
@@ -263,7 +262,9 @@ export default function ProfileTab() {
           <div>
             {/* Availability Days */}
             <div className="mt-1">
-              <p className="font-medium text-gray-700 mb-2">Availability</p>
+              <p className="font-medium text-gray-700 mb-2">
+                {t("dashboard.provider.profile.availability")}
+              </p>
               <div className="flex gap-2">
                 {daysOfWeek.map((day) => (
                   <FormControlLabel
@@ -278,23 +279,18 @@ export default function ProfileTab() {
                         sx={{ "&.Mui-checked": { color: "#7E3ACD" } }}
                       />
                     }
-                    label={day}
+                    label={t(`application.days.${day}`)}
                     labelPlacement="bottom"
                     sx={{ m: 0 }}
                   />
                 ))}
               </div>
-              {/* {formik.errors.availabilityDays && (
-                <p className="text-red-500 text-sm mt-1">
-                  {formik.errors.availabilityDays}
-                </p>
-              )} */}
             </div>
             {/* Availability Time */}
             <div>
               <div className="flex ml-1 mr-1 mt-4 items-center justify-between gap-4">
                 <TextField
-                  label="From"
+                  label={t("dashboard.provider.profile.from")}
                   type="time"
                   name="availability_start"
                   value={formData.availability_start || "00:00"}
@@ -307,7 +303,7 @@ export default function ProfileTab() {
                 <div className="h-0.5 bg-gray-300 w-full"></div>
 
                 <TextField
-                  label="Until"
+                  label={t("dashboard.provider.profile.until")}
                   type="time"
                   name="availability_end"
                   value={formData.availability_end || "00:00"}
