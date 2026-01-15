@@ -21,5 +21,11 @@
     "hiring_worker": "Merekrut Pekerja",
     "account": "Akun",
     "contact": "Hubungi Kami"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Kelola preferensi dan notifikasi akun Anda",
+    "language": "Bahasa",
+    "notifications": "Notifikasi"
   }
 }

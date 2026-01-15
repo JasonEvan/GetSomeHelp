@@ -21,5 +21,11 @@
     "hiring_worker": "Hiring Worker",
     "account": "Account",
     "contact": "Contact Us"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account preferences and notifications",
+    "language": "Language",
+    "notifications": "Notifications"
   }
 }
