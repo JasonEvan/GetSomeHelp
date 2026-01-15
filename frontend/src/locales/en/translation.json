@@ -190,6 +190,18 @@
       "schedule": "Schedule"
     }
   },
+  "auth": {
+    "sign_up": {
+      "title": "Sign Up",
+      "placeholder1": "Username",
+      "register_btn": "Register",
+      "have_account": "Already have an account? "
+    },
+    "login": {
+      "title": "Log In",
+      "dont_have_account": "Don't have an account? "
+    }
+  },
   "settings": {
     "title": "Settings",
     "subtitle": "Manage your account preferences and notifications",

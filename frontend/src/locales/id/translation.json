@@ -190,6 +190,18 @@
       "schedule": "Jadwal"
     }
   },
+  "auth": {
+    "sign_up": {
+      "title": "Daftar",
+      "placeholder1": "Nama Pengguna",
+      "register_btn": "Daftar",
+      "have_account": "Sudah punya akun? "
+    },
+    "login": {
+      "title": "Masuk",
+      "dont_have_account": "Tidak punya akun? "
+    }
+  },
   "settings": {
     "title": "Pengaturan",
     "subtitle": "Kelola preferensi dan notifikasi akun Anda",
