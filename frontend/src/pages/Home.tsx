@@ -19,9 +19,12 @@ export default function Home() {
             <span className="font-extrabold text-5xl">{t("home.title")}</span>
             <span className="text-xl">{t("home.subtitle")}</span>
             <div className="mt-2">
-              <button className="bg-[#7C3AED] px-5 py-3 rounded-md text-white font-bold cursor-pointer">
+              <a
+                className="bg-[#7C3AED] px-5 py-3 rounded-md text-white font-bold cursor-pointer"
+                href="#service"
+              >
                 {t("home.cta_button")}
-              </button>
+              </a>
             </div>
           </div>
           <img src="/img/tukang.png" alt="" className="me-52 mt-32" />
@@ -31,6 +34,7 @@ export default function Home() {
       <section
         className="bg-cover bg-center bg-no-repeat h-full flex flex-col justify-around items-center"
         style={{ backgroundImage: "url('/img/background/secondary-bg.png')" }}
+        id="service"
       >
         <h3 className="font-bold text-3xl text-center">
           {t("home.service_title")}
