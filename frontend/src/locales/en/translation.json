@@ -22,6 +22,31 @@
     "account": "Account",
     "contact": "Contact Us"
   },
+  "career": {
+    "title": "Start your career with us",
+    "why_us": {
+      "title": "Why Choose Us?",
+      "items": {
+        "advance": {
+          "title": "Advance Opportunities",
+          "desc": "A clear career path provides a detailed roadmap of the positions, skills, and experience needed to achieve long-term professional goals."
+        },
+        "positions": {
+          "title": "Many Available Positions",
+          "desc": "We currently have many job openings waiting for you. Whatever your expertise, we have a place for you."
+        },
+        "hours": {
+          "title": "Flexible Working Hours",
+          "desc": "Work hours are flexible and adapted to meet client needs and ensure optimal service availability."
+        }
+      }
+    },
+    "join_us": {
+      "title": "Become one of us!",
+      "job_desk_label": "Job Desk",
+      "apply_btn": "Apply"
+    }
+  },
   "settings": {
     "title": "Settings",
     "subtitle": "Manage your account preferences and notifications",

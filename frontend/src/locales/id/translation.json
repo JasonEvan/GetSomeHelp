@@ -22,6 +22,31 @@
     "account": "Akun",
     "contact": "Hubungi Kami"
   },
+  "career": {
+    "title": "Mulai karir Anda bersama kami",
+    "why_us": {
+      "title": "Kenapa Memilih Kami?",
+      "items": {
+        "advance": {
+          "title": "Peluang Kemajuan",
+          "desc": "Jalur karir yang jelas menyediakan peta jalan rinci tentang posisi, keterampilan, dan pengalaman yang dibutuhkan."
+        },
+        "positions": {
+          "title": "Banyak Posisi Tersedia",
+          "desc": "Kami memiliki banyak lowongan pekerjaan menanti Anda. Apapun keahlian Anda, kami punya tempat untuk Anda."
+        },
+        "hours": {
+          "title": "Jam Kerja Fleksibel",
+          "desc": "Jam kerja fleksibel dan disesuaikan untuk memenuhi kebutuhan klien serta memastikan ketersediaan layanan optimal."
+        }
+      }
+    },
+    "join_us": {
+      "title": "Jadilah bagian dari kami!",
+      "job_desk_label": "Deskripsi Pekerjaan",
+      "apply_btn": "Lamar"
+    }
+  },
   "settings": {
     "title": "Pengaturan",
     "subtitle": "Kelola preferensi dan notifikasi akun Anda",
