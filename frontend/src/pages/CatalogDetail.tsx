@@ -5,10 +5,12 @@ import { CircleUserRound } from "lucide-react";
 import { useCatalogDetail } from "../hooks/useCatalogDetail";
 import ReviewSection from "../components/catalog/detail/ReviewSection";
 import ScheduleSection from "../components/catalog/detail/ScheduleSection";
+import { useTranslation } from "react-i18next";
 
 export default function CatalogDetail() {
   const { detail } = useParams();
   const { service, loading, navigate } = useCatalogDetail(detail);
+  const { t } = useTranslation();
 
   if (loading) {
     return (
@@ -56,7 +58,8 @@ export default function CatalogDetail() {
           </div>
           <p className="text-lg">{service.service_type.description}</p>
           <p className="text-lg">
-            Starting from <b>Rp{service.starting_price}</b> per visit
+            {t("catalog.card.starting_from")}
+            <b>{service.starting_price}</b> {t("catalog.card.per_visit")}
           </p>
           <div className="flex gap-x-3">
             <Link
@@ -64,14 +67,14 @@ export default function CatalogDetail() {
               to="#"
               className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4"
             >
-              Book Now
+              {t("catalog.detail.book_now")}
             </Link>
             <Link
               type="button"
               to="#"
               className="mt-5 bg-transparent text-black rounded-md w-fit py-2 px-4 border border-white"
             >
-              Contact Provider
+              {t("catalog.detail.contact_provider")}
             </Link>
           </div>
         </div>
@@ -79,17 +82,18 @@ export default function CatalogDetail() {
 
       <section className="flex justify-center items-center gap-x-5">
         <div className="w-full space-y-1">
-          <h2 className="text-2xl">About This Service</h2>
+          <h2 className="text-2xl">{t("catalog.detail.about_this_service")}</h2>
           <p className="text-lg">{service.bio}</p>
         </div>
         <div className="w-full space-y-1">
-          <h2 className="text-2xl">Provided by</h2>
+          <h2 className="text-2xl">{t("catalog.detail.provided_by")}</h2>
           <div className="flex items-center gap-x-2">
             <CircleUserRound size={40} />
             <div>
               <p className="text-xl">{service.display_name}</p>
               <p className="text-lg">
-                {service.city} - {service.experience_years}+ years of service
+                {service.city} - {service.experience_years}+{" "}
+                {t("catalog.card.years_service")}
               </p>
             </div>
           </div>

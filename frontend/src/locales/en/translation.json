@@ -145,6 +145,51 @@
       }
     }
   },
+  "catalog": {
+    "hero": {
+      "title": "How can we help you?",
+      "search_placeholder": "What service are you looking for?"
+    },
+    "section_title": "Service Catalog",
+    "filter": {
+      "price": {
+        "title": "Narrow by Price",
+        "any": "Any Price",
+        "above": "Above {{val}}",
+        "range": "{{min}} - {{max}}"
+      },
+      "type": {
+        "title": "Narrow by Type"
+      },
+      "sort": {
+        "title": "Sort By",
+        "name": "Name",
+        "lowest_price": "Lowest Price",
+        "highest_price": "Highest Price",
+        "user_rating": "User Rating"
+      },
+      "address": {
+        "title": "Your Address",
+        "placeholder1": "Your Address",
+        "placeholder2": "Details"
+      }
+    },
+    "card": {
+      "years_service": "years of service",
+      "starting_from": "Starting from Rp",
+      "per_visit": "per visit"
+    },
+    "detail": {
+      "no_reviews": "No reviews yet",
+      "see_more": "See More",
+      "no_available_bookings": "No available bookings",
+      "book_now": "Book Now",
+      "contact_provider": "Contact Provider",
+      "about_this_service": "About This Service",
+      "provided_by": "Provided by",
+      "schedule": "Schedule"
+    }
+  },
   "settings": {
     "title": "Settings",
     "subtitle": "Manage your account preferences and notifications",

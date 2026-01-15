@@ -1,10 +1,13 @@
 import { Checkbox, FormControlLabel, FormGroup, Grid } from "@mui/material";
 import { useServiceCatalogStore } from "../../hooks/useServiceCatalogStore";
 import { useServiceType } from "../../hooks/useServiceType";
+import { useTranslation } from "react-i18next";
 
 export default function TypeFilter() {
   const services = useServiceType();
   const { types, setTypes } = useServiceCatalogStore();
+  const { t } = useTranslation();
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     newType: number
@@ -19,7 +22,7 @@ export default function TypeFilter() {
   return (
     <div className="w-full">
       <div className="bg-[#D9D9D9] text-[#5E17D7] px-2 py-1">
-        Narrow by Type
+        {t("catalog.filter.type.title")}
       </div>
       <div className="bg-[#F5F5F5] border-[#D9D9D9] border p-5">
         <FormGroup>

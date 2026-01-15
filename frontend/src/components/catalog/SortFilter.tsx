@@ -5,12 +5,16 @@ import {
   RadioGroup,
 } from "@mui/material";
 import { useServiceCatalogStore } from "../../hooks/useServiceCatalogStore";
+import { useTranslation } from "react-i18next";
 
 export default function SortFilter() {
   const { sortBy, setSortBy } = useServiceCatalogStore();
+  const { t } = useTranslation();
   return (
     <div className="w-full">
-      <div className="bg-[#D9D9D9] text-[#5E17D7] px-2 py-1">Sort by</div>
+      <div className="bg-[#D9D9D9] text-[#5E17D7] px-2 py-1">
+        {t("catalog.filter.sort.title")}
+      </div>
       <div className="bg-[#F5F5F5] border-[#D9D9D9] border p-5">
         <FormControl>
           <RadioGroup
@@ -31,21 +35,25 @@ export default function SortFilter() {
               },
             }}
           >
-            <FormControlLabel value="name" control={<Radio />} label="Name" />
+            <FormControlLabel
+              value="name"
+              control={<Radio />}
+              label={t("catalog.filter.sort.name")}
+            />
             <FormControlLabel
               value="lowest_price"
               control={<Radio />}
-              label="Lowest Price"
+              label={t("catalog.filter.sort.lowest_price")}
             />
             <FormControlLabel
               value="highest_price"
               control={<Radio />}
-              label="Highest Price"
+              label={t("catalog.filter.sort.highest_price")}
             />
             <FormControlLabel
               value="rating"
               control={<Radio />}
-              label="User Rating"
+              label={t("catalog.filter.sort.user_rating")}
             />
           </RadioGroup>
         </FormControl>

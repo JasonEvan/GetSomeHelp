@@ -5,6 +5,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import type { ServiceCatalogDetail } from "../../../utils/types";
 import { CircleUserRound } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function ScheduleSection({
   bookings,
@@ -12,9 +13,11 @@ export default function ScheduleSection({
   bookings: ServiceCatalogDetail["grouped_bookings"];
 }) {
   const [date, setDate] = useState<Dayjs | null>(null);
+  const { t } = useTranslation();
+
   return (
     <div className="w-3/4 bg-[#FAFAFA] rounded-lg shadow-xl p-5 space-y-2 h-fit">
-      <h3 className="text-2xl">Schedule</h3>
+      <h3 className="text-2xl">{t("catalog.detail.schedule")}</h3>
       <div className="flex gap-x-2 max-h-80">
         {/* calendar */}
         <div className="bg-white border border-gray-300 rounded-lg p-1">
@@ -30,7 +33,7 @@ export default function ScheduleSection({
         {/* list jadwal */}
         <div className="w-full overflow-y-auto p-3 space-y-2">
           {Object.keys(bookings).length === 0 ? (
-            <p>No available bookings.</p>
+            <p>{t("catalog.detail.no_available_bookings")}</p>
           ) : (
             Object.keys(bookings).map((key, index) => (
               <div key={index}>

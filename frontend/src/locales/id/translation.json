@@ -145,6 +145,51 @@
       }
     }
   },
+  "catalog": {
+    "hero": {
+      "title": "Apa yang bisa kami bantu?",
+      "search_placeholder": "Layanan apa yang Anda cari?"
+    },
+    "section_title": "Katalog Layanan",
+    "filter": {
+      "price": {
+        "title": "Filter Harga",
+        "any": "Semua Harga",
+        "above": "Di atas {{val}}",
+        "range": "{{min}} - {{max}}"
+      },
+      "type": {
+        "title": "Filter Kategori"
+      },
+      "sort": {
+        "title": "Urutkan",
+        "name": "Nama",
+        "lowest_price": "Harga Terendah",
+        "highest_price": "Harga Tertinggi",
+        "user_rating": "Rating Pengguna"
+      },
+      "address": {
+        "title": "Lokasimu",
+        "placeholder1": "Alamat Anda",
+        "placeholder2": "Detail"
+      }
+    },
+    "card": {
+      "years_service": "tahun pengalaman",
+      "starting_from": "Mulai dari Rp",
+      "per_visit": "per kunjungan"
+    },
+    "detail": {
+      "no_reviews": "Belum ada ulasan",
+      "see_more": "Lihat Selengkapnya",
+      "no_available_bookings": "Tidak ada jadwal tersedia",
+      "book_now": "Pesan Sekarang",
+      "contact_provider": "Hubungi Penyedia",
+      "about_this_service": "Tentang Layanan Ini",
+      "provided_by": "Disediakan oleh",
+      "schedule": "Jadwal"
+    }
+  },
   "settings": {
     "title": "Pengaturan",
     "subtitle": "Kelola preferensi dan notifikasi akun Anda",

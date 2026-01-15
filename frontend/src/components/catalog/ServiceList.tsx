@@ -3,6 +3,7 @@ import { useServiceCatalogStore } from "../../hooks/useServiceCatalogStore";
 import StarIcon from "@mui/icons-material/Star";
 import { sortServices } from "../../utils/sortServices";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function ServiceList() {
   const { services, sortBy, types, priceRange, getData } =
@@ -55,6 +56,8 @@ function ServiceCard({
   price: number;
   image: string | null;
 }) {
+  const { t } = useTranslation();
+
   let img_source;
   if (!image) {
     img_source = "https://picsum.photos/720/360";
@@ -77,7 +80,7 @@ function ServiceCard({
           <h5 className="text-xl">{name}</h5>
           <p className="text-sm">{category}</p>
           <p className="text-sm">
-            {city} - {experience}+ years of service
+            {city} - {experience}+ {t("catalog.card.years_service")}
           </p>
         </div>
       </div>
@@ -87,7 +90,8 @@ function ServiceCard({
           <p>{rating}</p>
         </div>
         <p>
-          Starting from Rp<b>{price}</b> per visit
+          {t("catalog.card.starting_from")}
+          <b>{price}</b> {t("catalog.card.per_visit")}
         </p>
       </div>
     </Link>
