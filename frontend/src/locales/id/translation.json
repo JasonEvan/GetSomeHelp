@@ -202,6 +202,55 @@
       "dont_have_account": "Tidak punya akun? "
     }
   },
+  "application": {
+    "title": "Lamaran Pekerjaan {{role}}",
+    "labels": {
+      "name": "Nama",
+      "email": "Email",
+      "phone": "Nomor Telepon",
+      "address": "Alamat",
+      "resume": "Resume / CV",
+      "expected_salary": "Ekspektasi Gaji (IDR/jam)",
+      "availability": "Ketersediaan",
+      "from": "Dari",
+      "until": "Sampai"
+    },
+    "buttons": {
+      "upload": "Unggah File",
+      "submit": "Kirim Lamaran",
+      "terms_link": "Syarat dan Ketentuan",
+      "modal_close": "Saya Mengerti"
+    },
+    "placeholder": {
+      "salary_display": "{{val}}rb IDR/jam",
+      "file_selected": "Terpilih: {{filename}}"
+    },
+    "days": {
+      "Sun": "Min",
+      "Mon": "Sen",
+      "Tue": "Sel",
+      "Wed": "Rab",
+      "Thu": "Kam",
+      "Fri": "Jum",
+      "Sat": "Sab"
+    },
+    "validation": {
+      "resume_req": "Resume / CV wajib diisi",
+      "days_min": "Pilih setidaknya satu hari",
+      "days_req": "Pilih setidaknya satu hari",
+      "start_req": "Waktu mulai wajib diisi",
+      "end_req": "Waktu selesai wajib diisi",
+      "end_greater": "Waktu selesai harus setelah waktu mulai"
+    },
+    "alerts": {
+      "success": "Formulir berhasil dikirim",
+      "error": "Terjadi kesalahan. Silakan coba lagi: "
+    },
+    "terms_modal": {
+      "title": "Syarat & Ketentuan",
+      "content": "Dengan mengirimkan lamaran ini, Anda menyatakan bahwa semua informasi yang diberikan adalah akurat dan benar. Data Anda akan digunakan semata-mata untuk tujuan rekrutmen dan tidak akan dibagikan kepada pihak ketiga tanpa persetujuan Anda. Mengirimkan informasi palsu dapat mengakibatkan diskualifikasi."
+    }
+  },
   "settings": {
     "title": "Pengaturan",
     "subtitle": "Kelola preferensi dan notifikasi akun Anda",

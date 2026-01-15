@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   TextField,
   Button,
@@ -15,6 +15,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useAuthStore } from "../hooks/useAuthStore";
 import api from "../lib/axios";
+import { useTranslation } from "react-i18next";
 
 type ApplicationFormProps = {
   resume: File | null;
@@ -30,24 +31,31 @@ export default function ApplicationForm() {
   const { role } = useParams();
   const user = useAuthStore((state) => state.user);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  const validationSchema = Yup.object({
-    resume: Yup.mixed().required("Resume / CV is required"),
-    availabilityDays: Yup.array()
-      .min(1, "Select at least one day")
-      .required("Select at least one day"),
-    availabilityStart: Yup.string().required("Start time required"),
-    availabilityEnd: Yup.string()
-      .required("End time required")
-      .test(
-        "is-greater",
-        "End time must be after start time",
-        function (value) {
-          const { availabilityStart } = this.parent;
-          return !availabilityStart || !value || availabilityStart < value;
-        }
-      ),
-  });
+  const validationSchema = useMemo(
+    () =>
+      Yup.object({
+        resume: Yup.mixed().required(t("application.validation.resume_req")),
+        availabilityDays: Yup.array()
+          .min(1, t("application.validation.days_min"))
+          .required(t("application.validation.days_req")),
+        availabilityStart: Yup.string().required(
+          t("application.validation.start_req")
+        ),
+        availabilityEnd: Yup.string()
+          .required(t("application.validation.end_req"))
+          .test(
+            "is-greater",
+            t("application.validation.end_greater"),
+            function (value) {
+              const { availabilityStart } = this.parent;
+              return !availabilityStart || !value || availabilityStart < value;
+            }
+          ),
+      }),
+    [t]
+  );
 
   const formik = useFormik<ApplicationFormProps>({
     initialValues: {
@@ -110,10 +118,10 @@ export default function ApplicationForm() {
             "Content-Type": "multipart/form-data",
           },
         });
-        alert("Form submitted successfully");
+        alert(t("application.alerts.success"));
         navigate("/");
       } catch (err) {
-        alert("An error occured. Please try again" + err);
+        alert(t("application.alerts.error"));
         console.error(err);
       }
     },
@@ -138,7 +146,7 @@ export default function ApplicationForm() {
     >
       <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg mt-10">
         <h1 className="text-3xl font-bold text-gray-700 mb-8 text-center">
-          {jobTitle} Job Application
+          {t("application.title", { role: jobTitle })}
         </h1>
 
         <form onSubmit={formik.handleSubmit} className="space-y-6">
@@ -146,7 +154,7 @@ export default function ApplicationForm() {
           <div className="grid grid-cols-1 gap-4">
             <div>
               <TextField
-                label="Name"
+                label={t("application.labels.name")}
                 fullWidth
                 name="name"
                 value={user?.name || ""}
@@ -157,7 +165,7 @@ export default function ApplicationForm() {
           {/* Contact Info */}
           <div className="grid grid-cols-2 gap-4">
             <TextField
-              label="Email"
+              label={t("application.labels.email")}
               fullWidth
               name="email"
               value={user?.email || ""}
@@ -165,7 +173,7 @@ export default function ApplicationForm() {
             />
 
             <TextField
-              label="Phone"
+              label={t("application.labels.phone")}
               fullWidth
               name="phone"
               value={user?.phone || ""}
@@ -175,7 +183,7 @@ export default function ApplicationForm() {
           {/* Address */}
           <div className="grid grid-cols-2 gap-4">
             <TextField
-              label="Address"
+              label={t("application.labels.address")}
               fullWidth
               name="address"
               value={user?.address || ""}
@@ -186,7 +194,9 @@ export default function ApplicationForm() {
           <div className="grid grid-cols-2 gap-4">
             <div>
               {/* Resume Upload */}
-              <p className="font-medium text-gray-700 mb-2">Resume / CV</p>
+              <p className="font-medium text-gray-700 mb-2">
+                {t("application.labels.resume")}
+              </p>
               <div>
                 <Button
                   variant="contained"
@@ -201,7 +211,7 @@ export default function ApplicationForm() {
                     boxShadow: "none",
                   }}
                 >
-                  Upload File
+                  {t("application.buttons.upload")}
                   <input
                     type="file"
                     hidden
@@ -217,7 +227,9 @@ export default function ApplicationForm() {
                 )}
                 {formik.values.resume && (
                   <p className="text-sm mt-1 text-gray-600">
-                    Selected: {formik.values.resume.name}
+                    {t("application.placeholder.file_selected", {
+                      filename: formik.values.resume.name,
+                    })}
                   </p>
                 )}
               </div>
@@ -225,7 +237,7 @@ export default function ApplicationForm() {
               {/* Expected Salary */}
               <div className="mt-6">
                 <p className="font-medium text-gray-700 mb-2">
-                  Expected Salary (IDR/hour)
+                  {t("application.labels.expected_salary")}
                 </p>
                 <Slider
                   name="expectedSalary"
@@ -240,14 +252,18 @@ export default function ApplicationForm() {
                   sx={{ width: "90%", ml: 2, mr: 2, color: "#7E3ACD" }}
                 />
                 <p className="text-gray-600 text-sm mx-auto text-center ">
-                  {formik.values.expectedSalary}k IDR/hour
+                  {t("application.placeholder.salary_display", {
+                    val: formik.values.expectedSalary,
+                  })}
                 </p>
               </div>
             </div>
             <div>
               {/* Availability Days */}
               <div>
-                <p className="font-medium text-gray-700 mb-2">Availability</p>
+                <p className="font-medium text-gray-700 mb-2">
+                  {t("application.labels.availability")}
+                </p>
                 <div className="flex gap-2">
                   {daysOfWeek.map((day) => (
                     <FormControlLabel
@@ -267,7 +283,7 @@ export default function ApplicationForm() {
                           sx={{ "&.Mui-checked": { color: "#7E3ACD" } }}
                         />
                       }
-                      label={day}
+                      label={t(`application.days.${day}` as string)}
                       labelPlacement="bottom"
                       sx={{ m: 0 }}
                     />
@@ -283,7 +299,7 @@ export default function ApplicationForm() {
               <div>
                 <div className="flex ml-1 mr-1 mt-4 items-center justify-between gap-4">
                   <TextField
-                    label="From"
+                    label={t("application.labels.from")}
                     type="time"
                     name="availabilityStart"
                     value={formik.values.availabilityStart || "00:00"}
@@ -304,7 +320,7 @@ export default function ApplicationForm() {
                   <div className="h-0.5 bg-gray-300 w-full"></div>
 
                   <TextField
-                    label="Until"
+                    label={t("application.labels.until")}
                     type="time"
                     name="availabilityEnd"
                     value={formik.values.availabilityEnd || "00:00"}
@@ -336,14 +352,14 @@ export default function ApplicationForm() {
               lineHeight: 1.555556,
             }}
           >
-            Send Application
+            {t("application.buttons.submit")}
           </Button>
         </form>
         <p
           className="font-medium text-gray-700 mt-2 text-center text-ms cursor-pointer"
           onClick={() => setOpenTerms(true)}
         >
-          Terms and Conditions
+          {t("application.buttons.terms_link")}
         </p>
       </div>
       <Modal open={openTerms} onClose={() => setOpenTerms(false)}>
@@ -362,7 +378,7 @@ export default function ApplicationForm() {
         >
           <div className="flex justify-between items-center mb-4">
             <Typography variant="h6" component="h2" className="font-bold">
-              Terms & Conditions
+              {t("application.terms_modal.title")}
             </Typography>
           </div>
 
@@ -370,11 +386,7 @@ export default function ApplicationForm() {
             sx={{ mt: 2 }}
             className="text-gray-700 text-sm leading-relaxed"
           >
-            By submitting this application, you confirm that all information
-            provided is accurate and truthful. Your data will be used solely for
-            recruitment purposes and will not be shared with third parties
-            without your consent. Submitting false information may result in
-            disqualification.
+            {t("application.terms_modal.content")}
           </Typography>
 
           <Button
@@ -383,7 +395,7 @@ export default function ApplicationForm() {
             sx={{ mt: 3, backgroundColor: "#7C3AED" }}
             onClick={() => setOpenTerms(false)}
           >
-            I Understand
+            {t("application.buttons.modal_close")}
           </Button>
         </Box>
       </Modal>
