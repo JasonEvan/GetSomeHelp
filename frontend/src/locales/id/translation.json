@@ -1,3 +1,10 @@
 {
-  "welcome": "selamat datang di aplikasi kami!"
+  "navbar": {
+    "career": "Karir",
+    "help": "Bantuan",
+    "start_hiring": "Mulai Merekrut",
+    "sign_in": "Masuk",
+    "profile": "Profil",
+    "logout": "Keluar"
+  }
 }
