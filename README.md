@@ -145,7 +145,7 @@ cd frontend
 ### Install dependency
 
 ```bash
-cd frontend
+npm install
 ```
 
 ### Buat file `.env`

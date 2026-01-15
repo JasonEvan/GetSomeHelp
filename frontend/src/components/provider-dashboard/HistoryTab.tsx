@@ -9,11 +9,13 @@ import api from "../../lib/axios";
 import type { ProviderHistory } from "../../utils/types";
 import { useAuthStore } from "../../hooks/useAuthStore";
 import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 
 export default function HistoryTab() {
   const [currentPage, setCurrentPage] = useState(1);
   const [historyData, setHistoryData] = useState<ProviderHistory[]>([]);
   const user = useAuthStore((state) => state.user);
+  const { t } = useTranslation();
 
   const itemsPerPage = 5;
 
@@ -52,19 +54,21 @@ export default function HistoryTab() {
       {/* Header */}
       <div className="flex items-start justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold mb-1">Service History</h2>
+          <h2 className="text-2xl font-bold mb-1">
+            {t("dashboard.user.history.title")}
+          </h2>
           <p className="text-gray-500">
-            View your transaction for hiring services.
+            {t("dashboard.provider.history.subtitle")}
           </p>
         </div>
 
         <div className="text-right text-sm">
           <p className="text-gray-500">
-            Total Jobs:{" "}
+            {t("dashboard.provider.history.total_jobs")}
             <span className="font-semibold text-black">{totalOrders}</span>
           </p>
           <p className="text-gray-500">
-            Earnings:{" "}
+            {t("dashboard.provider.history.earnings")}
             <span className="font-semibold text-black">
               {formatCurrency(totalSpent)}
             </span>
@@ -77,9 +81,15 @@ export default function HistoryTab() {
         <table className="w-full text-sm">
           <thead className="bg-gray-200">
             <tr>
-              <th className="px-4 py-3 text-left font-semibold">Customer</th>
-              <th className="px-4 py-3 text-left font-semibold">Service</th>
-              <th className="px-4 py-3 text-left font-semibold">Date</th>
+              <th className="px-4 py-3 text-left font-semibold">
+                {t("dashboard.provider.history.table.customer")}
+              </th>
+              <th className="px-4 py-3 text-left font-semibold">
+                {t("dashboard.provider.schedule.table.service")}
+              </th>
+              <th className="px-4 py-3 text-left font-semibold">
+                {t("dashboard.provider.schedule.table.date")}
+              </th>
               <th className="px-4 py-3 text-left font-semibold">Total</th>
             </tr>
           </thead>
@@ -108,7 +118,7 @@ export default function HistoryTab() {
           disabled={currentPage === 1}
           className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 disabled:bg-gray-200 disabled:text-gray-400 cursor-pointer disabled:cursor-not-allowed"
         >
-          Previous
+          {t("dashboard.user.history.table.previous")}
         </button>
 
         <span className="font-semibold">{currentPage}</span>
@@ -118,7 +128,7 @@ export default function HistoryTab() {
           disabled={currentPage === totalPages}
           className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200 disabled:bg-gray-200 disabled:text-gray-400 cursor-pointer disabled:cursor-not-allowed"
         >
-          Next
+          {t("dashboard.user.history.table.next")}
         </button>
       </div>
     </div>

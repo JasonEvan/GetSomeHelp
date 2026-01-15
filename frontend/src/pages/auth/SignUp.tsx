@@ -8,10 +8,12 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import api from "../../lib/axios";
 import type { AuthResponse } from "../../utils/types";
 import { useAuthStore } from "../../hooks/useAuthStore";
+import { useTranslation } from "react-i18next";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Username is required"),
@@ -49,7 +51,7 @@ export default function SignUp() {
         style={{ backgroundImage: "url('/img/background/main-bg.png')" }}
       >
         <div className="bg-white w-full max-w-md rounded-xl shadow-xl p-10 text-center">
-          <h1 className="text-2xl font-bold mb-8">Sign Up</h1>
+          <h1 className="text-2xl font-bold mb-8">{t("auth.sign_up.title")}</h1>
 
           <form
             className="flex flex-col gap-y-6"
@@ -65,7 +67,7 @@ export default function SignUp() {
               error={formik.touched.name && Boolean(formik.errors.name)}
               helperText={formik.touched.name && formik.errors.name}
               variant="standard"
-              placeholder="Username"
+              placeholder={t("auth.sign_up.placeholder1")}
               className="text-sm"
               slotProps={{
                 input: {
@@ -155,17 +157,17 @@ export default function SignUp() {
               type="submit"
               className="w-full bg-violet-600 text-white py-3 rounded-full font-semibold hover:bg-violet-700 transition"
             >
-              Register
+              {t("auth.sign_up.register_btn")}
             </button>
           </form>
 
           <p className="text-sm text-gray-500 mt-6">
-            Already have an account?{" "}
+            {t("auth.sign_up.have_account")}
             <span
               onClick={() => navigate("/login", { replace: true })}
               className="font-semibold text-black cursor-pointer hover:underline"
             >
-              Log in
+              {t("auth.login.title")}
             </span>
           </p>
         </div>

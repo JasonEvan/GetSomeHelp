@@ -3,10 +3,13 @@ import { useAuthStore } from "../hooks/useAuthStore";
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import api from "../lib/axios";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const user = useAuthStore((state) => state.user);
+
+  const { t } = useTranslation();
 
   return (
     <nav className="fixed h-16 w-full flex items-center px-16 backdrop-blur-lg z-50">
@@ -18,8 +21,8 @@ export default function Navbar() {
           </Link>
         </span>
 
-        <Link to="/career">Career</Link>
-        <Link to="/help">Help</Link>
+        <Link to="/career">{t("navbar.career")}</Link>
+        <Link to="/help">{t("navbar.help")}</Link>
       </div>
 
       <div className="ml-auto gap-x-3 flex">
@@ -31,7 +34,7 @@ export default function Navbar() {
             to="/login"
             className="px-3 py-2 bg-[#CBBFDF] text-[#7C3AED] rounded-lg text-sm font-semibold hover:opacity-90"
           >
-            Sign in
+            {t("navbar.sign_in")}
           </Link>
         )}
 
@@ -40,7 +43,7 @@ export default function Navbar() {
           to="/catalog"
           className="px-3 py-2 bg-[#7C3AED] text-white rounded-lg text-sm font-semibold hover:bg-violet-700"
         >
-          Start Hiring
+          {t("navbar.start_hiring")}
         </Link>
       </div>
     </nav>
@@ -51,6 +54,7 @@ function UserAvatar({ name, role }: { name: string; role?: string }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
+  const { t } = useTranslation();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -87,8 +91,8 @@ function UserAvatar({ name, role }: { name: string; role?: string }) {
         <Avatar sx={{ bgcolor: "#7C3AED" }}>{name[0]}</Avatar>
       </button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        <MenuItem onClick={handleClickProfile}>Profile</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={handleClickProfile}>{t("navbar.profile")}</MenuItem>
+        <MenuItem onClick={handleLogout}>{t("navbar.logout")}</MenuItem>
       </Menu>
     </>
   );

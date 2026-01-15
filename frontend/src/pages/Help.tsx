@@ -1,47 +1,61 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import HelpModal from "../layout/HelpModal";
 
 import PaymentsContent from "../components/help-content/PaymentsContent";
 import AccountContent from "../components/help-content/AccountContent";
-
-const helpOptions = [
-  {
-    title: "How to order a service",
-    description: "Order service guide",
-    icon: "/img/support.png",
-    type: "route",
-    path: "/help/how-to-order",
-  },
-  {
-    title: "Account",
-    description: "Manage your account and security settings",
-    icon: "/img/account-setting.png",
-    type: "modal",
-    modalKey: "account",
-  },
-  {
-    title: "Payments & Billing",
-    description: "Find information on accepted payment methods",
-    icon: "/img/wallet.png",
-    type: "modal",
-    modalKey: "payments",
-  },
-  {
-    title: "Common Questions (FAQ)",
-    description: "Frequently asked questions and answers",
-    icon: "/img/faq.png",
-    type: "route",
-    path: "/help/faq",
-  },
-] as const;
+import { useTranslation } from "react-i18next";
 
 type ModalType = "payments" | "account" | null;
+
+interface HelpOptionItem {
+  title: string;
+  description: string;
+  icon: string;
+  type: "route" | "modal";
+  path?: string;
+  modalKey?: ModalType;
+}
 
 export default function Help() {
   const navigate = useNavigate();
   const [modal, setModal] = useState<ModalType>(null);
+  const { t } = useTranslation();
+
+  const helpOptions = useMemo<HelpOptionItem[]>(
+    () => [
+      {
+        title: t("help.cards.order.title"),
+        description: t("help.cards.order.desc"),
+        icon: "/img/support.png",
+        type: "route",
+        path: "/help/how-to-order",
+      },
+      {
+        title: t("help.cards.account.title"),
+        description: t("help.cards.account.desc"),
+        icon: "/img/account-setting.png",
+        type: "modal",
+        modalKey: "account",
+      },
+      {
+        title: t("help.cards.payments.title"),
+        description: t("help.cards.payments.desc"),
+        icon: "/img/wallet.png",
+        type: "modal",
+        modalKey: "payments",
+      },
+      {
+        title: t("help.cards.faq.title"),
+        description: t("help.cards.faq.desc"),
+        icon: "/img/faq.png",
+        type: "route",
+        path: "/help/faq",
+      },
+    ],
+    [t]
+  );
 
   return (
     <>
@@ -52,12 +66,12 @@ export default function Help() {
           style={{ backgroundImage: "url('/img/background/third-bg.png')" }}
         >
           <h1 className="text-4xl font-bold text-gray-700 mb-6 text-center">
-            How can we help you?
+            {t("help.title")}
           </h1>
 
           <div className="relative w-full max-w-3xl">
             <input
-              placeholder="Search your question here..."
+              placeholder={t("help.search_placeholder")}
               className="w-full py-4 px-6 pr-14 rounded-xl shadow-md focus:ring-2 focus:ring-[#7C3AED] outline-none bg-white"
             />
             <Search className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500" />
@@ -94,7 +108,7 @@ export default function Help() {
         <HelpModal
           open={modal === "payments"}
           onClose={() => setModal(null)}
-          title="Payments & Billing"
+          title={t("help.cards.payments.modal_title")}
         >
           <PaymentsContent />
         </HelpModal>
@@ -102,7 +116,7 @@ export default function Help() {
         <HelpModal
           open={modal === "account"}
           onClose={() => setModal(null)}
-          title="Account Settings"
+          title={t("help.cards.account.modal_title")}
         >
           <AccountContent />
         </HelpModal>

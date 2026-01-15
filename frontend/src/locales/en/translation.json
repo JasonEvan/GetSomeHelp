@@ -1,0 +1,337 @@
+{
+  "navbar": {
+    "career": "Career",
+    "help": "Help",
+    "start_hiring": "Start Hiring",
+    "sign_in": "Sign In",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "home": {
+    "title": "The easiest way to hire local service",
+    "subtitle": "Compare prices, ratings, and availability all in one place to get it done quicker and cheaper",
+    "cta_button": "Get Started",
+    "service_title": "Popular Service Types",
+    "service_cta_button": "More Services"
+  },
+  "footer": {
+    "home": "Home",
+    "popular_services": "Popular Services",
+    "job_application": "Job Application",
+    "hiring_worker": "Hiring Worker",
+    "account": "Account",
+    "contact": "Contact Us"
+  },
+  "career": {
+    "title": "Start your career with us",
+    "why_us": {
+      "title": "Why Choose Us?",
+      "items": {
+        "advance": {
+          "title": "Advance Opportunities",
+          "desc": "A clear career path provides a detailed roadmap of the positions, skills, and experience needed to achieve long-term professional goals."
+        },
+        "positions": {
+          "title": "Many Available Positions",
+          "desc": "We currently have many job openings waiting for you. Whatever your expertise, we have a place for you."
+        },
+        "hours": {
+          "title": "Flexible Working Hours",
+          "desc": "Work hours are flexible and adapted to meet client needs and ensure optimal service availability."
+        }
+      }
+    },
+    "join_us": {
+      "title": "Become one of us!",
+      "job_desk_label": "Job Desk",
+      "apply_btn": "Apply"
+    }
+  },
+  "help": {
+    "title": "How can we help you?",
+    "search_placeholder": "Search your question here...",
+    "cards": {
+      "order": {
+        "title": "How to order a service",
+        "desc": "Order service guide"
+      },
+      "account": {
+        "title": "Account",
+        "desc": "Manage your account and security settings",
+        "modal_title": "Account Settings"
+      },
+      "payments": {
+        "title": "Payments & Billing",
+        "desc": "Find information on accepted payment methods",
+        "modal_title": "Payments & Billing"
+      },
+      "faq": {
+        "title": "Common Questions (FAQ)",
+        "desc": "Frequently asked questions and answers"
+      }
+    },
+    "modal": {
+      "payments": {
+        "intro": "Payments on GetSomeHelp are processed securely using <0>Midtrans</0>.",
+        "methods_title": "Supported Payment Methods",
+        "methods_list": [
+          "Credit & Debit Cards",
+          "Bank Transfer (Virtual Account)",
+          "QRIS",
+          "E-wallets (GoPay, OVO, DANA, ShopeePay)"
+        ],
+        "warning": "GetSomeHelp does <0>NOT STORE</0> your card or payment information. All transactions are handled directly by Midtrans."
+      },
+      "account": {
+        "intro": "Your account settings allow you to manage your personal information and keep your account secure.",
+        "actions_list": [
+          "Update your profile details.",
+          "Change your password regularly.",
+          "Manage notifications.",
+          "Keep your login information private."
+        ]
+      }
+    },
+    "faq_page": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Find quick answers to the most common questions about GetSomeHelp.",
+      "items": {
+        "q1": {
+          "question": "How do I order a service?",
+          "answer": "You can order a service by selecting the service type, choosing a service provider, and confirming your booking through the app."
+        },
+        "q2": {
+          "question": "How do payments work?",
+          "answer": "All payments are processed securely through Midtrans. GetSomeHelp does not store your card or payment details."
+        },
+        "q3": {
+          "question": "What payment methods are supported?",
+          "answer": "We support credit and debit cards, bank transfers (Virtual Account), QRIS, and popular e-wallets such as GoPay, OVO, DANA, and ShopeePay."
+        },
+        "q4": {
+          "question": "Can I cancel a service?",
+          "answer": "Yes, service cancellations are subject to the service provider’s cancellation policy. Please review the policy before confirming your booking."
+        },
+        "q5": {
+          "question": "How do I contact customer support?",
+          "answer": "If you need further assistance, you can contact our customer support team through the app or via the support contact provided on the Help page."
+        }
+      }
+    },
+    "how_to_order": {
+      "title": "How to Order a Service",
+      "subtitle": "Follow these simple steps to book a service quickly and easily.",
+      "steps": {
+        "1": {
+          "label": "Step 1",
+          "title": "Choose a Service",
+          "desc": "Browse available services and select the one that fits your needs."
+        },
+        "2": {
+          "label": "Step 2",
+          "title": "Compare Providers",
+          "desc": "Compare prices, ratings, and availability from different service providers."
+        },
+        "3": {
+          "label": "Step 3",
+          "title": "Book the Service",
+          "desc": "Select your preferred date and time, then confirm your booking."
+        },
+        "4": {
+          "label": "Step 4",
+          "title": "Get It Done",
+          "desc": "The service provider arrives and completes the job as scheduled."
+        }
+      }
+    }
+  },
+  "catalog": {
+    "hero": {
+      "title": "How can we help you?",
+      "search_placeholder": "What service are you looking for?"
+    },
+    "section_title": "Service Catalog",
+    "filter": {
+      "price": {
+        "title": "Narrow by Price",
+        "any": "Any Price",
+        "above": "Above {{val}}",
+        "range": "{{min}} - {{max}}"
+      },
+      "type": {
+        "title": "Narrow by Type"
+      },
+      "sort": {
+        "title": "Sort By",
+        "name": "Name",
+        "lowest_price": "Lowest Price",
+        "highest_price": "Highest Price",
+        "user_rating": "User Rating"
+      },
+      "address": {
+        "title": "Your Address",
+        "placeholder1": "Your Address",
+        "placeholder2": "Details"
+      }
+    },
+    "card": {
+      "years_service": "years of service",
+      "starting_from": "Starting from Rp",
+      "per_visit": "per visit"
+    },
+    "detail": {
+      "no_reviews": "No reviews yet",
+      "see_more": "See More",
+      "no_available_bookings": "No available bookings",
+      "book_now": "Book Now",
+      "contact_provider": "Contact Provider",
+      "about_this_service": "About This Service",
+      "provided_by": "Provided by",
+      "schedule": "Schedule"
+    }
+  },
+  "auth": {
+    "sign_up": {
+      "title": "Sign Up",
+      "placeholder1": "Username",
+      "register_btn": "Register",
+      "have_account": "Already have an account? "
+    },
+    "login": {
+      "title": "Log In",
+      "dont_have_account": "Don't have an account? "
+    }
+  },
+  "application": {
+    "title": "{{role}} Job Application",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "resume": "Resume / CV",
+      "expected_salary": "Expected Salary (IDR/hour)",
+      "availability": "Availability",
+      "from": "From",
+      "until": "Until"
+    },
+    "buttons": {
+      "upload": "Upload File",
+      "submit": "Send Application",
+      "terms_link": "Terms and Conditions",
+      "modal_close": "I Understand"
+    },
+    "placeholder": {
+      "salary_display": "{{val}}k IDR/hour",
+      "file_selected": "Selected: {{filename}}"
+    },
+    "days": {
+      "Sun": "Sun",
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat"
+    },
+    "validation": {
+      "resume_req": "Resume / CV is required",
+      "days_min": "Select at least one day",
+      "days_req": "Select at least one day",
+      "start_req": "Start time required",
+      "end_req": "End time required",
+      "end_greater": "End time must be after start time"
+    },
+    "alerts": {
+      "success": "Form submitted successfully",
+      "error": "An error occurred. Please try again: "
+    },
+    "terms_modal": {
+      "title": "Terms & Conditions",
+      "content": "By submitting this application, you confirm that all information provided is accurate and truthful. Your data will be used solely for recruitment purposes and will not be shared with third parties without your consent. Submitting false information may result in disqualification."
+    }
+  },
+  "dashboard": {
+    "user": {
+      "tabs": {
+        "profile": "User Profile",
+        "settings": "Settings",
+        "history": "History"
+      },
+      "profile": {
+        "name": "Name",
+        "phone": "Phone",
+        "address": "Address",
+        "details": "Details",
+        "edit_btn": "Edit",
+        "cancel_btn": "Cancel",
+        "save_btn": "Save"
+      },
+      "history": {
+        "title": "Service History",
+        "subtitle": "View your transaction for hiring services.",
+        "total_orders": "Total orders: ",
+        "total_spent": "Total spent: ",
+        "table": {
+          "service": "Service",
+          "provider": "Provider",
+          "date": "Date",
+          "previous": "Previous",
+          "next": "Next"
+        }
+      }
+    },
+    "provider": {
+      "tabs": {
+        "profile": "Provider Profile",
+        "schedule": "Schedule",
+        "settings": "Settings",
+        "history": "History"
+      },
+      "profile": {
+        "name": "Name",
+        "phone": "Phone",
+        "address": "Address",
+        "overview": "Service Overview / Description",
+        "starting_price": "Starting Price",
+        "availability": "Availability",
+        "from": "From",
+        "until": "Until",
+        "edit_btn": "Edit",
+        "cancel_btn": "Cancel",
+        "save_btn": "Save"
+      },
+      "schedule": {
+        "title": "Schedule",
+        "subtitle": "Manage incoming service requests and your availability",
+        "table": {
+          "customer": "Customer",
+          "service": "Service",
+          "date": "Date",
+          "accept": "Accept",
+          "decline": "Decline"
+        }
+      },
+      "history": {
+        "subtitle": "View your transaction.",
+        "total_jobs": "Total jobs: ",
+        "earnings": "Earnings: ",
+        "table": {
+          "customer": "Customer"
+        }
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account preferences and notifications",
+    "language": "Language",
+    "notifications": "Notifications"
+  },
+  "forbidden": {
+    "title": "Access Forbidden",
+    "subtitle": "You don’t have permission to access this page.",
+    "cta_home_button": "Go Home",
+    "cta_back_button": "Go Back"
+  }
+}

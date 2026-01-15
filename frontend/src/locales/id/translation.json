@@ -1,0 +1,334 @@
+{
+  "navbar": {
+    "career": "Karir",
+    "help": "Bantuan",
+    "start_hiring": "Mulai Merekrut",
+    "sign_in": "Masuk",
+    "profile": "Profil",
+    "logout": "Keluar"
+  },
+  "home": {
+    "title": "Cara termudah untuk merekrut layanan lokal",
+    "subtitle": "Bandingkan harga, peringkat, dan ketersediaan semuanya di satu tempat untuk menyelesaikannya lebih cepat dan lebih murah",
+    "cta_button": "Mulai",
+    "service_title": "Jenis Layanan Populer",
+    "service_cta_button": "Layanan Lainnya"
+  },
+  "footer": {
+    "home": "Beranda",
+    "popular_services": "Layanan Populer",
+    "job_application": "Lamaran Pekerjaan",
+    "hiring_worker": "Merekrut Pekerja",
+    "account": "Akun",
+    "contact": "Hubungi Kami"
+  },
+  "career": {
+    "title": "Mulai karir Anda bersama kami",
+    "why_us": {
+      "title": "Kenapa Memilih Kami?",
+      "items": {
+        "advance": {
+          "title": "Peluang Kemajuan",
+          "desc": "Jalur karir yang jelas menyediakan peta jalan rinci tentang posisi, keterampilan, dan pengalaman yang dibutuhkan."
+        },
+        "positions": {
+          "title": "Banyak Posisi Tersedia",
+          "desc": "Kami memiliki banyak lowongan pekerjaan menanti Anda. Apapun keahlian Anda, kami punya tempat untuk Anda."
+        },
+        "hours": {
+          "title": "Jam Kerja Fleksibel",
+          "desc": "Jam kerja fleksibel dan disesuaikan untuk memenuhi kebutuhan klien serta memastikan ketersediaan layanan optimal."
+        }
+      }
+    },
+    "join_us": {
+      "title": "Jadilah bagian dari kami!",
+      "job_desk_label": "Deskripsi Pekerjaan",
+      "apply_btn": "Lamar"
+    }
+  },
+  "help": {
+    "title": "Apa yang bisa kami bantu?",
+    "search_placeholder": "Cari pertanyaan Anda di sini...",
+    "cards": {
+      "order": {
+        "title": "Cara memesan layanan",
+        "desc": "Panduan pemesanan layanan"
+      },
+      "account": {
+        "title": "Akun",
+        "desc": "Kelola akun dan pengaturan keamanan Anda",
+        "modal_title": "Pengaturan Akun"
+      },
+      "payments": {
+        "title": "Pembayaran & Tagihan",
+        "desc": "Informasi metode pembayaran yang diterima",
+        "modal_title": "Pembayaran & Tagihan"
+      },
+      "faq": {
+        "title": "Pertanyaan Umum (FAQ)",
+        "desc": "Pertanyaan dan jawaban yang sering ditanyakan"
+      }
+    },
+    "modal": {
+      "payments": {
+        "intro": "Pembayaran di GetSomeHelp diproses secara aman menggunakan <0>Midtrans</0>.",
+        "methods_title": "Metode Pembayaran yang Didukung",
+        "methods_list": [
+          "Kartu Kredit & Debit",
+          "Transfer Bank (Virtual Account)",
+          "QRIS",
+          "E-wallet (GoPay, OVO, DANA, ShopeePay)"
+        ],
+        "warning": "GetSomeHelp <0>TIDAK MENYIMPAN</0> informasi kartu atau pembayaran Anda. Semua transaksi ditangani langsung oleh Midtrans."
+      },
+      "account": {
+        "intro": "Pengaturan akun memungkinkan Anda mengelola informasi pribadi dan menjaga keamanan akun.",
+        "actions_list": [
+          "Perbarui detail profil Anda.",
+          "Ubah kata sandi secara berkala.",
+          "Kelola notifikasi.",
+          "Jaga kerahasiaan informasi login Anda."
+        ]
+      }
+    },
+    "faq_page": {
+      "title": "Pertanyaan yang Sering Diajukan",
+      "subtitle": "Temukan jawaban cepat untuk pertanyaan umum tentang GetSomeHelp.",
+      "items": {
+        "q1": {
+          "question": "Bagaimana cara memesan layanan?",
+          "answer": "Anda dapat memesan layanan dengan memilih jenis layanan, memilih penyedia layanan, dan mengonfirmasi pesanan melalui aplikasi."
+        },
+        "q2": {
+          "question": "Bagaimana sistem pembayarannya?",
+          "answer": "Semua pembayaran diproses secara aman melalui Midtrans. GetSomeHelp tidak menyimpan detail kartu atau pembayaran Anda."
+        },
+        "q3": {
+          "question": "Metode pembayaran apa yang didukung?",
+          "answer": "Kami mendukung kartu kredit & debit, transfer bank (Virtual Account), QRIS, dan e-wallet populer seperti GoPay, OVO, DANA, dan ShopeePay."
+        },
+        "q4": {
+          "question": "Bisakah saya membatalkan layanan?",
+          "answer": "Ya, pembatalan layanan tunduk pada kebijakan pembatalan penyedia layanan. Harap tinjau kebijakan sebelum mengonfirmasi pesanan Anda."
+        },
+        "q5": {
+          "question": "Bagaimana cara menghubungi layanan pelanggan?",
+          "answer": "Jika Anda memerlukan bantuan lebih lanjut, Anda dapat menghubungi tim dukungan kami melalui aplikasi atau kontak yang tersedia di halaman Bantuan."
+        }
+      }
+    },
+    "how_to_order": {
+      "title": "Cara Memesan Layanan",
+      "subtitle": "Ikuti langkah mudah ini untuk memesan layanan dengan cepat dan mudah.",
+      "steps": {
+        "1": {
+          "label": "Langkah 1",
+          "title": "Pilih Layanan",
+          "desc": "Telusuri layanan yang tersedia dan pilih yang sesuai kebutuhan Anda."
+        },
+        "2": {
+          "label": "Langkah 2",
+          "title": "Bandingkan Penyedia",
+          "desc": "Bandingkan harga, rating, dan ketersediaan dari berbagai penyedia layanan."
+        },
+        "3": {
+          "label": "Langkah 3",
+          "title": "Pesan Layanan",
+          "desc": "Pilih tanggal dan waktu yang diinginkan, lalu konfirmasi pesanan Anda."
+        },
+        "4": {
+          "label": "Langkah 4",
+          "title": "Selesai",
+          "desc": "Penyedia layanan akan datang dan menyelesaikan pekerjaan sesuai jadwal."
+        }
+      }
+    }
+  },
+  "catalog": {
+    "hero": {
+      "title": "Apa yang bisa kami bantu?",
+      "search_placeholder": "Layanan apa yang Anda cari?"
+    },
+    "section_title": "Katalog Layanan",
+    "filter": {
+      "price": {
+        "title": "Filter Harga",
+        "any": "Semua Harga",
+        "above": "Di atas {{val}}",
+        "range": "{{min}} - {{max}}"
+      },
+      "type": {
+        "title": "Filter Kategori"
+      },
+      "sort": {
+        "title": "Urutkan",
+        "name": "Nama",
+        "lowest_price": "Harga Terendah",
+        "highest_price": "Harga Tertinggi",
+        "user_rating": "Rating Pengguna"
+      },
+      "address": {
+        "title": "Lokasimu",
+        "placeholder1": "Alamat Anda",
+        "placeholder2": "Detail"
+      }
+    },
+    "card": {
+      "years_service": "tahun pengalaman",
+      "starting_from": "Mulai dari Rp",
+      "per_visit": "per kunjungan"
+    },
+    "detail": {
+      "no_reviews": "Belum ada ulasan",
+      "see_more": "Lihat Selengkapnya",
+      "no_available_bookings": "Tidak ada jadwal tersedia",
+      "book_now": "Pesan Sekarang",
+      "contact_provider": "Hubungi Penyedia",
+      "about_this_service": "Tentang Layanan Ini",
+      "provided_by": "Disediakan oleh",
+      "schedule": "Jadwal"
+    }
+  },
+  "auth": {
+    "sign_up": {
+      "title": "Daftar",
+      "placeholder1": "Nama Pengguna",
+      "register_btn": "Daftar",
+      "have_account": "Sudah punya akun? "
+    },
+    "login": {
+      "title": "Masuk",
+      "dont_have_account": "Tidak punya akun? "
+    }
+  },
+  "application": {
+    "title": "Lamaran Pekerjaan {{role}}",
+    "labels": {
+      "name": "Nama",
+      "email": "Email",
+      "phone": "Nomor Telepon",
+      "address": "Alamat",
+      "resume": "Resume / CV",
+      "expected_salary": "Ekspektasi Gaji (IDR/jam)",
+      "availability": "Ketersediaan",
+      "from": "Dari",
+      "until": "Sampai"
+    },
+    "buttons": {
+      "upload": "Unggah File",
+      "submit": "Kirim Lamaran",
+      "terms_link": "Syarat dan Ketentuan",
+      "modal_close": "Saya Mengerti"
+    },
+    "placeholder": {
+      "salary_display": "{{val}}rb IDR/jam",
+      "file_selected": "Terpilih: {{filename}}"
+    },
+    "days": {
+      "Sun": "Min",
+      "Mon": "Sen",
+      "Tue": "Sel",
+      "Wed": "Rab",
+      "Thu": "Kam",
+      "Fri": "Jum",
+      "Sat": "Sab"
+    },
+    "validation": {
+      "resume_req": "Resume / CV wajib diisi",
+      "days_min": "Pilih setidaknya satu hari",
+      "days_req": "Pilih setidaknya satu hari",
+      "start_req": "Waktu mulai wajib diisi",
+      "end_req": "Waktu selesai wajib diisi",
+      "end_greater": "Waktu selesai harus setelah waktu mulai"
+    },
+    "alerts": {
+      "success": "Formulir berhasil dikirim",
+      "error": "Terjadi kesalahan. Silakan coba lagi: "
+    },
+    "terms_modal": {
+      "title": "Syarat & Ketentuan",
+      "content": "Dengan mengirimkan lamaran ini, Anda menyatakan bahwa semua informasi yang diberikan adalah akurat dan benar. Data Anda akan digunakan semata-mata untuk tujuan rekrutmen dan tidak akan dibagikan kepada pihak ketiga tanpa persetujuan Anda. Mengirimkan informasi palsu dapat mengakibatkan diskualifikasi."
+    }
+  },
+  "dashboard": {
+    "user": {
+      "tabs": {
+        "profile": "Profil Pengguna",
+        "settings": "Pengaturan",
+        "history": "Riwayat"
+      },
+      "profile": {
+        "name": "Nama",
+        "phone": "Nomor Telepon",
+        "address": "Alamat",
+        "details": "Detail",
+        "edit_btn": "Ubah",
+        "cancel_btn": "Batal",
+        "save_btn": "Simpan"
+      },
+      "history": {
+        "title": "Riwayat Transaksi",
+        "subtitle": "Lihat transaksi Anda untuk layanan perekrutan.",
+        "total_orders": "Total pesanan: ",
+        "total_spent": "Total pengeluaran: ",
+        "table": {
+          "service": "Layanan",
+          "provider": "Penyedia",
+          "date": "Tanggal",
+          "previous": "Sebelumnya",
+          "next": "Berikutnya"
+        }
+      }
+    },
+    "provider": {
+      "tabs": {
+        "profile": "Profil Penyedia",
+        "schedule": "Jadwal",
+        "settings": "Pengaturan",
+        "history": "Riwayat"
+      },
+      "profile": {
+        "name": "Nama",
+        "phone": "Nomor Telepon",
+        "address": "Alamat",
+        "overview": "Ikhtisar Layanan",
+        "starting_price": "Harga Mulai",
+        "availability": "Ketersediaan",
+        "from": "Dari",
+        "until": "Sampai"
+      },
+      "schedule": {
+        "title": "Jadwal",
+        "subtitle": "Kelola permintaan layanan masuk Anda.",
+        "table": {
+          "customer": "Pelanggan",
+          "service": "Layanan",
+          "date": "Tanggal",
+          "accept": "Terima",
+          "decline": "Tolak"
+        }
+      },
+      "history": {
+        "subtitle": "Lihat riwayat layanan Anda.",
+        "total_jobs": "Total pekerjaan: ",
+        "earnings": "Total penghasilan: ",
+        "table": {
+          "customer": "Pelanggan"
+        }
+      }
+    }
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Kelola preferensi dan notifikasi akun Anda",
+    "language": "Bahasa",
+    "notifications": "Notifikasi"
+  },
+  "forbidden": {
+    "title": "Akses Terlarang",
+    "subtitle": "Anda tidak memiliki izin untuk mengakses halaman ini.",
+    "cta_home_button": "Kembali ke Beranda",
+    "cta_back_button": "Kembali"
+  }
+}

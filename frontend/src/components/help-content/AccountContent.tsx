@@ -1,16 +1,20 @@
+import { useTranslation } from "react-i18next";
+
 export default function AccountContent() {
+  const { t } = useTranslation();
+
+  const accountActions = t("help.modal.account.actions_list", {
+    returnObjects: true,
+  }) as string[];
+
   return (
     <div className="space-y-6 text-gray-600">
-      <p>
-        Your account settings allow you to manage your personal information and
-        keep your account secure.
-      </p>
+      <p>{t("help.modal.account.intro")}</p>
 
       <ul className="list-disc list-inside">
-        <li>Update your profile details.</li>
-        <li>Change your password regularly.</li>
-        <li>Manage notifications.</li>
-        <li>Keep your login information private.</li>
+        {accountActions.map((action, idx) => (
+          <li key={idx}>{action}</li>
+        ))}
       </ul>
     </div>
   );

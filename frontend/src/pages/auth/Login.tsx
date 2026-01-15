@@ -8,10 +8,12 @@ import * as Yup from "yup";
 import api from "../../lib/axios";
 import type { AuthResponse } from "../../utils/types";
 import { useAuthStore } from "../../hooks/useAuthStore";
+import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const { t } = useTranslation();
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -47,7 +49,7 @@ export default function Login() {
         style={{ backgroundImage: "url('/img/background/main-bg.png')" }}
       >
         <div className="bg-white w-full max-w-md rounded-xl shadow-xl p-10 text-center">
-          <h1 className="text-2xl font-bold mb-8">Log in</h1>
+          <h1 className="text-2xl font-bold mb-8">{t("auth.login.title")}</h1>
 
           <form
             className="flex flex-col gap-y-6"
@@ -130,17 +132,17 @@ export default function Login() {
               type="submit"
               className="w-full bg-violet-600 text-white py-3 rounded-full font-semibold hover:bg-violet-700 transition"
             >
-              Log in
+              {t("auth.login.title")}
             </button>
           </form>
 
           <p className="text-sm text-gray-500 mt-6">
-            Don&apos;t have an account?{" "}
+            {t("auth.login.dont_have_account")}
             <span
               onClick={() => navigate("/signup", { replace: true })}
               className="font-semibold text-black cursor-pointer hover:underline"
             >
-              Sign up
+              {t("auth.sign_up.title")}
             </span>
           </p>
         </div>

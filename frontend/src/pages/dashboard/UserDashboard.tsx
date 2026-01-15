@@ -2,11 +2,13 @@ import { useState } from "react";
 import ProfileTab from "../../components/dashboard/ProfileTab";
 import SettingsTab from "../../components/dashboard/SettingsTab";
 import HistoryTab from "../../components/dashboard/HistoryTab";
+import { useTranslation } from "react-i18next";
 
 type TabType = "profile" | "settings" | "history";
 
 export default function UserDashboard() {
   const [activeTab, setActiveTab] = useState<TabType>("profile");
+  const { t } = useTranslation();
 
   return (
     <main className="min-h-screen bg-[#F9FAFB] flex items-center justify-center px-6 py-12">
@@ -14,17 +16,17 @@ export default function UserDashboard() {
         {/* Tab Header Container */}
         <div className="flex">
           <TabButton
-            label="User Profile"
+            label={t("dashboard.user.tabs.profile")}
             active={activeTab === "profile"}
             onClick={() => setActiveTab("profile")}
           />
           <TabButton
-            label="Settings"
+            label={t("dashboard.user.tabs.settings")}
             active={activeTab === "settings"}
             onClick={() => setActiveTab("settings")}
           />
           <TabButton
-            label="History"
+            label={t("dashboard.user.tabs.history")}
             active={activeTab === "history"}
             onClick={() => setActiveTab("history")}
           />
