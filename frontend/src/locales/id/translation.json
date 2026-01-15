@@ -6,5 +6,12 @@
     "sign_in": "Masuk",
     "profile": "Profil",
     "logout": "Keluar"
+  },
+  "home": {
+    "title": "Cara termudah untuk merekrut layanan lokal",
+    "subtitle": "Bandingkan harga, peringkat, dan ketersediaan semuanya di satu tempat untuk menyelesaikannya lebih cepat dan lebih murah",
+    "cta_button": "Mulai",
+    "service_title": "Jenis Layanan Populer",
+    "service_cta_button": "Layanan Lainnya"
   }
 }

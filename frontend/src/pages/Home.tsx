@@ -2,9 +2,11 @@ import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "../layout/Footer";
 import { useServiceType } from "../hooks/useServiceType";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const services = useServiceType();
+  const { t } = useTranslation();
 
   return (
     <main className="bg-gray-100 h-screen">
@@ -14,16 +16,11 @@ export default function Home() {
       >
         <div className="flex items-center justify-between">
           <div className="flex flex-col ms-16 w-1/2 gap-y-4">
-            <span className="font-extrabold text-5xl">
-              The easiest way to hire local service
-            </span>
-            <span className="text-xl">
-              Compare prices, ratings, and availability all in one place to get
-              it done quicker and cheaper
-            </span>
+            <span className="font-extrabold text-5xl">{t("home.title")}</span>
+            <span className="text-xl">{t("home.subtitle")}</span>
             <div className="mt-2">
               <button className="bg-[#7C3AED] px-5 py-3 rounded-md text-white font-bold cursor-pointer">
-                Get Started
+                {t("home.cta_button")}
               </button>
             </div>
           </div>
@@ -36,7 +33,7 @@ export default function Home() {
         style={{ backgroundImage: "url('/img/background/secondary-bg.png')" }}
       >
         <h3 className="font-bold text-3xl text-center">
-          Popular Service Types
+          {t("home.service_title")}
         </h3>
         <div className="w-full grid grid-flow-row grid-cols-4 gap-5 p-5">
           {services.map((service) => (
@@ -56,7 +53,7 @@ export default function Home() {
           className="px-3 py-2 bg-[#7C3AED] rounded-xl text-white font-bold flex items-center gap-x-2"
           to="/catalog"
         >
-          More Services <ArrowDown />
+          {t("home.service_cta_button")} <ArrowDown />
         </Link>
       </section>
       <Footer />

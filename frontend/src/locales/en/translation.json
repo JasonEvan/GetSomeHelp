@@ -6,5 +6,12 @@
     "sign_in": "Sign In",
     "profile": "Profile",
     "logout": "Logout"
+  },
+  "home": {
+    "title": "The easiest way to hire local service",
+    "subtitle": "Compare prices, ratings, and availability all in one place to get it done quicker and cheaper",
+    "cta_button": "Get Started",
+    "service_title": "Popular Service Types",
+    "service_cta_button": "More Services"
   }
 }
