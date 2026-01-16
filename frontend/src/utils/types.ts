@@ -24,6 +24,10 @@ export interface ServiceCatalogDetail extends ServiceCatalog {
     };
   }[];
   grouped_bookings: Record<string, Booking[]>;
+  user: {
+    id: number;
+    phone: string | null;
+  };
 }
 
 export interface ServiceType {

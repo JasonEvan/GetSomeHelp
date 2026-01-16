@@ -71,7 +71,8 @@ export default function CatalogDetail() {
             </Link>
             <Link
               type="button"
-              to="#"
+              hidden={!service.user.phone}
+              to={`https://wa.me/${service.user.phone?.split("-").join("")}`}
               className="mt-5 bg-transparent text-black rounded-md w-fit py-2 px-4 border border-white"
             >
               {t("catalog.detail.contact_provider")}

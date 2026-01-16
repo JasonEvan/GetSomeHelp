@@ -82,7 +82,8 @@ class ServiceController extends Controller
                   ->orderBy('date')
                   ->orderBy('start_time');
             },
-            'bookings.user:id,name'
+            'bookings.user:id,name',
+            'user:id,phone'
         ]);
 
         $groupedBookings = $provider->bookings->groupBy('date');
