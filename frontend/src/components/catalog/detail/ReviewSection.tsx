@@ -14,7 +14,7 @@ export default function ReviewSection({
   const visibleReviews = reviews.slice(0, visibleCount);
 
   return (
-    <div className="w-1/4">
+    <div className="w-full lg:w-1/4">
       {reviews.length === 0 ? (
         <p>{t("catalog.detail.no_reviews")}</p>
       ) : (

@@ -39,19 +39,19 @@ export default function CatalogDetail() {
 
   return (
     <main
-      className="min-h-screen bg-cover bg-center bg-repeat px-16 flex flex-col gap-y-5"
+      className="min-h-screen bg-cover bg-center bg-repeat px-4 sm:px-6 lg:px-16 flex flex-col gap-y-8"
       style={{ backgroundImage: "url('/img/background/forth-bg.png')" }}
     >
-      <section className="flex justify-center items-center pt-24 gap-x-5">
-        <div className="w-full h-[300px]">
+      <section className="flex flex-col lg:flex-row justify-center items-start pt-24 gap-6">
+        <div className="w-full lg:w-1/2 h-64 lg:h-[300px]">
           <img
             src={img_source}
             alt=""
-            className="object-cover border rounded-lg"
+            className="w-full h-full object-cover border rounded-lg"
           />
         </div>
-        <div className="w-full h-[300px] space-y-2">
-          <h1 className="text-4xl">{service.service_type.name}</h1>
+        <div className="w-full lg:w-1/2 space-y-3">
+          <h1 className="text-2xl lg:text-4xl">{service.service_type.name}</h1>
           <div className="flex items-center gap-x-1 text-lg">
             <StarIcon className="text-[#E6A61C]" />
             <span>{service.rating}</span>
@@ -81,12 +81,12 @@ export default function CatalogDetail() {
         </div>
       </section>
 
-      <section className="flex justify-center items-center gap-x-5">
-        <div className="w-full space-y-1">
+      <section className="flex flex-col lg:flex-row justify-center gap-6">
+        <div className="w-full lg:w-1/2 space-y-1">
           <h2 className="text-2xl">{t("catalog.detail.about_this_service")}</h2>
           <p className="text-lg">{service.bio}</p>
         </div>
-        <div className="w-full space-y-1">
+        <div className="w-full lg:w-1/2 space-y-1">
           <h2 className="text-2xl">{t("catalog.detail.provided_by")}</h2>
           <div className="flex items-center gap-x-2">
             <CircleUserRound size={40} />
@@ -101,7 +101,7 @@ export default function CatalogDetail() {
         </div>
       </section>
 
-      <section className="flex justify-center gap-x-5 pb-5">
+      <section className="flex flex-col lg:flex-row justify-center gap-6 pb-10">
         <ReviewSection reviews={service.reviews} />
         <ScheduleSection bookings={service.grouped_bookings} />
       </section>
