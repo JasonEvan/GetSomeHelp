@@ -26,7 +26,7 @@ export default function TypeFilter() {
       </div>
       <div className="bg-[#F5F5F5] border-[#D9D9D9] border p-5">
         <FormGroup>
-          <Grid container>
+          <Grid container spacing={1}>
             {services.map((service) => (
               <Grid key={service.id} size={6}>
                 <FormControlLabel

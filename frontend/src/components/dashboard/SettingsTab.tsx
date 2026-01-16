@@ -18,7 +18,7 @@ export default function SettingsTab() {
       {/* content */}
       <div className="space-y-6 w-full">
         {/* language */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <span className="font-semibold">{t("settings.language")}</span>
 
           {/* language options */}
@@ -33,7 +33,7 @@ export default function SettingsTab() {
         </div>
 
         {/* notifications */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <span className="font-semibold">{t("settings.notifications")}</span>
 
           {/* notif options */}

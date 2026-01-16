@@ -78,8 +78,8 @@ export default function ScheduleTab() {
       </div>
 
       {/* Table */}
-      <div className="border rounded-md overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="border rounded-md overflow-x-auto">
+        <table className="min-w-[700px] w-full text-sm">
           <thead className="bg-gray-200">
             <tr>
               <th className="px-4 py-3 text-left font-semibold">
@@ -107,7 +107,7 @@ export default function ScheduleTab() {
                 <td className="px-4 py-3">
                   {formatCurrency(item.total_price)}
                 </td>
-                <td className="px-4 py-3 flex gap-x-1">
+                <td className="px-4 py-3 flex flex-col sm:flex-row gap-2">
                   <Button
                     size="small"
                     color="success"

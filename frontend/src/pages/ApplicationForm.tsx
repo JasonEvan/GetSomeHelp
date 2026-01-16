@@ -144,7 +144,7 @@ export default function ApplicationForm() {
         backgroundPosition: "center",
       }}
     >
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg mt-10">
+      <div className="max-w-3xl mx-auto bg-white p-5 sm:p-8 rounded-xl shadow-lg mt-10">
         <h1 className="text-3xl font-bold text-gray-700 mb-8 text-center">
           {t("application.title", { role: jobTitle })}
         </h1>
@@ -163,7 +163,7 @@ export default function ApplicationForm() {
             </div>
           </div>
           {/* Contact Info */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <TextField
               label={t("application.labels.email")}
               fullWidth
@@ -181,7 +181,7 @@ export default function ApplicationForm() {
             />
           </div>
           {/* Address */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1">
             <TextField
               label={t("application.labels.address")}
               fullWidth
@@ -191,7 +191,7 @@ export default function ApplicationForm() {
             />
           </div>
           {/* Resume, Salary, Availability */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               {/* Resume Upload */}
               <p className="font-medium text-gray-700 mb-2">
@@ -264,7 +264,7 @@ export default function ApplicationForm() {
                 <p className="font-medium text-gray-700 mb-2">
                   {t("application.labels.availability")}
                 </p>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   {daysOfWeek.map((day) => (
                     <FormControlLabel
                       key={day}
@@ -297,7 +297,7 @@ export default function ApplicationForm() {
               </div>
               {/* Availability Time */}
               <div>
-                <div className="flex ml-1 mr-1 mt-4 items-center justify-between gap-4">
+                <div className="flex flex-col sm:flex-row mt-4 items-center gap-4">
                   <TextField
                     label={t("application.labels.from")}
                     type="time"
@@ -313,11 +313,10 @@ export default function ApplicationForm() {
                       formik.touched.availabilityStart &&
                       formik.errors.availabilityStart
                     }
-                    sx={{ width: "110%" }}
+                    fullWidth
                   />
 
-                  {/* Strip */}
-                  <div className="h-0.5 bg-gray-300 w-full"></div>
+                  <div className="hidden sm:block h-0.5 bg-gray-300 w-full"></div>
 
                   <TextField
                     label={t("application.labels.until")}
@@ -334,7 +333,7 @@ export default function ApplicationForm() {
                       formik.touched.availabilityEnd &&
                       formik.errors.availabilityEnd
                     }
-                    sx={{ width: "110%" }}
+                    fullWidth
                   />
                 </div>
               </div>
@@ -369,7 +368,8 @@ export default function ApplicationForm() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 500,
+            width: "90%",
+            maxWidth: 500,
             bgcolor: "background.paper",
             borderRadius: 2,
             boxShadow: 24,

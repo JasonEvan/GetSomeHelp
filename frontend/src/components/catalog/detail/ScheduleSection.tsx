@@ -16,9 +16,9 @@ export default function ScheduleSection({
   const { t } = useTranslation();
 
   return (
-    <div className="w-3/4 bg-[#FAFAFA] rounded-lg shadow-xl p-5 space-y-2 h-fit">
+    <div className="w-full lg:w-3/4 bg-[#FAFAFA] rounded-lg shadow-xl p-5 space-y-3 h-fit">
       <h3 className="text-2xl">{t("catalog.detail.schedule")}</h3>
-      <div className="flex gap-x-2 max-h-80">
+      <div className="flex flex-col md:flex-row gap-4">
         {/* calendar */}
         <div className="bg-white border border-gray-300 rounded-lg p-1">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -31,9 +31,11 @@ export default function ScheduleSection({
           </LocalizationProvider>
         </div>
         {/* list jadwal */}
-        <div className="w-full overflow-y-auto p-3 space-y-2">
+        <div className="w-full p-3 space-y-2 md:max-h-80 md:overflow-y-auto">
           {Object.keys(bookings).length === 0 ? (
-            <p>{t("catalog.detail.no_available_bookings")}</p>
+            <p className="text-base lg:text-lg">
+              {t("catalog.detail.no_available_bookings")}
+            </p>
           ) : (
             Object.keys(bookings).map((key, index) => (
               <div key={index}>
@@ -47,7 +49,9 @@ export default function ScheduleSection({
                     >
                       <div className="flex gap-x-1.5 p-1.5">
                         <CircleUserRound size={40} />
-                        <p>{booking.user.name}</p>
+                        <p className="text-base lg:text-lg">
+                          {booking.user.name}
+                        </p>
                       </div>
                       <div>
                         {dayjs(booking.start_time, "HH:mm:ss").format("HH:mm")}{" "}

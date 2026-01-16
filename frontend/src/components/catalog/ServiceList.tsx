@@ -19,7 +19,7 @@ export default function ServiceList() {
   );
 
   return (
-    <div className="space-y-2 px-5 w-3/4">
+    <div className="w-full md:w-3/4 space-y-3">
       {sortedServices.map((service, index) => (
         <ServiceCard
           key={index}
@@ -69,30 +69,33 @@ function ServiceCard({
 
   return (
     <Link
-      className="w-full h-24 flex justify-between items-center border border-gray-300"
+      className="w-full border border-gray-300 rounded-lg overflow-hidden flex flex-col sm:flex-row"
       to={`/catalog/${id}`}
     >
-      <div className="flex h-full items-center">
-        <div className="w-[120px] h-full flex justify-center items-center overflow-hidden">
-          <img src={img_source} alt="" className="object-cover" />
-        </div>
-        <div className="ms-2">
-          <h5 className="text-xl">{name}</h5>
-          <p className="text-sm">{category}</p>
-          <p className="text-sm">
-            {city} - {experience}+ {t("catalog.card.years_service")}
+      <div className="w-full sm:w-[140px] h-40 sm:h-auto shrink-0">
+        <img src={img_source} alt="" className="w-full h-full object-cover" />
+      </div>
+
+      <div className="flex flex-col justify-between p-3 flex-1">
+        <div>
+          <h5 className="text-lg sm:text-xl font-semibold">{name}</h5>
+          <p className="text-sm text-gray-600">{category}</p>
+          <p className="text-sm text-gray-600">
+            {city} – {experience}+ {t("catalog.card.years_service")}
           </p>
         </div>
-      </div>
-      <div className="text-right pe-2 flex flex-col justify-between h-3/4">
-        <div className="flex gap-x-2 justify-end">
-          <StarIcon className="text-[#E6A61C]" />
-          <p>{rating}</p>
+
+        <div className="mt-2 flex justify-between items-end">
+          <div className="flex items-center gap-1">
+            <StarIcon className="text-[#E6A61C]" fontSize="small" />
+            <span>{rating}</span>
+          </div>
+
+          <p className="text-sm">
+            {t("catalog.card.starting_from")}
+            <b>{price}</b> {t("catalog.card.per_visit")}
+          </p>
         </div>
-        <p>
-          {t("catalog.card.starting_from")}
-          <b>{price}</b> {t("catalog.card.per_visit")}
-        </p>
       </div>
     </Link>
   );

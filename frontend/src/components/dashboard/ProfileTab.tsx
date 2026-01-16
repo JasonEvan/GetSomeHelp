@@ -42,8 +42,8 @@ export default function ProfileTab() {
   return (
     <div>
       {/* Header profile */}
-      <div className="flex justify-between items-start mb-8">
-        <div className="flex items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4 flex-wrap">
           {/* avatar */}
           <div className="w-20 h-20 rounded-full border overflow-hidden flex items-center justify-center bg-gray-50">
             <img
@@ -63,7 +63,7 @@ export default function ProfileTab() {
         {!isEditing ? (
           <button
             onClick={() => setIsEditing(true)}
-            className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
+            className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer h-fit"
           >
             {t("dashboard.user.profile.edit_btn")}
           </button>
@@ -71,13 +71,13 @@ export default function ProfileTab() {
           <div className="flex gap-2">
             <button
               onClick={handleCancel}
-              className="px-4 py-2 rounded-md text-sm border hover:bg-gray-200 cursor-pointer"
+              className="px-4 py-2 rounded-md text-sm border hover:bg-gray-200 cursor-pointer h-fit"
             >
               {t("dashboard.user.profile.cancel_btn")}
             </button>
             <button
               onClick={handleSave}
-              className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer"
+              className="bg-violet-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-violet-700 cursor-pointer h-fit"
             >
               {t("dashboard.user.profile.save_btn")}
             </button>
@@ -131,7 +131,7 @@ export default function ProfileTab() {
         </div>
 
         {/* Map Preview */}
-        <div className="md:col-span-2 h-64 border rounded-md overflow-hidden">
+        <div className="md:col-span-2 h-48 md:h-64 border rounded-md overflow-hidden">
           <iframe
             title="map"
             className="w-full h-full"

@@ -11,10 +11,10 @@ export default function UserDashboard() {
   const { t } = useTranslation();
 
   return (
-    <main className="min-h-screen bg-[#F9FAFB] flex items-center justify-center px-6 py-12">
+    <main className="min-h-screen bg-[#F9FAFB] px-4 py-6 pt-20 md:flex md:items-center md:justify-center">
       <div className="w-full max-w-6xl">
         {/* Tab Header Container */}
-        <div className="flex">
+        <div className="flex overflow-x-auto no-scrollbar">
           <TabButton
             label={t("dashboard.user.tabs.profile")}
             active={activeTab === "profile"}
@@ -33,7 +33,7 @@ export default function UserDashboard() {
         </div>
 
         {/* Content box */}
-        <div className="bg-white rounded-tr-xl rounded-b-xl shadow-lg border border-gray-200 p-8">
+        <div className="bg-white rounded-tr-xl rounded-b-xl shadow-lg border border-gray-200 p-4 md:p-8">
           {activeTab === "profile" && <ProfileTab />}
           {activeTab === "settings" && <SettingsTab />}
           {activeTab === "history" && <HistoryTab />}
@@ -55,7 +55,7 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`px-6 py-2.5 text-sm font-semibold border transition-all duration-200 first:rounded-tl-lg last:rounded-tr-lg    ${
+      className={`px-4 md:px-6 py-2.5 text-sm font-semibold whitespace-nowrap border transition-all duration-200 first:rounded-tl-lg last:rounded-tr-lg ${
         active
           ? "bg-white border-gray-200 border-b-white text-black -mb-px z-10 relative"
           : "bg-gray-100 border-gray-200 text-gray-500 hover:bg-gray-200 border-b-gray-200"
