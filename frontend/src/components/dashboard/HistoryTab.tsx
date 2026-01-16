@@ -52,7 +52,7 @@ export default function HistoryTab() {
   return (
     <div>
       {/* Header */}
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-4 mb-6">
         <div>
           <h2 className="text-2xl font-bold mb-1">
             {t("dashboard.user.history.title")}
@@ -77,8 +77,8 @@ export default function HistoryTab() {
       </div>
 
       {/* Table */}
-      <div className="border rounded-md overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="border rounded-md overflow-x-auto">
+        <table className="min-w-[600px] w-full text-sm">
           <thead className="bg-gray-200">
             <tr>
               <th className="px-4 py-3 text-left font-semibold">
