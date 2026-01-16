@@ -163,7 +163,7 @@ export default function ProfileTab() {
   return (
     <div>
       {/* Header profile */}
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-8">
         <div className="flex items-center gap-4">
           {/* avatar */}
           <div className="w-20 h-20 rounded-full border overflow-hidden flex items-center justify-center bg-gray-50">
@@ -265,7 +265,7 @@ export default function ProfileTab() {
               <p className="font-medium text-gray-700 mb-2">
                 {t("dashboard.provider.profile.availability")}
               </p>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {daysOfWeek.map((day) => (
                   <FormControlLabel
                     key={day}
@@ -288,7 +288,7 @@ export default function ProfileTab() {
             </div>
             {/* Availability Time */}
             <div>
-              <div className="flex ml-1 mr-1 mt-4 items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 items-center mt-4">
                 <TextField
                   label={t("dashboard.provider.profile.from")}
                   type="time"

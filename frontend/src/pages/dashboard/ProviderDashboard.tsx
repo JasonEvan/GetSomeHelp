@@ -12,10 +12,10 @@ export default function ProviderDashboard() {
   const { t } = useTranslation();
 
   return (
-    <main className="min-h-screen bg-[#F9FAFB] flex items-center justify-center px-6 py-12">
-      <div className="w-full max-w-6xl">
+    <main className="min-h-screen bg-[#F9FAFB] px-4 py-6 pt-20 md:flex md:items-center md:justify-center">
+      <div className="w-full max-w-6xl mt-2">
         {/* Tab Header Container */}
-        <div className="flex">
+        <div className="flex overflow-x-auto scrollbar-hide">
           <TabButton
             label={t("dashboard.provider.tabs.profile")}
             active={activeTab === "profile"}
