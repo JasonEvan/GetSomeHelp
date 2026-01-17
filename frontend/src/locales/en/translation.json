@@ -187,7 +187,24 @@
       "contact_provider": "Contact Provider",
       "about_this_service": "About This Service",
       "provided_by": "Provided by",
-      "schedule": "Schedule"
+      "schedule": "Schedule",
+      "modal": {
+        "title": "Request Booking",
+        "starting_price": "Starting price: ",
+        "placeholder1": "Your price quotation",
+        "placeholder2": "Select date",
+        "placeholder3": "Select start time",
+        "placeholder4": "Select end time",
+        "cancel_btn": "Cancel",
+        "submit_btn": "Submit Request",
+        "validation": {
+          "price": "Please enter a valid price quotation",
+          "date_time": "Please select date and time",
+          "time_invalid": "End time must be after start time",
+          "day_invalid": "Schedule must be in the future",
+          "success": "Booking request submitted!"
+        }
+      }
     }
   },
   "auth": {

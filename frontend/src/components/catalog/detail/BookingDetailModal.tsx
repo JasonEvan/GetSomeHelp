@@ -6,6 +6,7 @@ import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   open: boolean;
@@ -20,29 +21,31 @@ export default function BookingDetailModal({
 }: Props) {
   const [price, setPrice] = useState<number | "">(startingPrice);
   const [date, setDate] = useState<Dayjs | null>(null);
-  const [time, setTime] = useState<Dayjs | null>(null);
+  const [startTime, setStartTime] = useState<Dayjs | null>(null);
+  const [endTime, setEndTime] = useState<Dayjs | null>(null);
+  const { t } = useTranslation();
 
   const handleSubmit = () => {
     if (!price || price <= 0) {
-      toast.error("Please enter a valid price quotation");
+      toast.error(t("catalog.detail.modal.validation.price"));
       return;
     }
 
-    if (!date || !time) {
-      toast.error("Please select date and time");
+    if (!date || !startTime || !endTime) {
+      toast.error(t("catalog.detail.modal.validation.date_time"));
       return;
     }
 
     const selectedDateTime = date
-      .hour(time.hour())
-      .minute(time.minute());
+      .hour(startTime.hour())
+      .minute(startTime.minute());
 
     if (selectedDateTime.isBefore(dayjs())) {
-      toast.error("Schedule must be in the future");
+      toast.error(t("catalog.detail.modal.validation.day_invalid"));
       return;
     }
-    
-    toast.success("Booking request submitted!");
+
+    toast.success(t("catalog.detail.modal.validation.success"));
     onClose();
   };
 
@@ -61,7 +64,9 @@ export default function BookingDetailModal({
       >
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Request Booking</h2>
+          <h2 className="text-xl font-bold">
+            {t("catalog.detail.modal.title")}
+          </h2>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
@@ -70,14 +75,15 @@ export default function BookingDetailModal({
         {/* Service Info */}
         <div className="mb-4 text-sm text-gray-600">
           <p>
-            Starting price: <b>{startingPrice}</b>
+            {t("catalog.detail.modal.starting_price")}
+            <b>{startingPrice}</b>
           </p>
         </div>
 
         {/* Form */}
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           <TextField
-            label="Your price quotation"
+            label={t("catalog.detail.modal.placeholder1")}
             type="number"
             fullWidth
             value={price}
@@ -86,16 +92,22 @@ export default function BookingDetailModal({
 
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              label="Select date"
+              label={t("catalog.detail.modal.placeholder2")}
               value={date}
               onChange={(val) => setDate(val)}
               disablePast
             />
 
             <TimePicker
-              label="Select time"
-              value={time}
-              onChange={(val) => setTime(val)}
+              label={t("catalog.detail.modal.placeholder3")}
+              value={startTime}
+              onChange={(val) => setStartTime(val)}
+            />
+
+            <TimePicker
+              label={t("catalog.detail.modal.placeholder4")}
+              value={endTime}
+              onChange={(val) => setEndTime(val)}
             />
           </LocalizationProvider>
         </Box>
@@ -103,7 +115,7 @@ export default function BookingDetailModal({
         {/* Actions */}
         <div className="flex justify-end gap-2 mt-6 ">
           <Button onClick={onClose} variant="outlined">
-            Cancel
+            {t("catalog.detail.modal.cancel_btn")}
           </Button>
           <Button
             onClick={handleSubmit}
@@ -111,10 +123,10 @@ export default function BookingDetailModal({
             sx={{
               backgroundColor: "#7c3aed",
               color: "#fff",
-              '&:hover': { backgroundColor: '#6d28d9' },
+              "&:hover": { backgroundColor: "#6d28d9" },
             }}
           >
-            Submit Request
+            {t("catalog.detail.modal.submit_btn")}
           </Button>
         </div>
       </Box>

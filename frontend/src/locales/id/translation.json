@@ -187,7 +187,24 @@
       "contact_provider": "Hubungi Penyedia",
       "about_this_service": "Tentang Layanan Ini",
       "provided_by": "Disediakan oleh",
-      "schedule": "Jadwal"
+      "schedule": "Jadwal",
+      "modal": {
+        "title": "Minta Pemesanan Layanan",
+        "starting_price": "Harga Mulai: ",
+        "placeholder1": "Tentukan Harga",
+        "placeholder2": "Pilih Tanggal",
+        "placeholder3": "Pilih waktu mulai",
+        "placeholder4": "Pilih waktu selesai",
+        "cancel_btn": "Batalkan",
+        "submit_btn": "Kirim Permintaan",
+        "validation": {
+          "price": "Masukkan harga yang valid",
+          "date_time": "Pilih tanggal dan waktu yang valid",
+          "time_invalid": "Waktu selesai harus setelah waktu mulai",
+          "day_invalid": "Hari yang dipilih harus dalam waktu setelah sekarang",
+          "success": "Permintaan pemesanan berhasil dikirim"
+        }
+      }
     }
   },
   "auth": {
