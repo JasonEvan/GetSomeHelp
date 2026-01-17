@@ -6,11 +6,14 @@ import { useCatalogDetail } from "../hooks/useCatalogDetail";
 import ReviewSection from "../components/catalog/detail/ReviewSection";
 import ScheduleSection from "../components/catalog/detail/ScheduleSection";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import BookingDetailModal from "../components/catalog/detail/BookingDetailModal";
 
 export default function CatalogDetail() {
   const { detail } = useParams();
   const { service, loading, navigate } = useCatalogDetail(detail);
   const { t } = useTranslation();
+  const [openBooking, setOpenBooking] = useState(false);
 
   if (loading) {
     return (
@@ -50,27 +53,34 @@ export default function CatalogDetail() {
             className="w-full h-full object-cover border rounded-lg"
           />
         </div>
+
         <div className="w-full lg:w-1/2 space-y-3">
-          <h1 className="text-2xl lg:text-4xl">{service.service_type.name}</h1>
+          <h1 className="text-2xl lg:text-4xl">
+            {service.service_type.name}
+          </h1>
+
           <div className="flex items-center gap-x-1 text-lg">
             <StarIcon className="text-[#E6A61C]" />
             <span>{service.rating}</span>
           </div>
+
           <p className="text-lg">{service.service_type.description}</p>
+
           <p className="text-lg">
-            {t("catalog.card.starting_from")}
-            <b>{service.starting_price}</b> {t("catalog.card.per_visit")}
+            {t("catalog.card.starting_from")}{" "}
+            <b>{service.starting_price}</b>{" "}
+            {t("catalog.card.per_visit")}
           </p>
+
           <div className="flex gap-x-3">
-            <Link
-              type="button"
-              to="#"
-              className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4"
+            <button
+              onClick={() => setOpenBooking(true)}
+              className="mt-5 bg-[#7C3AED] text-white rounded-md w-fit py-2 px-4 hover:bg-[#6D28D9]"
             >
               {t("catalog.detail.book_now")}
-            </Link>
+            </button>
+
             <Link
-              type="button"
               hidden={!service.user.phone}
               to={`https://wa.me/${service.user.phone?.split("-").join("")}`}
               className="mt-5 bg-transparent text-black rounded-md w-fit py-2 px-4 border border-white"
@@ -83,11 +93,16 @@ export default function CatalogDetail() {
 
       <section className="flex flex-col lg:flex-row justify-center gap-6">
         <div className="w-full lg:w-1/2 space-y-1">
-          <h2 className="text-2xl">{t("catalog.detail.about_this_service")}</h2>
+          <h2 className="text-2xl">
+            {t("catalog.detail.about_this_service")}
+          </h2>
           <p className="text-lg">{service.bio}</p>
         </div>
+
         <div className="w-full lg:w-1/2 space-y-1">
-          <h2 className="text-2xl">{t("catalog.detail.provided_by")}</h2>
+          <h2 className="text-2xl">
+            {t("catalog.detail.provided_by")}
+          </h2>
           <div className="flex items-center gap-x-2">
             <CircleUserRound size={40} />
             <div>
@@ -105,6 +120,13 @@ export default function CatalogDetail() {
         <ReviewSection reviews={service.reviews} />
         <ScheduleSection bookings={service.grouped_bookings} />
       </section>
+
+      {/* Booking Modal */}
+      <BookingDetailModal
+        open={openBooking}
+        onClose={() => setOpenBooking(false)}
+        startingPrice={service.starting_price}
+      />
     </main>
   );
 }
