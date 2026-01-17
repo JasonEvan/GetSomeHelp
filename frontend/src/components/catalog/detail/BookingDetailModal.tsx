@@ -4,9 +4,10 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 type Props = {
   open: boolean;
@@ -19,33 +20,72 @@ export default function BookingDetailModal({
   onClose,
   startingPrice,
 }: Props) {
-  const [price, setPrice] = useState<number | "">(startingPrice);
-  const [date, setDate] = useState<Dayjs | null>(null);
-  const [startTime, setStartTime] = useState<Dayjs | null>(null);
-  const [endTime, setEndTime] = useState<Dayjs | null>(null);
   const { t } = useTranslation();
 
-  const handleSubmit = () => {
-    if (!price || price <= 0) {
-      toast.error(t("catalog.detail.modal.validation.price"));
-      return;
-    }
+  const validationSchema = Yup.object({
+    price: Yup.number()
+      .required(t("catalog.detail.modal.validation.price"))
+      .min(1, t("catalog.detail.modal.validation.price")),
+    date: Yup.mixed<Dayjs>()
+      .required(t("catalog.detail.modal.validation.date_time"))
+      .test(
+        "is-valid-date",
+        t("catalog.detail.modal.validation.date_time"),
+        (val) => dayjs.isDayjs(val) && val.isValid()
+      ),
+    startTime: Yup.mixed<Dayjs>().required(
+      t("catalog.detail.modal.validation.date_time")
+    ),
+    endTime: Yup.mixed<Dayjs>()
+      .required(t("catalog.detail.modal.validation.date_time"))
+      .test(
+        "is-after-start-time",
+        t("catalog.detail.modal.validation.time_invalid"),
+        function (val) {
+          const { startTime } = this.parent;
+          return (
+            dayjs.isDayjs(val) &&
+            dayjs.isDayjs(startTime) &&
+            val.isAfter(startTime)
+          );
+        }
+      ),
+  });
 
-    if (!date || !startTime || !endTime) {
-      toast.error(t("catalog.detail.modal.validation.date_time"));
-      return;
-    }
+  const formik = useFormik({
+    initialValues: {
+      price: startingPrice,
+      date: null as Dayjs | null,
+      startTime: null as Dayjs | null,
+      endTime: null as Dayjs | null,
+    },
+    enableReinitialize: true,
+    validationSchema,
+    onSubmit: (values) => {
+      const { date, startTime } = values;
 
-    const selectedDateTime = date
-      .hour(startTime.hour())
-      .minute(startTime.minute());
+      if (date && startTime) {
+        const selectedDateTime = date
+          .hour(startTime.hour())
+          .minute(startTime.minute());
 
-    if (selectedDateTime.isBefore(dayjs())) {
-      toast.error(t("catalog.detail.modal.validation.day_invalid"));
-      return;
-    }
+        if (selectedDateTime.isBefore(dayjs())) {
+          toast.error(t("catalog.detail.modal.validation.day_invalid"));
+          return;
+        }
+      }
 
-    toast.success(t("catalog.detail.modal.validation.success"));
+      toast.success(t("catalog.detail.modal.validation.success"));
+
+      // Lakukan aksi booking di sini (misal: API call)
+      // console.log(values);
+
+      handleClose();
+    },
+  });
+
+  const handleClose = () => {
+    formik.resetForm();
     onClose();
   };
 
@@ -81,54 +121,93 @@ export default function BookingDetailModal({
         </div>
 
         {/* Form */}
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <TextField
-            label={t("catalog.detail.modal.placeholder1")}
-            type="number"
-            fullWidth
-            value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
-          />
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label={t("catalog.detail.modal.placeholder2")}
-              value={date}
-              onChange={(val) => setDate(val)}
-              disablePast
+        <form onSubmit={formik.handleSubmit}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <TextField
+              name="price"
+              value={formik.values.price}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={formik.touched.price && Boolean(formik.errors.price)}
+              helperText={formik.touched.price && formik.errors.price}
+              label={t("catalog.detail.modal.placeholder1")}
+              type="number"
+              fullWidth
             />
 
-            <TimePicker
-              label={t("catalog.detail.modal.placeholder3")}
-              value={startTime}
-              onChange={(val) => setStartTime(val)}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DatePicker
+                label={t("catalog.detail.modal.placeholder2")}
+                format="DD/MM/YYYY"
+                value={formik.values.date}
+                onChange={(val) => formik.setFieldValue("date", val)}
+                disablePast
+                slotProps={{
+                  textField: {
+                    error: formik.touched.date && Boolean(formik.errors.date),
+                    helperText:
+                      formik.touched.date && (formik.errors.date as string),
+                    onBlur: () => formik.setFieldTouched("date", true),
+                  },
+                }}
+              />
 
-            <TimePicker
-              label={t("catalog.detail.modal.placeholder4")}
-              value={endTime}
-              onChange={(val) => setEndTime(val)}
-            />
-          </LocalizationProvider>
-        </Box>
+              <TimePicker
+                label={t("catalog.detail.modal.placeholder3")}
+                ampm={false}
+                format="HH:mm"
+                value={formik.values.startTime}
+                onChange={(val) => formik.setFieldValue("startTime", val)}
+                slotProps={{
+                  textField: {
+                    error:
+                      formik.touched.startTime &&
+                      Boolean(formik.errors.startTime),
+                    helperText:
+                      formik.touched.startTime &&
+                      (formik.errors.startTime as string),
+                    onBlur: () => formik.setFieldTouched("startTime", true),
+                  },
+                }}
+              />
 
-        {/* Actions */}
-        <div className="flex justify-end gap-2 mt-6 ">
-          <Button onClick={onClose} variant="outlined">
-            {t("catalog.detail.modal.cancel_btn")}
-          </Button>
-          <Button
-            onClick={handleSubmit}
-            variant="contained"
-            sx={{
-              backgroundColor: "#7c3aed",
-              color: "#fff",
-              "&:hover": { backgroundColor: "#6d28d9" },
-            }}
-          >
-            {t("catalog.detail.modal.submit_btn")}
-          </Button>
-        </div>
+              <TimePicker
+                label={t("catalog.detail.modal.placeholder4")}
+                ampm={false}
+                format="HH:mm"
+                value={formik.values.endTime}
+                onChange={(val) => formik.setFieldValue("endTime", val)}
+                slotProps={{
+                  textField: {
+                    error:
+                      formik.touched.endTime && Boolean(formik.errors.endTime),
+                    helperText:
+                      formik.touched.endTime &&
+                      (formik.errors.endTime as string),
+                    onBlur: () => formik.setFieldTouched("endTime", true),
+                  },
+                }}
+              />
+            </LocalizationProvider>
+          </Box>
+          {/* Actions */}
+          <div className="flex justify-end gap-2 mt-6 ">
+            <Button onClick={onClose} variant="outlined">
+              {t("catalog.detail.modal.cancel_btn")}
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                backgroundColor: "#7c3aed",
+                color: "#fff",
+                "&:hover": { backgroundColor: "#6d28d9" },
+              }}
+            >
+              {t("catalog.detail.modal.submit_btn")}
+            </Button>
+          </div>
+        </form>
       </Box>
     </Modal>
   );
