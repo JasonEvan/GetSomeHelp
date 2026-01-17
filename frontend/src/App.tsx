@@ -15,11 +15,23 @@ import ProtectedRoute from "./lib/ProtectedRoute";
 import GuestOnlyRoute from "./lib/GuestOnlyRoute";
 import ProviderDashboard from "./pages/dashboard/ProviderDashboard";
 import Forbidden403 from "./pages/Forbidden403";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export default function App() {
   return (
     <BrowserRouter>
       <Navbar />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
 
       <Routes>
         {/* PROTECTED ROUTES */}
