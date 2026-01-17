@@ -36,4 +36,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/provider', [ProviderController::class, 'update_provider_profile']);
 
     Route::patch('/booking/{booking}/status', [BookingController::class, 'update_status_booking']);
+    Route::post('/booking', [BookingController::class, 'create_booking']);
 });

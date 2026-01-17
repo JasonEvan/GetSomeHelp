@@ -121,4 +121,31 @@ class BookingController extends Controller
             'data' => $booking
         ]);
     }
+
+    public function create_booking(Request $request)
+    {
+        $validated = $request->validate([
+            'provider_id' => 'required|exists:providers,id',
+            'date' => 'required|date|after_or_equal:today',
+            'total_price' => 'required|numeric|min:0',
+            'start_time' => 'required|date_format:H:i',
+            'end_time' => 'required|date_format:H:i|after:start_time',
+        ]);
+
+        $booking = Booking::create([
+            'customer_id' => $request->user()->id,
+            'provider_id' => $validated['provider_id'],
+            'service_type_id' => Provider::find($validated['provider_id'])->service_type_id,
+            'date' => $validated['date'],
+            'total_price' => $validated['total_price'],
+            'start_time' => $validated['start_time'],
+            'end_time' => $validated['end_time'],
+            'status' => 'pending',
+        ]);
+
+        return response()->json([
+            'message' => 'Booking created successfully',
+            'data' => $booking
+        ], 201);
+    }
 }

@@ -8,17 +8,20 @@ import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import api from "../../../lib/axios";
 
 type Props = {
   open: boolean;
   onClose: () => void;
   startingPrice: number;
+  providerId: number;
 };
 
 export default function BookingDetailModal({
   open,
   onClose,
   startingPrice,
+  providerId,
 }: Props) {
   const { t } = useTranslation();
 
@@ -61,7 +64,7 @@ export default function BookingDetailModal({
     },
     enableReinitialize: true,
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const { date, startTime } = values;
 
       if (date && startTime) {
@@ -77,8 +80,13 @@ export default function BookingDetailModal({
 
       toast.success(t("catalog.detail.modal.validation.success"));
 
-      // Lakukan aksi booking di sini (misal: API call)
-      // console.log(values);
+      await api.post("/booking", {
+        provider_id: providerId,
+        date: values.date?.format("YYYY-MM-DD"),
+        total_price: values.price,
+        start_time: values.startTime?.format("HH:mm"),
+        end_time: values.endTime?.format("HH:mm"),
+      });
 
       handleClose();
     },

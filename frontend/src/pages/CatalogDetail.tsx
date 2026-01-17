@@ -55,9 +55,7 @@ export default function CatalogDetail() {
         </div>
 
         <div className="w-full lg:w-1/2 space-y-3">
-          <h1 className="text-2xl lg:text-4xl">
-            {service.service_type.name}
-          </h1>
+          <h1 className="text-2xl lg:text-4xl">{service.service_type.name}</h1>
 
           <div className="flex items-center gap-x-1 text-lg">
             <StarIcon className="text-[#E6A61C]" />
@@ -67,8 +65,7 @@ export default function CatalogDetail() {
           <p className="text-lg">{service.service_type.description}</p>
 
           <p className="text-lg">
-            {t("catalog.card.starting_from")}{" "}
-            <b>{service.starting_price}</b>{" "}
+            {t("catalog.card.starting_from")} <b>{service.starting_price}</b>{" "}
             {t("catalog.card.per_visit")}
           </p>
 
@@ -93,16 +90,12 @@ export default function CatalogDetail() {
 
       <section className="flex flex-col lg:flex-row justify-center gap-6">
         <div className="w-full lg:w-1/2 space-y-1">
-          <h2 className="text-2xl">
-            {t("catalog.detail.about_this_service")}
-          </h2>
+          <h2 className="text-2xl">{t("catalog.detail.about_this_service")}</h2>
           <p className="text-lg">{service.bio}</p>
         </div>
 
         <div className="w-full lg:w-1/2 space-y-1">
-          <h2 className="text-2xl">
-            {t("catalog.detail.provided_by")}
-          </h2>
+          <h2 className="text-2xl">{t("catalog.detail.provided_by")}</h2>
           <div className="flex items-center gap-x-2">
             <CircleUserRound size={40} />
             <div>
@@ -126,6 +119,7 @@ export default function CatalogDetail() {
         open={openBooking}
         onClose={() => setOpenBooking(false)}
         startingPrice={service.starting_price}
+        providerId={service.id}
       />
     </main>
   );
